@@ -1,0 +1,191 @@
+/* ---------------------------------- Responsive Media Styles ---------------------------------*/
+
+
+
+@media (min-width: 1200px) {
+	
+	.container-productdetail { max-width: 1200px}
+	 
+}
+
+ 
+
+@media only screen and (min-width: 769px) {
+	 
+	 .tophead .tophead-right .dropdown-menu { display:block; opacity: 0;  visibility: hidden; transition:.3s; margin-top:0; top:180%;  }
+	.tophead .tophead-right  .dropdown-toggle:hover .dropdown-menu { transition: .3s; opacity:1; visibility:visible; top:100%; transform: rotateX(0deg); }
+	 
+	 .navbar .nav-item .dropdown-menu {  display:block; opacity: 0;  visibility: hidden; transition:.3s; margin-top:0; top: 180%  }  
+	.navbar .nav-item:hover .dropdown-menu { transition: .3s; opacity:1; visibility:visible; top:100%; transform: rotateX(0deg); }  
+
+}
+
+
+
+
+
+/* Medium : 647px */
+
+@media only screen and (max-width: 767px) {
+     
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+     
+}
+
+/* Small : 320px */
+
+@media screen and (max-width: 575px) {
+	.moblogo img { width: 100%;}
+	.btn-login { font-size: 10px; padding: 6px 15px; } 
+	.tophead ul li { padding: 0 7px;}
+	.top-bannerHead h1 {font-size: 36px;}
+	.top-bannerHead h2 {font-size: 19px;}
+	.top-banner-searchbar {padding: 5px 10px;}
+	.search-icon {height: 20px; top: 9px;}
+	.search-inpt {font-size: 12px; padding-left: 25px; text-overflow: ellipsis;}
+	.hero-section ul li {font-size: 11px; margin-right: 10px;}
+	.footbtn h5{font-size: 10px;}
+
+	.hero-section { background-position: left;} 
+	.product-layer {padding: 30px 15px;}
+	.product-img {height: 200px;}
+	.product h6 {font-size: 11px;}
+	.product h4 {font-size: 25px; margin-top: 10px;}
+	.product p {font-size: 12px; margin-bottom: 8px; line-height: 15px;}
+	.pro2 {margin-top: 0px;}
+	.middle-cat {margin-top: 0px;}
+
+	.rating-point:before {
+		width: 298px;
+		height: 60px;
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+		border-bottom-left-radius: 20px;
+		 border-bottom-right-radius: 20px; 
+	}
+	.service-head h1 {font-size: 26px;}
+	.service-head h2 {font-size: 15px;}
+	.service-box img {height: 40px;}
+	.service-box {padding: 10px 10px;}
+	.service-box p {font-size: 11px;}
+	.service-box h2 {font-size: 12px; margin-top: 15px;}
+	
+	.servslider .slick-dots { top: inherit; text-align: center; bottom: -28px;}
+	.servslider .slick-dots li, .servslider .slick-dots li button, .servslider .slick-dots li button:before {height: 10px; width: 10px;}
+
+	.service-head p {font-size: 13px;}
+	.service-head h6 {font-size: 13px; margin-top: 12px;}
+	.service-head h5 {font-size: 20px; margin-top: 10px;}
+	.exlpore-btn {font-size: 10px;}
+	.member-leftsecimg {height: 70px; width: 70px; line-height: 60px;}
+	.member-secRight p {font-size: 13px;}
+	.member-secRight h6 {font-size: 16px;}
+	.member-secborder {width: 30px; margin-bottom: 3px;}
+	.top-bannerHead p {font-size: 13px; margin-top: 13px;}
+	.rating-point h1 {font-size: 25px;}
+	.rating-point p {font-size: 13px; line-height: 16px; margin-top: 8px;}
+	.rating-point {padding: 20px 0px; border-radius: 20px;}
+	.logo-img img{margin-right: 15px;}
+
+	.protocall-section{background: none;}
+
+	.trusted-manSec:before {height: 95%;}
+	.comma-img {
+		margin-left: 0px;
+		 padding-top: 40px; 
+		height: 80px;
+	}
+	.trusted-manSec {margin-top: 0px; padding: 10px 10px;}
+	/* .young-manSec:after {width: 93%;} */
+	
+	.footer-section p {margin-top: 15px;}
+	.footer-section h2 {font-size: 15px; margin-bottom: 12px;}
+	.footer-section ul li {margin-bottom: 7px;}
+	.footbtn {padding: 10px 10px;}
+
+	.noflexwrap {flex-wrap: inherit; overflow-x: scroll;}
+
+	/* Login Page */
+	.login-input{padding-top: 28px; padding-bottom: 28px; padding-left: 50px;}
+	.login-section p {font-size: 12px;}
+	.login-section h1 {font-size: 30px;}
+	.login-section h2 {font-size: 15px;}
+	.login-box { padding: 10px 15px;}
+	.login-smsimg {top: 22px;}
+	.login-section h6 {font-size: 20px;}
+	.continue-btn {font-size: 12px; padding: 7px 25px;}
+
+	/* passd */
+	.paswd-eyes{top: 22px; right: 18px;}
+
+	/* client-signup */
+	.client-section h1 {font-size: 30px;}
+	.client-section h2 {font-size: 15px;}
+	.client-radio p {font-size: 18px; line-height: 18px; margin-bottom: 5px;}
+	.client-radio h6 {font-size: 12px;}
+	/* .client-radio img {height: 150px;} */
+	.client-radio {min-height: 189px;}
+	.client-section h3 {padding-top: 30px; font-size: 11px;}
+	.post-btn{ font-size: 10px; padding: 6px 15px;}
+	.client-wave-left{background: none;}
+
+	/* clientsignup-from */
+	.checkFrom-label{font-size: 12px !important;}
+
+	/* clientsignup-profile */
+	.client-profilehead h1 {font-size: 30px;}
+	.client-profilehead h2 h2 {font-size: 15px;}
+	.profile-label {font-size: 15px;}
+	.upload-btn-wrapper{top: -47px;}
+
+	.uploadBtn{font-size: 10px; padding: 6px 15px; }
+	.profile-content h1 {font-size: 15px;}
+	.profile-content ul li {font-size: 12px;}
+
+	/* hire */
+	.client-section h4 {font-size: 20px; margin-top: 20px;}
+
+	/* serviceProvider */
+	.remove-btn{font-size: 10px; padding: 6px 15px; }
+	#accordion .card-header .added-accordtext{font-size: 12px;}
+    #accordion .card-header .added-blackText{ font-size: 12px;}
+	.profile-inpt {padding-left: 18px;}
+
+	/*  */
+	.skill-btn{padding: 4px 10px; font-size: 10px;}
+
+	.nav-tabs .nav-link {
+		font-size: 14px;
+		margin-right: 15px;
+		padding: 5px 16px 5px 0px;}
+
+.hori-line::after {width: 278px;}
+
+.service-providerfullbgBottom{background: none;}
+
+// 
+.Featured-img {height: 90px;}
+.close-imgafar {height: 20px;}
+.mayment-btn{font-size: 10px; padding: 6px 15px;}
+.btn-notification{left: 80px; top: -7px;}
+.btn-notification2{left: 110px; top: -7px;}
+
+.accordreact .accordion-header .accordion-button .added-accordtext {font-size: 12px;}
+.accordreact .accordion-header .accordion-button {font-size: 12px;}
+.accordreact .accordion-header .accordion-button .added-blackText {font-size: 12px;}
+	
+
+	
+
+
+
+
+}
+
+@media (min-width: 320px) and (max-width: 440px) {
+	 
+}
+
+ 

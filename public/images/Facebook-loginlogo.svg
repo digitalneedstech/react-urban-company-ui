@@ -1,0 +1,10 @@
+<svg id="Facebook_f_logo__2021_" data-name="Facebook_f_logo_(2021)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27" height="27" viewBox="0 0 27 27">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-6.934" y1="10.216" x2="-6.934" y2="10.241" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0062e0"/>
+      <stop offset="1" stop-color="#19afff"/>
+    </linearGradient>
+  </defs>
+  <path id="Path_56" data-name="Path 56" d="M11.273,26.865A13.527,13.527,0,0,1,13.5,0a13.527,13.527,0,0,1,2.227,26.865l-.743-.608h-2.97Z" fill="url(#linear-gradient)"/>
+  <path id="Path_57" data-name="Path 57" d="M22.6,19.815l.608-3.78H19.63V13.4c0-1.08.4-1.89,2.025-1.89H23.41V8.07a22.076,22.076,0,0,0-2.97-.27,4.891,4.891,0,0,0-5.265,5.265v2.97H11.8v3.78h3.375v9.517a12.353,12.353,0,0,0,4.455,0V19.815Z" transform="translate(-3.835 -2.535)" fill="#fff"/>
+</svg>
