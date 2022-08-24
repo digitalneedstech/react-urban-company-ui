@@ -12,7 +12,7 @@ header { position: fixed; left: 0; right: 0; background-color: #fff; top: 0; z-i
 .tophead ul {margin: 0; padding: 0; list-style: none;}
 .tophead-right { text-align: right; display: flex; align-items: center; justify-content: flex-end; }
 .tophead ul li { list-style: none; font-size: 13px; font-weight: 600; padding:0 15px; }
-.tophead ul li a { color: #51459E; text-decoration: none ;}
+.tophead ul li a {text-decoration: none ;}
 .tophead ul li:last-child {padding-right: 0px;}
 
 
