@@ -13,31 +13,31 @@ import Home from "../views/index";
 import Login from "../views/login";
 import Signup from "../views/signupSelector";
 import ClientSignupform from "../views/client/signup";
+import ServiceSignupform from "../views/service-provider/signup";
 import ClientUploadProfileImage from "../views/client/uploadProfileImg";
 import IndividualUploadProfileImage from "../views/service-provider/individual/uploadProfileImg";
 import CompanyUploadLogo from "../views/service-provider/company/uploadCompanyLogo";
+import IndividualKYC from "../views/service-provider/individual/kyc";
+import CompanyKYC from "../views/service-provider/company/kyc";
+import IndividualOnsiteOffsite from "../views/service-provider/individual/onsiteoroffsite";
+import IndividualProfilebuilder1 from "../views/service-provider/individual/profilebuilder1";
+import IndividualProfilebuilder2 from "../views/service-provider/individual/profilebuilder2";
+import IndividualProfilebuilder3 from "../views/service-provider/individual/profilebuilder3";
+import IndividualProfilebuilder4 from "../views/service-provider/individual/profilebuilder4";
+import AddTeamMemberform1 from "../views/service-provider/company/addTeamMemberform1";
+import AddTeamMemberform2 from "../views/service-provider/company/addTeamMemberform2";
+import AddTeamMemberform3 from "../views/service-provider/company/addTeamMemberform3";
+import AddTeamMemberform4 from "../views/service-provider/company/addTeamMemberform4";
 import ClientsignupUploaded from "../pages/sprint_1/clientsignup-uploaded";
 import Selectorhire from "../pages/sprint_1/selector-hire";
 import Selectorbrowse from "../pages/sprint_1/selector-browse";
 import ServiceproviderSelector from "../pages/sprint_1/serviceprovider-selector";
-import ServiceSignupform from "../views/service-provider/signup";
 import ServiceproviderProfile from "../pages/sprint_1/serviceprovider-profile";
 import ServiceproviderUploaded from "../pages/sprint_1/serviceprovider-uploaded";
-import ServiceprovicerOnsiteOffsite from "../pages/sprint_1/serviceprovider-(onsiteoroffsite)";
-import ServiceproviderProfilebuilder1 from "../pages/sprint_1/serviceprovider-profilebuilder1";
-import ServiceproviderProfilebuilder2 from "../pages/sprint_1/serviceprovider-profilebuilder2";
-import ServiceproviderProfilebuilder3 from "../pages/sprint_1/serviceprovider-profilebuilder3";
-import ServiceproviderProfilebuilder4 from "../pages/sprint_1/serviceprovider-profilebuilder4";
 import ServiceproviderSignupformCompany from "../pages/sprint_1/serviceprovider-signupform(company)";
 import ServiceproviderCompanyuploaded from "../pages/sprint_1/serviceprovider-companyUploaded";
-import ServiceproviderTeamMemberform1 from "../pages/sprint_1/serviceprovider-teamMemberform";
-import ServiceproviderTeamMemberform2 from "../pages/sprint_1/serviceprovider-teamMemberform2";
-import ServiceproviderTeamMemberform3 from "../pages/sprint_1/serviceprovider-teamMemberform3";
-import ServiceproviderTeamMemberform4 from "../pages/sprint_1/serviceprovider-teamMemberform4";
 import ServiceproviderSignupformFull from "../pages/sprint_1/serviceprovider-signupformFull";
-import ServiceproviderCompanyfull from "../pages/sprint_1/serviceprovider-companyFull";
 import ServiceProviderIndividualsignupUploaded from "../pages/sprint_1/serviceProviderIndividualsignup-uploaded";
-import ServiceproviderIndividualSignupformFull from "../pages/sprint_1/serviceproviderindividual-signupformFull";
 
 const AuthRoute = ({ component: Component, ...rest }) => {
   const [user, loading, error] = useAuthState(auth);
@@ -75,6 +75,56 @@ function RoutesComp() {
             element={<CompanyUploadLogo />}
           />
         </Route>
+        <Route exact path="/individual-kyc" element={<AuthRoute />}>
+          <Route path="/individual-kyc" exact element={<IndividualKYC />} />
+        </Route>
+        <Route path="/company-kyc" exact element={<CompanyKYC />} />
+        <Route
+          path="/individual-onsiteoroffsite"
+          exact
+          element={<IndividualOnsiteOffsite />}
+        />
+        <Route
+          path="/individual-profile-builder-1"
+          exact
+          element={<IndividualProfilebuilder1 />}
+        />
+        <Route
+          path="/individual-profile-builder-2"
+          exact
+          element={<IndividualProfilebuilder2 />}
+        />
+        <Route
+          path="/individual-profile-builder-3"
+          exact
+          element={<IndividualProfilebuilder3 />}
+        />
+        <Route
+          path="/individual-profile-builder-4"
+          exact
+          element={<IndividualProfilebuilder4 />}
+        />
+        <Route
+          path="/add-team-member-1"
+          exact
+          element={<AddTeamMemberform1 />}
+        />
+        <Route
+          path="/add-team-member-2"
+          exact
+          element={<AddTeamMemberform2 />}
+        />
+        <Route
+          path="/add-team-member-3"
+          exact
+          element={<AddTeamMemberform3 />}
+        />
+        <Route
+          path="/add-team-member-4"
+          exact
+          element={<AddTeamMemberform4 />}
+        />
+
         <Route
           path="/ClientsignupUploaded"
           exact
@@ -84,11 +134,6 @@ function RoutesComp() {
           path="/ServiceProviderIndividualsignupUpload"
           exact
           element={<ServiceProviderIndividualsignupUploaded />}
-        />
-        <Route
-          path="/ServiceProviderIndividualsignupfull"
-          exact
-          element={<ServiceproviderIndividualSignupformFull />}
         />
         <Route path="/Selectorhire" exact element={<Selectorhire />} />
         <Route path="/Selectorbrowse" exact element={<Selectorbrowse />} />
@@ -108,31 +153,6 @@ function RoutesComp() {
           element={<ServiceproviderUploaded />}
         />
         <Route
-          path="/ServiceprovicerOnsiteOffsite"
-          exact
-          element={<ServiceprovicerOnsiteOffsite />}
-        />
-        <Route
-          path="/ServiceproviderProfilebuilder1"
-          exact
-          element={<ServiceproviderProfilebuilder1 />}
-        />
-        <Route
-          path="/ServiceproviderProfilebuilder2"
-          exact
-          element={<ServiceproviderProfilebuilder2 />}
-        />
-        <Route
-          path="/ServiceproviderProfilebuilder3"
-          exact
-          element={<ServiceproviderProfilebuilder3 />}
-        />
-        <Route
-          path="/ServiceproviderProfilebuilder4"
-          exact
-          element={<ServiceproviderProfilebuilder4 />}
-        />
-        <Route
           path="/ServiceproviderSignupformCompany"
           exact
           element={<ServiceproviderSignupformCompany />}
@@ -143,34 +163,9 @@ function RoutesComp() {
           element={<ServiceproviderCompanyuploaded />}
         />
         <Route
-          path="/ServiceproviderTeamMemberform1"
-          exact
-          element={<ServiceproviderTeamMemberform1 />}
-        />
-        <Route
-          path="/ServiceproviderTeamMemberform2"
-          exact
-          element={<ServiceproviderTeamMemberform2 />}
-        />
-        <Route
-          path="/ServiceproviderTeamMemberform3"
-          exact
-          element={<ServiceproviderTeamMemberform3 />}
-        />
-        <Route
-          path="/ServiceproviderTeamMemberform4"
-          exact
-          element={<ServiceproviderTeamMemberform4 />}
-        />
-        <Route
           path="/ServiceproviderSignupformFull"
           exact
           element={<ServiceproviderSignupformFull />}
-        />
-        <Route
-          path="/ServiceproviderCompanyfull"
-          exact
-          element={<ServiceproviderCompanyfull />}
         />
       </Routes>
     </Router>

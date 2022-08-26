@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import _ from "lodash";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
@@ -7,6 +8,8 @@ import Header from "../Layout/loginHeader";
 import { validateemail } from "../utils/validation";
 
 function Login() {
+  const userState = useSelector((state) => state.user);
+  const { userData } = userState.user;
   const inputEmail = useRef(null);
   const inputPassword = useRef(null);
   const [email, setEmail] = useState("");
@@ -30,7 +33,15 @@ function Login() {
       // maybe trigger a loading screen
       return;
     }
-    if (user) navigate("/client-upload-image");
+    if (user) {
+      if (userData.type == "client") {
+        navigate("/client-upload-image");
+      } else if (userData.type == "individual") {
+        navigate("/individual-upload-image");
+      } else if (userData.type == "company") {
+        navigate("/company-upload-logo");
+      }
+    }
   }, [user, loading]);
 
   return (

@@ -330,7 +330,7 @@ font-size: 20px; width: 900px;}
  
 .tophead h6{color: #51459E; font-size: 14px; font-weight: 600; margin-bottom: 0px;}
 .tophead h6 img{height: 30px; border-radius: 50%;}
-.profile-content .user-uploadimg{box-shadow: 0px 12px 34px #20345914; border: 2px solid #51459E; border-radius: 10px; position: relative;}
+.profile-content .user-uploadimg{box-shadow: 0px 12px 34px #20345914; border: 2px solid #51459E; border-radius: 10px; position: relative; max-width: 130px; max-height: 170px;}
 .cross-img{position: absolute;  left: 110px; top: 10px; height: 30px;}
 
 /* hire */

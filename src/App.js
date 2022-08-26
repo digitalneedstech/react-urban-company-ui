@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { userInfo } from "./redux/actions/user";
+import { fetchUserInfo } from "./redux/actions/user";
 import { auth } from "./firebase";
 import RoutesComp from "./routes";
 
@@ -11,11 +12,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!userData.user.isLoggedIn && user) {
-      dispatch(userInfo(user));
+    if (!userData.user.isLoggedIn && !_.isEmpty(user)) {
+      dispatch(fetchUserInfo(user));
     }
   }, [user, loading]);
-
+  console.log(userData);
   return (
     <>
       <RoutesComp />

@@ -7,7 +7,7 @@ function UploadIndividualProfileImage() {
   const navigate = useNavigate();
 
   const afterImageUpload = () => {
-    navigate("/Selectorhire");
+    navigate("/individual-kyc");
   };
 
   return (

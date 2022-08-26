@@ -1,26 +1,21 @@
-import Image from "next/image";
-import MobileSecImg from "../../images/mobile-secimg.png";
-import FooterLogo from "../../images/Footer-logo.svg";
-import AppleFoot from "../../images//Apple-foot.png";
-import GooglePlay from "../../images/Google-Play.svg";
-
 export default function Footer() {
   return (
     <>
-      <section className="pb-4 pb-sm-5">
+      <section className="py-4 py-sm-5">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <Image src={MobileSecImg} alt="" />
+              <img src="images/mobile-secimg.png" alt="" />
             </div>
           </div>
         </div>
       </section>
+
       <section className="py-4 py-sm-5 footer-section">
         <div className="container">
           <div className="row">
             <div className="col-md-4 mb-3">
-              <Image src={FooterLogo} alt="" />
+              <img src="images/Footer-logo.svg" alt="" />
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit,
                 sed do eiusmod tempor incididunt ut labore et <br />
@@ -96,7 +91,7 @@ export default function Footer() {
                   <div className="footbtn">
                     <div className="row align-items-center">
                       <div className="col-md-3 pr-0 col-3">
-                        <Image src={AppleFoot} alt="" />
+                        <img src="images/Apple-foot.png" alt="" />
                       </div>
                       <div className="col-md-9 pl-2 col-9">
                         <h5>
@@ -109,7 +104,7 @@ export default function Footer() {
                   <div className="footbtn mt-3">
                     <div className="row align-items-center">
                       <div className="col-md-3 pr-0 col-3">
-                        <Image src={GooglePlay} alt="" />
+                        <img src="images/Google-Play.svg" alt="" />
                       </div>
                       <div className="col-md-9 pl-2 col-9">
                         <h5>

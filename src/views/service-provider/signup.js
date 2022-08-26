@@ -11,8 +11,8 @@ function ServiceproviderSignupform() {
   const [registrationType, setRegistrationType] = React.useState("company");
 
   function updateSelectedVal(event) {
-    setRegistrationType(event.target.value);
-    console.log(event.target.value);
+    setRegistrationType(event.currentTarget.value);
+    console.log(event.currentTarget.value);
   }
 
   useEffect(() => {
@@ -61,13 +61,14 @@ function ServiceproviderSignupform() {
                       type="radio"
                       name="client-selector"
                       onChange={updateSelectedVal}
+                      id="client1"
                     />
                     <label htmlFor="client1" className="radio-label">
                       Register as a company
                     </label>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4" onClick={updateSelectedVal}>
                   <div className="form-group radio-input desgin-radio">
                     <input
                       className="with-gap"
@@ -76,6 +77,7 @@ function ServiceproviderSignupform() {
                       type="radio"
                       name="client-selector"
                       onChange={updateSelectedVal}
+                      id="client2"
                     />
                     <label htmlFor="client2" className="radio-label">
                       Register as an individual

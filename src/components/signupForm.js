@@ -27,9 +27,8 @@ function Signupform(props) {
     setisChecked(!isChecked);
   };
 
-  const register = () => {
-    if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, mobile, email, password, type);
+  const register = async () => {
+    await registerWithEmailAndPassword(name, mobile, email, password, type);
   };
 
   return (

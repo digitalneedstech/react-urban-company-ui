@@ -1,8 +1,11 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { useLocation, Link } from "react-router-dom";
 import { logout } from "../firebase";
 
 export default function LoggedInHeader() {
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
   const location = useLocation();
   let { pathname } = location;
   let isClientPath = pathname.indexOf("client") !== -1;
