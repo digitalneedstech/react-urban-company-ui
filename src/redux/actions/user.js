@@ -27,9 +27,16 @@ export const fetchUserInfo = (user) => async (dispatch) => {
   }
 };
 
-export const uploadUserImage = (imgUrl) => {
+export const userDataUpdate = (data) => {
   store.dispatch({
-    type: "IMAGE_UPLOAD_SUCCESS",
-    payload: imgUrl,
+    type: "USER_DATA_UPDATE",
+    payload: data,
+  });
+};
+
+export const profileDataUpdate = (data) => {
+  store.dispatch({
+    type: "PROFILE_DATA_UPDATE",
+    payload: data,
   });
 };

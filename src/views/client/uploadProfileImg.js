@@ -7,7 +7,7 @@ function ClientUploadImage() {
   const navigate = useNavigate();
 
   const afterImageUpload = () => {
-    navigate("/company-kyc");
+    navigate("/Selectorhire");
   };
 
   return (

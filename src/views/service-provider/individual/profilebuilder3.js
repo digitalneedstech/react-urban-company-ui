@@ -1,8 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
+import { profileDataUpdate } from "../../../redux/actions/user";
 
 function IndividualProfilebuilder3() {
+  const user = useSelector((state) => state.user);
+  const { profileData } = user;
+  const navigate = useNavigate();
+  const [inputFields, setInputFields] = useState({});
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value };
+    setInputFields(data);
+    profileDataUpdate({ commercial: { ...data } });
+  };
+
+  const onNext = () => {
+    navigate("/individual-profile-builder-4");
+  };
+
   return (
     <>
       <Header />
@@ -25,47 +43,64 @@ function IndividualProfilebuilder3() {
                         <div className="col-md-9">
                           <nav>
                             <div className="nav nav-tabs">
-                              <a className="nav-item nav-link active" href="#">
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-1"
+                              >
                                 headline
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-2"
+                              >
                                 skills
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-3"
+                              >
                                 rate
-                              </a>
-                              <a
+                              </Link>
+                              <Link
                                 className="nav-item nav-link"
-                                href="#"
-                                role="tab"
+                                to="individual-profile-builder-4"
                               >
                                 proximity
-                              </a>
+                              </Link>
                             </div>
                           </nav>
 
-                          <label for="#" className="profile-label mt-4">
+                          <label htmlFor="#" className="profile-label mt-4">
                             Specify your basic hourly rate
                           </label>
                           <div className="">
                             <input
-                              type="email"
+                              type="number"
+                              name="hourlyRate"
+                              onChange={handleInputChange}
                               className="form-control login-input profile-inpt"
                               placeholder="$"
+                              defaultValue={profileData?.commercial?.hourlyRate}
                             />
                           </div>
 
-                          <label for="#" className="profile-label mt-4">
+                          <label htmlFor="#" className="profile-label mt-4">
                             English level
                           </label>
                           <div className=" desgin-radio">
                             <input
                               className="with-gap"
                               type="radio"
-                              name="client-selector"
+                              checked={
+                                profileData?.commercial?.englishLevel ==
+                                "Any level"
+                              }
+                              name="englishLevel"
+                              onChange={handleInputChange}
+                              value="Any level"
                               id="client1"
                             />
-                            <label for="client1" className="radio-label">
+                            <label htmlFor="client1" className="radio-label">
                               Any level
                             </label>
                           </div>
@@ -74,10 +109,16 @@ function IndividualProfilebuilder3() {
                             <input
                               className="with-gap"
                               type="radio"
-                              name="client-selector"
+                              name="englishLevel"
+                              onChange={handleInputChange}
+                              value="Conversational or better"
                               id="client2"
+                              checked={
+                                profileData?.commercial?.englishLevel ==
+                                "Conversational or better"
+                              }
                             />
-                            <label for="client2" className="radio-label">
+                            <label htmlFor="client2" className="radio-label">
                               Conversational or better
                             </label>
                           </div>
@@ -85,10 +126,16 @@ function IndividualProfilebuilder3() {
                             <input
                               className="with-gap"
                               type="radio"
-                              name="client-selector"
+                              name="englishLevel"
+                              onChange={handleInputChange}
+                              value="Fluent or better"
                               id="client3"
+                              checked={
+                                profileData?.commercial?.englishLevel ==
+                                "Fluent or better"
+                              }
                             />
-                            <label for="client3" className="radio-label">
+                            <label htmlFor="client3" className="radio-label">
                               Fluent or better
                             </label>
                           </div>
@@ -96,10 +143,16 @@ function IndividualProfilebuilder3() {
                             <input
                               className="with-gap"
                               type="radio"
-                              name="client-selector"
+                              name="englishLevel"
+                              onChange={handleInputChange}
+                              value="Native or bilingual only"
                               id="client4"
+                              checked={
+                                profileData?.commercial?.englishLevel ==
+                                "Native or bilingual only"
+                              }
                             />
-                            <label for="client4" className="radio-label">
+                            <label htmlFor="client4" className="radio-label">
                               Native or bilingual only
                             </label>
                           </div>
@@ -112,12 +165,9 @@ function IndividualProfilebuilder3() {
                               >
                                 BACK
                               </Link>
-                              <Link
-                                to="/individual-profile-builder-4"
-                                className="btn btn-login"
-                              >
+                              <a onClick={onNext} className="btn btn-login">
                                 NEXT STEP
-                              </Link>
+                              </a>
                             </div>
                           </div>
                         </div>

@@ -1,8 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import _ from "lodash";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
+import { profileDataUpdate } from "../../../redux/actions/user";
+import { fetchData } from "../../../redux/helpers";
 
-function ServiceproviderProfilebuilder4() {
+function IndividualProfilebuilder4() {
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
+  const { profileData } = user;
+  const navigate = useNavigate();
+  const [inputFields, setInputFields] = useState({});
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value };
+    setInputFields(data);
+    profileDataUpdate({ ...data });
+  };
+
+  const onFinishProfile = async () => {
+    debugger;
+    let response = await fetchData(
+      `/serviceProvider/individualProfile/${userData.id}/profile`,
+      "POST",
+      profileData
+    );
+    if (!_.isEmpty(response)) {
+      navigate("/dashboard");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -29,22 +58,37 @@ function ServiceproviderProfilebuilder4() {
                               id="nav-tab"
                               role="tablist"
                             >
-                              <a className="nav-item nav-link active" href="#">
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-1"
+                              >
                                 headline
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-2"
+                              >
                                 skills
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-3"
+                              >
                                 rate
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-4"
+                              >
                                 proximity
-                              </a>
+                              </Link>
                             </div>
                           </nav>
 
-                          <label for="#" className="profile-label mt-4 mb-0">
+                          <label
+                            htmlFor="#"
+                            className="profile-label mt-4 mb-0"
+                          >
                             Select the locations you want to serve in
                           </label>
                           <div className="row align-items-center">
@@ -64,9 +108,12 @@ function ServiceproviderProfilebuilder4() {
                               alt=""
                             />
                             <input
-                              type="email"
+                              type="text"
+                              name="location"
+                              onChange={handleInputChange}
                               className="form-control login-input"
                               placeholder="Search location"
+                              defaultValue={profileData?.location}
                             />
                           </div>
 
@@ -100,9 +147,12 @@ function ServiceproviderProfilebuilder4() {
                               >
                                 BACK
                               </Link>
-                              <Link to="/" className="btn btn-login">
+                              <a
+                                onClick={onFinishProfile}
+                                className="btn btn-login"
+                              >
                                 GO TO DASHBOARD
-                              </Link>
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -119,4 +169,4 @@ function ServiceproviderProfilebuilder4() {
   );
 }
 
-export default ServiceproviderProfilebuilder4;
+export default IndividualProfilebuilder4;

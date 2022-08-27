@@ -8,6 +8,7 @@ var initialState = (window.initialState && window.initialState.user) || {
     error: null,
     userData: cookies.get("userData") ? cookies.get("userData") : null,
   },
+  profileData: {},
 };
 
 export default function user(state = initialState, action = {}) {
@@ -39,15 +40,23 @@ export default function user(state = initialState, action = {}) {
           userData: null,
         },
       };
-    case "IMAGE_UPLOAD_SUCCESS":
+    case "USER_DATA_UPDATE":
       return {
         ...state,
         user: {
           ...state.user,
           userData: {
             ...state.user.userData,
-            profileImageUrl: action.payload,
+            ...action.payload,
           },
+        },
+      };
+    case "PROFILE_DATA_UPDATE":
+      return {
+        ...state,
+        profileData: {
+          ...state.profileData,
+          ...action.payload,
         },
       };
     default:

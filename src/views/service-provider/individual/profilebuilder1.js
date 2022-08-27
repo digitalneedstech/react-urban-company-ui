@@ -1,8 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
+import { profileDataUpdate } from "../../../redux/actions/user";
 
 function IndividualProfilebuilder1() {
+  const user = useSelector((state) => state.user);
+  const { profileData } = user;
+  const navigate = useNavigate();
+  const [inputFields, setInputFields] = useState({});
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value };
+    setInputFields(data);
+  };
+
+  const onNext = () => {
+    profileDataUpdate({ ...inputFields });
+    navigate("/individual-profile-builder-2");
+  };
+
   return (
     <>
       <Header />
@@ -25,29 +43,44 @@ function IndividualProfilebuilder1() {
                         <div className="col-md-9">
                           <nav>
                             <div className="nav nav-tabs" role="tablist">
-                              <a className="nav-item nav-link active" href="#">
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-1"
+                              >
                                 headline
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="individual-profile-builder-2"
+                              >
                                 skills
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="individual-profile-builder-3"
+                              >
                                 rate
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="individual-profile-builder-4"
+                              >
                                 proximity
-                              </a>
+                              </Link>
                             </div>
                           </nav>
 
-                          <label for="#" className="profile-label mt-4">
+                          <label htmlFor="#" className="profile-label mt-4">
                             Write a catchy headline about you
                           </label>
                           <div className="">
                             <input
-                              type="email"
+                              type="text"
+                              name="headline"
+                              onChange={handleInputChange}
                               className="form-control login-input profile-inpt"
                               placeholder="Start typing here…"
+                              defaultValue={profileData?.headline}
                             />
                           </div>
                           <h4 className="text-right words-text">0/100 words</h4>
@@ -79,12 +112,12 @@ function IndividualProfilebuilder1() {
                           </div>
                           <div className="row mt-2 mb-4 mb-sm-0">
                             <div className="col-md-12">
-                              <Link
-                                to="/individual-profile-builder-2"
+                              <a
+                                onClick={onNext}
                                 className="btn btn-login mr-3"
                               >
                                 NEXT STEP
-                              </Link>
+                              </a>
                               <button
                                 type="button"
                                 className="btn btn-outline-primary post-btn"

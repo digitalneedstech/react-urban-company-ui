@@ -3,7 +3,7 @@ import _ from "lodash";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import UploadImageInput from "./uploadImageInput";
-import { uploadUserImage } from "../redux/actions/user";
+import { userDataUpdate } from "../redux/actions/user";
 import { fetchData } from "../redux/helpers";
 
 export default function UploadProfileImage(props) {
@@ -19,7 +19,7 @@ export default function UploadProfileImage(props) {
 
   const onImageUpload = (url) => {
     setImage(url);
-    uploadUserImage(url);
+    userDataUpdate({ profileImageUrl: url });
   };
 
   const onFinishSAccount = async () => {
@@ -28,12 +28,13 @@ export default function UploadProfileImage(props) {
       email: userData.email,
       userId: userData.uid,
       mobileNumber: userData.mobile,
-      profileImageUrl: userData.profileImageUrl,
+      profileImageUrl: userData?.profileImageUrl,
       type: userData.type,
     };
 
-    let response = fetchData("/signUp", "POST", data);
-    if (_.isEmpty(response)) {
+    let response = await fetchData("/signUp", "POST", data);
+    if (!_.isEmpty(response)) {
+      userDataUpdate({ id: response?.id });
       afterImageUpload();
     }
   };

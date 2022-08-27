@@ -1,10 +1,84 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import _ from "lodash";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Accordion } from "react-bootstrap";
 import Header from "../../../Layout/loggedInHeader";
 import Footer from "../../../Layout/footer";
+import UploadImageInput from "../../../components/uploadImageInput";
+import { fetchData } from "../../../redux/helpers";
+
+const UploadDocument = ({ handleInputChange, name }) => {
+  const [image, setImage] = useState("");
+  const [deleteImg, setDeleteImg] = useState(false);
+
+  const onImageUpload = (url) => {
+    setImage(url);
+    handleInputChange({ target: { name, value: url } });
+  };
+
+  return (
+    <>
+      <UploadImageInput
+        onImageUpload={onImageUpload}
+        deleteImg={deleteImg}
+        setDeleteImg={setDeleteImg}
+      />
+      {image && (
+        <div className="profile-content">
+          <div className="row align-items-center">
+            <div className="col-md-3 col-5">
+              <img src={image} alt="" />
+            </div>
+            <div className="col-md-3 pl-0 col-6">
+              <button
+                type="button"
+                className="btn btn-danger remove-btn"
+                onClick={() => setDeleteImg(true)}
+              >
+                REMOVE
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 function KYC() {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
+  const [inputFields, setInputFields] = useState({});
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value };
+    setInputFields(data);
+  };
+
+  const onFinishKYC = async () => {
+    let data = {
+      type: userData.type,
+      details: [
+        ..._.map(inputFields, (value, key) => ({
+          attribute: key,
+          value: value,
+        })),
+      ],
+    };
+
+    let response = await fetchData(
+      `/serviceProvider/account/${userData.id}`,
+      "POST",
+      data
+    );
+    if (!_.isEmpty(response)) {
+      navigate("/individual-onsiteoroffsite");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -30,7 +104,9 @@ function KYC() {
                   Full name
                 </label>
                 <input
-                  type="email"
+                  type="text"
+                  name="full_name"
+                  onChange={handleInputChange}
                   className="form-control login-input profile-inpt"
                   placeholder="Vinod Sharma"
                 />
@@ -41,6 +117,8 @@ function KYC() {
                   Describe about you
                 </label>
                 <textarea
+                  name="description"
+                  onChange={handleInputChange}
                   className="form-control  login-input profile-inpt"
                   placeholder="Dolor ut ab sit. Ut vero maiores autem culpa corrupti reiciendis aspernatur. Sint blanditiis dignissimos ut non enim error. Dolor ut ab sit. Ut vero maiores autem culpa corrupti reiciendis aspernatur. Sint blanditiis dignissimos ut non enim error."
                   rows="4"
@@ -51,28 +129,10 @@ function KYC() {
                 <label htmlFor="#" className="profile-label">
                   Upload / browse profile image
                 </label>
-                <input
-                  type="email"
-                  className="form-control login-input profile-inpt"
-                  placeholder="profile_img.jpg"
+                <UploadDocument
+                  handleInputChange={handleInputChange}
+                  name="profile_image"
                 />
-                <div className="upload-btn-wrapper">
-                  <button className="uploadBtn">BROWSE</button>
-                  <input type="file" />
-                </div>
-              </div>
-
-              <div className="profile-content">
-                <div className="row align-items-center">
-                  <div className="col-md-3 col-5">
-                    <img src="images/pro-userpic.jpg" alt="" />
-                  </div>
-                  <div className="col-md-3 pl-0 col-6">
-                    <button type="button" className="btn btn-danger remove-btn">
-                      REMOVE
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -90,13 +150,17 @@ function KYC() {
                 </label>
                 <input
                   type="email"
+                  name="basic_details"
+                  onChange={handleInputChange}
                   className="form-control login-input profile-inpt"
                   placeholder="vinod@mocklabs.com"
                 />
               </div>
               <div className="form-group">
                 <input
-                  type="email"
+                  type="text"
+                  name="mobile"
+                  onChange={handleInputChange}
                   className="form-control login-input profile-inpt"
                   placeholder="+00 9876543210"
                 />
@@ -119,30 +183,10 @@ function KYC() {
                     </span>
                   </Accordion.Header>
                   <Accordion.Body>
-                    <input
-                      type="email"
-                      className="form-control login-input profile-inpt"
-                      placeholder="profile_img.jpg"
+                    <UploadDocument
+                      handleInputChange={handleInputChange}
+                      name="documents"
                     />
-                    <div className="upload-btn-wrapper">
-                      <button className="uploadBtn">BROWSE</button>
-                      <input type="file" />
-                    </div>
-                    <div className="profile-content">
-                      <div className="row align-items-center">
-                        <div className="col-md-3 col-5">
-                          <img src="images/pro-userpic.jpg" alt="" />
-                        </div>
-                        <div className="col-md-3 pl-0 col-6">
-                          <button
-                            type="button"
-                            className="btn btn-danger remove-btn"
-                          >
-                            REMOVE
-                          </button>
-                        </div>
-                      </div>
-                    </div>
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
@@ -158,30 +202,10 @@ function KYC() {
                     </span>
                   </Accordion.Header>
                   <Accordion.Body>
-                    <input
-                      type="email"
-                      className="form-control login-input profile-inpt"
-                      placeholder="profile_img.jpg"
+                    <UploadDocument
+                      handleInputChange={handleInputChange}
+                      name="qualifications"
                     />
-                    <div className="upload-btn-wrapper">
-                      <button className="uploadBtn">BROWSE</button>
-                      <input type="file" />
-                    </div>
-                    <div className="profile-content">
-                      <div className="row align-items-center">
-                        <div className="col-md-3 col-5">
-                          <img src="images/pro-userpic.jpg" alt="" />
-                        </div>
-                        <div className="col-md-3 pl-0 col-6">
-                          <button
-                            type="button"
-                            className="btn btn-danger remove-btn"
-                          >
-                            REMOVE
-                          </button>
-                        </div>
-                      </div>
-                    </div>
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
@@ -197,30 +221,10 @@ function KYC() {
                     </span>
                   </Accordion.Header>
                   <Accordion.Body>
-                    <input
-                      type="email"
-                      className="form-control login-input profile-inpt"
-                      placeholder="profile_img.jpg"
+                    <UploadDocument
+                      handleInputChange={handleInputChange}
+                      name="certifications"
                     />
-                    <div className="upload-btn-wrapper">
-                      <button className="uploadBtn">BROWSE</button>
-                      <input type="file" />
-                    </div>
-                    <div className="profile-content">
-                      <div className="row align-items-center">
-                        <div className="col-md-3 col-5">
-                          <img src="images/pro-userpic.jpg" alt="" />
-                        </div>
-                        <div className="col-md-3 pl-0 col-6">
-                          <button
-                            type="button"
-                            className="btn btn-danger remove-btn"
-                          >
-                            REMOVE
-                          </button>
-                        </div>
-                      </div>
-                    </div>
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="3">
@@ -236,42 +240,19 @@ function KYC() {
                     </span>
                   </Accordion.Header>
                   <Accordion.Body>
-                    <input
-                      type="email"
-                      className="form-control login-input profile-inpt"
-                      placeholder="profile_img.jpg"
+                    <UploadDocument
+                      handleInputChange={handleInputChange}
+                      name="bank_details"
                     />
-                    <div className="upload-btn-wrapper">
-                      <button className="uploadBtn">BROWSE</button>
-                      <input type="file" />
-                    </div>
-                    <div className="profile-content">
-                      <div className="row align-items-center">
-                        <div className="col-md-3 col-5">
-                          <img src="images/pro-userpic.jpg" alt="" />
-                        </div>
-                        <div className="col-md-3 pl-0 col-6">
-                          <button
-                            type="button"
-                            className="btn btn-danger remove-btn"
-                          >
-                            REMOVE
-                          </button>
-                        </div>
-                      </div>
-                    </div>
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
 
               <div className="row mt-4">
                 <div className="col-md-12">
-                  <Link
-                    to="/individual-onsiteoroffsite"
-                    className="btn btn-login mr-3 "
-                  >
+                  <a onClick={onFinishKYC} className="btn btn-login mr-3 ">
                     VERIFY MY ACCOUNT
-                  </Link>
+                  </a>
                   <Link
                     to="/individual-upload-image"
                     className="btn btn-outline-primary post-btn "

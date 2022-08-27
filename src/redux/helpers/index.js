@@ -14,8 +14,6 @@ export const fetchData = async (url, method, data) => {
     return await response.data;
   } catch (error) {
     console.log(error);
-    return {
-      error,
-    };
+    alert(error.message);
   }
 };

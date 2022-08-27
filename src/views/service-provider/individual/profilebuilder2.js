@@ -1,8 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
+import { profileDataUpdate } from "../../../redux/actions/user";
 
 function IndividualProfilebuilder2() {
+  const user = useSelector((state) => state.user);
+  const { profileData } = user;
+  const navigate = useNavigate();
+  const [inputFields, setInputFields] = useState({});
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value.split(",") };
+    setInputFields(data);
+  };
+
+  const onNext = () => {
+    profileDataUpdate({ ...inputFields });
+    navigate("/individual-profile-builder-3");
+  };
+
   return (
     <>
       <Header />
@@ -25,26 +43,34 @@ function IndividualProfilebuilder2() {
                         <div className="col-md-9">
                           <nav>
                             <div className="nav nav-tabs">
-                              <a className="nav-item nav-link active" href="#">
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-1"
+                              >
                                 headline
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="individual-profile-builder-2"
+                              >
                                 skills
-                              </a>
-                              <a
+                              </Link>
+                              <Link
                                 className="nav-item nav-link"
-                                href="#"
-                                role="tab"
+                                to="individual-profile-builder-3"
                               >
                                 rate
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="individual-profile-builder-4"
+                              >
                                 proximity
-                              </a>
+                              </Link>
                             </div>
                           </nav>
 
-                          <label for="#" className="profile-label mt-4">
+                          <label htmlFor="#" className="profile-label mt-4">
                             Search for category
                           </label>
                           <div className="form-group position-relative">
@@ -54,14 +80,17 @@ function IndividualProfilebuilder2() {
                               alt=""
                             />
                             <input
-                              type="email"
+                              type="text"
+                              name="categories"
+                              onChange={handleInputChange}
                               className="form-control login-input"
                               placeholder="Search category"
+                              defaultValue={profileData?.categories}
                             />
                           </div>
                           <div className="border-bottom mt-4"></div>
 
-                          <label for="#" className="profile-label mt-4">
+                          <label htmlFor="#" className="profile-label mt-4">
                             Search for skills
                           </label>
                           <div className="form-group position-relative">
@@ -71,9 +100,12 @@ function IndividualProfilebuilder2() {
                               alt=""
                             />
                             <input
-                              type="email"
+                              type="text"
+                              name="skills"
+                              onChange={handleInputChange}
                               className="form-control login-input"
-                              placeholder="Search category"
+                              placeholder="Search skills"
+                              defaultValue={profileData?.skills}
                             />
                           </div>
                           <h5 className="selected-probuilder">Selected</h5>
@@ -138,12 +170,9 @@ function IndividualProfilebuilder2() {
                               >
                                 BACK
                               </Link>
-                              <Link
-                                to="/individual-profile-builder-3"
-                                className="btn btn-login"
-                              >
+                              <a onClick={onNext} className="btn btn-login">
                                 NEXT STEP
-                              </Link>
+                              </a>
                             </div>
                           </div>
                         </div>
