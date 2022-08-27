@@ -9,6 +9,7 @@ var initialState = (window.initialState && window.initialState.user) || {
     userData: cookies.get("userData") ? cookies.get("userData") : null,
   },
   profileData: {},
+  members: [],
 };
 
 export default function user(state = initialState, action = {}) {
@@ -58,6 +59,13 @@ export default function user(state = initialState, action = {}) {
           ...state.profileData,
           ...action.payload,
         },
+      };
+    case "ADD_NEW_MEMBER":
+      debugger;
+      return {
+        ...state,
+        profileData: {},
+        members: [...state.members, { ...action.payload }],
       };
     default:
       return {

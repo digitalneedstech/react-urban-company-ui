@@ -68,13 +68,13 @@ function RoutesComp() {
             element={<IndividualUploadProfileImage />}
           />
         </Route>
-        <Route exact path="/company-upload-logo" element={<AuthRoute />}>
-          <Route
-            path="/company-upload-logo"
-            exact
-            element={<CompanyUploadLogo />}
-          />
-        </Route>
+        {/* <Route exact path="/company-upload-logo" element={<AuthRoute />}> */}
+        <Route
+          path="/company-upload-logo"
+          exact
+          element={<CompanyUploadLogo />}
+        />
+        {/* </Route> */}
         <Route exact path="/individual-kyc" element={<AuthRoute />}>
           <Route path="/individual-kyc" exact element={<IndividualKYC />} />
         </Route>

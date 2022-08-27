@@ -1,8 +1,42 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import _ from "lodash";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
+import { profileDataUpdate, addNewMember } from "../../../redux/actions/user";
+import { fetchData } from "../../../redux/helpers";
 
 function ServiceproviderTeamMemberform4() {
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
+  const { profileData, members } = user;
+  const navigate = useNavigate();
+  const [inputFields, setInputFields] = useState({});
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value };
+    setInputFields(data);
+    profileDataUpdate({ ...data });
+  };
+
+  const addMember = () => {
+    addNewMember(profileData);
+    navigate("/add-team-member-1");
+  };
+
+  const onFinishProfile = async () => {
+    addNewMember(profileData);
+    let response = await fetchData(
+      `/serviceProvider/companyProfile/${userData.id}/memberProfiles`,
+      "POST",
+      { members }
+    );
+    if (!_.isEmpty(response)) {
+      navigate("/dashboard");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -30,22 +64,37 @@ function ServiceproviderTeamMemberform4() {
                               id="nav-tab"
                               role="tablist"
                             >
-                              <a className="nav-item nav-link active" href="#">
+                              <Link
+                                className="nav-item nav-link active"
+                                to="/add-team-member-1"
+                              >
                                 headline
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="/add-team-member-2"
+                              >
                                 skills
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="/add-team-member-3"
+                              >
                                 rate
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="/add-team-member-4"
+                              >
                                 proximity
-                              </a>
+                              </Link>
                             </div>
                           </nav>
 
-                          <label for="#" className="profile-label mt-4 mb-0">
+                          <label
+                            htmlFor="#"
+                            className="profile-label mt-4 mb-0"
+                          >
                             Select the locations you want to serve in
                           </label>
                           <div className="row align-items-center">
@@ -65,18 +114,21 @@ function ServiceproviderTeamMemberform4() {
                               alt=""
                             />
                             <input
-                              type="email"
+                              type="text"
+                              name="location"
+                              onChange={handleInputChange}
                               className="form-control login-input"
                               placeholder="Search location"
+                              defaultValue={profileData?.location}
                             />
                           </div>
 
                           <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.3182688614693!2d77.39455371691349!3d28.50007064897341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce86095555555%3A0x70cfc1465b1bc159!2sStaqo%20World%20Private%20Ltd!5e0!3m2!1sen!2sin!4v1649843153429!5m2!1sen!2sin"
                             className="iframecontact-map"
-                            allowfullscreen=""
+                            allowFullScreen=""
                             loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
+                            referrerPolicy="no-referrer-when-downgrade"
                           ></iframe>
                           <h4 className="words-text">
                             Adjust proximity radius
@@ -104,16 +156,18 @@ function ServiceproviderTeamMemberform4() {
                           </Link>
                           <button
                             type="button"
+                            onClick={onFinishProfile}
                             className="btn btn-login mr-1 mb-2"
                           >
                             FINISH ADDING TEAM
                           </button>
-                          <Link
-                            to="/add-team-member-1"
+                          <button
+                            type="button"
+                            onClick={addMember}
                             className="uploadBtn add-membrbtn mb-2"
                           >
                             ADD MORE MEMBERS
-                          </Link>
+                          </button>
                         </div>
                       </div>
                     </div>

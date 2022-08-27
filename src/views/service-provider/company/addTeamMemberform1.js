@@ -1,8 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
+import { profileDataUpdate } from "../../../redux/actions/user";
 
 function ServiceproviderTeamMemberform1() {
+  const user = useSelector((state) => state.user);
+  const { profileData } = user;
+  const navigate = useNavigate();
+  const [inputFields, setInputFields] = useState({});
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value };
+    setInputFields(data);
+  };
+
+  const onNext = () => {
+    profileDataUpdate({ ...inputFields });
+    navigate("/add-team-member-2");
+  };
+
   return (
     <>
       {" "}
@@ -30,27 +48,42 @@ function ServiceproviderTeamMemberform1() {
                               id="nav-tab"
                               role="tablist"
                             >
-                              <a className="nav-item nav-link active" href="#">
+                              <Link
+                                className="nav-item nav-link active"
+                                to="/add-team-member-1"
+                              >
                                 headline
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="/add-team-member-2"
+                              >
                                 skills
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="/add-team-member-3"
+                              >
                                 rate
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="/add-team-member-4"
+                              >
                                 proximity
-                              </a>
+                              </Link>
                             </div>
                           </nav>
 
-                          <label for="#" className="profile-label mt-4">
+                          <label htmlFor="#" className="profile-label mt-4">
                             Write a catchy headline
                           </label>
                           <div className="">
                             <input
-                              type="email"
+                              type="text"
+                              name="headline"
+                              onChange={handleInputChange}
+                              defaultValue={profileData?.headline}
                               className="form-control login-input profile-inpt"
                               placeholder="Start typing here…"
                             />
@@ -61,21 +94,30 @@ function ServiceproviderTeamMemberform1() {
 
                           <div className="form-group">
                             <input
-                              type="email"
+                              type="text"
+                              name="fullName"
+                              onChange={handleInputChange}
+                              defaultValue={profileData?.fullName}
                               className="form-control login-input profile-inpt"
                               placeholder="Full name here"
                             />
                           </div>
                           <div className="form-group">
                             <input
-                              type="email"
+                              type="text"
+                              name="email"
+                              onChange={handleInputChange}
+                              defaultValue={profileData?.email}
                               className="form-control login-input profile-inpt"
                               placeholder="Email address"
                             />
                           </div>
                           <div className="form-group">
                             <input
-                              type="email"
+                              type="text"
+                              name="mobileNumber"
+                              onChange={handleInputChange}
+                              defaultValue={profileData?.mobileNumber}
                               className="form-control login-input profile-inpt"
                               placeholder="Phone number"
                             />
@@ -83,12 +125,12 @@ function ServiceproviderTeamMemberform1() {
 
                           <div className="row mt-2 mb-4 mb-sm-0">
                             <div className="col-md-12">
-                              <Link
-                                to="/add-team-member-2"
+                              <a
+                                onClick={onNext}
                                 className="btn btn-login mr-3"
                               >
                                 NEXT STEP
-                              </Link>
+                              </a>
                               <button
                                 type="button"
                                 className="btn btn-outline-primary post-btn"

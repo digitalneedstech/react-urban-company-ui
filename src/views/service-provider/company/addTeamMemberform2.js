@@ -1,8 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
+import { profileDataUpdate } from "../../../redux/actions/user";
 
 function ServiceproviderTeamMemberform2() {
+  const user = useSelector((state) => state.user);
+  const { profileData } = user;
+  const navigate = useNavigate();
+  const [inputFields, setInputFields] = useState({});
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value.split(",") };
+    setInputFields(data);
+  };
+
+  const onNext = () => {
+    profileDataUpdate({ ...inputFields });
+    navigate("/add-team-member-3");
+  };
+
   return (
     <>
       <Header />
@@ -29,22 +47,34 @@ function ServiceproviderTeamMemberform2() {
                               id="nav-tab"
                               role="tablist"
                             >
-                              <a className="nav-item nav-link active" href="#">
+                              <Link
+                                className="nav-item nav-link active"
+                                to="/add-team-member-1"
+                              >
                                 headline
-                              </a>
-                              <a className="nav-item nav-link active" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link active"
+                                to="/add-team-member-2"
+                              >
                                 skills
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="/add-team-member-3"
+                              >
                                 rate
-                              </a>
-                              <a className="nav-item nav-link" href="#">
+                              </Link>
+                              <Link
+                                className="nav-item nav-link"
+                                to="/add-team-member-4"
+                              >
                                 proximity
-                              </a>
+                              </Link>
                             </div>
                           </nav>
 
-                          <label for="#" className="profile-label mt-4">
+                          <label htmlFor="#" className="profile-label mt-4">
                             Search for category
                           </label>
                           <div className="form-group position-relative">
@@ -54,14 +84,17 @@ function ServiceproviderTeamMemberform2() {
                               alt=""
                             />
                             <input
-                              type="email"
+                              type="text"
+                              name="categories"
+                              onChange={handleInputChange}
                               className="form-control login-input"
                               placeholder="Search category"
+                              defaultValue={profileData?.categories}
                             />
                           </div>
                           <div className="border-bottom mt-4"></div>
 
-                          <label for="#" className="profile-label mt-4">
+                          <label htmlFor="#" className="profile-label mt-4">
                             Search for skills
                           </label>
                           <div className="form-group position-relative">
@@ -71,9 +104,12 @@ function ServiceproviderTeamMemberform2() {
                               alt=""
                             />
                             <input
-                              type="email"
+                              type="text"
+                              name="skills"
+                              onChange={handleInputChange}
                               className="form-control login-input"
-                              placeholder="Search category"
+                              placeholder="Search skills"
+                              defaultValue={profileData?.skills}
                             />
                           </div>
                           <h5 className="selected-probuilder">Selected</h5>
@@ -138,12 +174,12 @@ function ServiceproviderTeamMemberform2() {
                               >
                                 BACK
                               </Link>
-                              <Link
-                                to="/add-team-member-3"
+                              <a
+                                onClick={onNext}
                                 className="btn btn-login mr-3"
                               >
                                 NEXT STEP
-                              </Link>
+                              </a>
                             </div>
                           </div>
                         </div>

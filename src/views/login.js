@@ -34,13 +34,14 @@ function Login() {
       return;
     }
     if (user) {
-      if (userData.type == "client") {
-        navigate("/client-upload-image");
-      } else if (userData.type == "individual") {
-        navigate("/individual-upload-image");
-      } else if (userData.type == "company") {
-        navigate("/company-upload-logo");
-      }
+      navigate("/dashboard");
+      // if (userData?.type == "client") {
+      //   navigate("/client-upload-image");
+      // } else if (userData?.type == "individual") {
+      //   navigate("/individual-upload-image");
+      // } else if (userData?.type == "company") {
+      //   navigate("/company-upload-logo");
+      // }
     }
   }, [user, loading]);
 

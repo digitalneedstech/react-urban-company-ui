@@ -21,7 +21,6 @@ function IndividualProfilebuilder4() {
   };
 
   const onFinishProfile = async () => {
-    debugger;
     let response = await fetchData(
       `/serviceProvider/individualProfile/${userData.id}/profile`,
       "POST",

@@ -118,12 +118,12 @@ function IndividualProfilebuilder1() {
                               >
                                 NEXT STEP
                               </a>
-                              <button
-                                type="button"
+                              <Link
+                                to="/dashboard"
                                 className="btn btn-outline-primary post-btn"
                               >
                                 SKIP & GO TO DASHBOARD
-                              </button>
+                              </Link>
                             </div>
                           </div>
                         </div>

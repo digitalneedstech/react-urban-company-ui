@@ -27,16 +27,27 @@ export const fetchUserInfo = (user) => async (dispatch) => {
   }
 };
 
-export const userDataUpdate = (data) => {
+export const userDataUpdate = (data, saveOnCookie) => {
+  const cookies = new Cookies(window.document.cookie);
   store.dispatch({
     type: "USER_DATA_UPDATE",
     payload: data,
   });
+  if (saveOnCookie)
+    cookies.set("userData", store.getState().user.user.userData);
 };
 
 export const profileDataUpdate = (data) => {
   store.dispatch({
     type: "PROFILE_DATA_UPDATE",
+    payload: data,
+  });
+};
+
+export const addNewMember = (data) => {
+  debugger;
+  store.dispatch({
+    type: "ADD_NEW_MEMBER",
     payload: data,
   });
 };

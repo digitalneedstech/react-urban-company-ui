@@ -19,7 +19,7 @@ export default function UploadProfileImage(props) {
 
   const onImageUpload = (url) => {
     setImage(url);
-    userDataUpdate({ profileImageUrl: url });
+    userDataUpdate({ profileImageUrl: url }, false);
   };
 
   const onFinishSAccount = async () => {
@@ -34,7 +34,7 @@ export default function UploadProfileImage(props) {
 
     let response = await fetchData("/signUp", "POST", data);
     if (!_.isEmpty(response)) {
-      userDataUpdate({ id: response?.id });
+      userDataUpdate({ id: response?.id }, true);
       afterImageUpload();
     }
   };

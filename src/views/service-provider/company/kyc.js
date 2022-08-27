@@ -92,7 +92,7 @@ function KYC() {
               </div>
             </div>
             <div className="col-md-4 text-right mt-2 pt-5 mt-sm-5  d-none d-sm-block">
-              <a onCick={onFinishKYC} className="btn btn-login">
+              <a onClick={onFinishKYC} className="btn btn-login">
                 ADD TEAM MEMBER(S)
               </a>
             </div>
