@@ -11,7 +11,7 @@ function Clientsignupform() {
 
   useEffect(() => {
     if (loading) return;
-    if (user) navigate("/Clientsignupprofile");
+    if (user) navigate("/client-upload-image");
   }, [user, loading]);
 
   return (

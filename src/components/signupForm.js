@@ -28,6 +28,7 @@ function Signupform(props) {
   };
 
   const register = async () => {
+    localStorage.setItem("user",name);
     await registerWithEmailAndPassword(name, mobile, email, password, type);
   };
 

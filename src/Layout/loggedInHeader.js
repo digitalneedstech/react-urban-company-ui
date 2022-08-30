@@ -46,7 +46,7 @@ export default function LoggedInHeader() {
                     <span>
                       <img src="images/pro-userpic.jpg" alt="" />
                     </span>
-                    <p>Hi, Vinod !</p>
+                    <p>Hi, {localStorage.getItem("user")} !</p>
                   </a>
                 </li>
                 <li>

@@ -21,7 +21,7 @@ function ClientsignupUploaded () {
                                 <li class="user-picHead">
                                     <a href="#">
                                         <span><img src="images/pro-userpic.jpg" alt="" /></span>
-                                        <p>Hi, Vinod !</p>
+                                        <p>Hi, {localStorage.getItem("user")} !</p>
                                     </a>
                                 </li>
                                 <li><a href="#"><img src="images/bell.png" alt="" /></a></li>
