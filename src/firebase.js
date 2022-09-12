@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
+import Cookies from "universal-cookie";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -80,6 +81,7 @@ const registerWithEmailAndPassword = async (
       mobile,
       type,
     });
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -97,7 +99,9 @@ const sendPasswordReset = async (email) => {
 };
 
 const logout = () => {
+  let cookies = new Cookies(window.document.cookie);
   signOut(auth);
+  cookies.remove("userData");
 };
 
 export {

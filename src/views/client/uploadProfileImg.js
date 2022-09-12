@@ -7,7 +7,7 @@ function ClientUploadImage() {
   const navigate = useNavigate();
 
   const afterImageUpload = () => {
-    navigate("/Selectorhire");
+    navigate("/client-selector-hire-browse");
   };
 
   return (

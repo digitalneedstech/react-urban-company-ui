@@ -1,7 +1,5 @@
 import * as React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Logo from "../../images/Logo.svg";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -10,20 +8,24 @@ export default function Header() {
         <div className="tophead border-bottom">
           <div className="row align-items-center">
             <div className="col-md-3 col-5 moblogo">
-              <Link href="/">
-                <Image src={Logo} alt="" />
+              <Link to="/">
+                <img src="images/Logo.svg" alt="" />
               </Link>
             </div>
             <div className="col-md-9 col-7">
               <ul className="tophead-right">
                 <li className="d-none d-sm-block">
-                  <Link href="/signup">Register as a service provider</Link>
+                  <Link to="/service-signup">
+                    Register as a service provider
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/login">
-                    <button type="button" className="btn btn-login">
-                      Login / Signup
-                    </button>
+                  <Link
+                    to="/login"
+                    className="btn btn-login"
+                    style={{ color: "#fff" }}
+                  >
+                    Login / Signup
                   </Link>
                 </li>
                 <li className="d-none d-sm-inline-block">

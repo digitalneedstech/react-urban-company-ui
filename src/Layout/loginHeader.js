@@ -22,12 +22,17 @@ export default function LoginHeader() {
                   {isSignupPath ? (
                     <Link
                       to="/login"
-                      className="btn btn-outline-primary post-btn"
+                      className="btn btn-login"
+                      style={{ color: "#fff" }}
                     >
                       LOGIN
                     </Link>
                   ) : (
-                    <Link to="/signup-selector" className="btn btn-login">
+                    <Link
+                      to="/signup-selector"
+                      className="btn btn-login"
+                      style={{ color: "#fff" }}
+                    >
                       SIGNUP
                     </Link>
                   )}

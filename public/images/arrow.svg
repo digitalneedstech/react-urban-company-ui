@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="vuesax_linear_arrow-3" data-name="vuesax/linear/arrow-3" transform="translate(-300 -188)">
+    <g id="arrow-3">
+      <g id="Group">
+        <path id="Vector" d="M0,4.47a.748.748,0,0,1-.53-.22.75.75,0,0,1,0-1.061L3.19-.53a.75.75,0,0,1,1.061,0L7.97,3.19A.75.75,0,1,1,6.91,4.25L3.72,1.061.53,4.25A.748.748,0,0,1,0,4.47Z" transform="translate(303.01 191)" fill="#51459e"/>
+        <path id="Vector-2" data-name="Vector" d="M0,18.75A.75.75,0,0,1-.75,18V0A.75.75,0,0,1,0-.75.75.75,0,0,1,.75,0V18A.75.75,0,0,1,0,18.75Z" transform="translate(306.73 191)" fill="#51459e"/>
+        <path id="Vector-3" data-name="Vector" d="M3.72,4.47a.748.748,0,0,1-.53-.22L-.53.53A.75.75,0,0,1-.53-.53.75.75,0,0,1,.53-.53l3.19,3.19L6.91-.53a.75.75,0,0,1,1.061,0A.75.75,0,0,1,7.97.53L4.25,4.25A.748.748,0,0,1,3.72,4.47Z" transform="translate(313.55 205.28)" fill="#51459e"/>
+        <path id="Vector-4" data-name="Vector" d="M0,18.75A.75.75,0,0,1-.75,18V0A.75.75,0,0,1,0-.75.75.75,0,0,1,.75,0V18A.75.75,0,0,1,0,18.75Z" transform="translate(317.27 191)" fill="#51459e"/>
+      </g>
+      <path id="Vector-5" data-name="Vector" d="M0,0H24V24H0Z" transform="translate(300 188)" fill="none" opacity="0"/>
+    </g>
+  </g>
+</svg>

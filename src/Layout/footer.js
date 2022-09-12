@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <>
@@ -5,7 +8,83 @@ export default function Footer() {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <img src="images/mobile-secimg.png" alt="" />
+              <div className="mobile-sec">
+                <div className="row align-items-center">
+                  <div className="col-md-4 offset-md-1">
+                    <div className="mobile-secContent">
+                      <img
+                        src="images/mobile-seclogo.png"
+                        className="circle-logo"
+                        alt=""
+                      />
+                      <h1>Download the App</h1>
+                      <p>
+                        Explore the community, hire a service provider or post a
+                        project
+                      </p>
+                      <div className="row mt-3">
+                        <div className="col-md-6 col-6 pr-2">
+                          <div className="footbtn mobilesec-btn">
+                            <Link to="/">
+                              <div className="row align-items-center">
+                                <div className="col-md-3 pr-0 col-3">
+                                  <img src="images/mobile-apple.svg" alt="" />
+                                </div>
+                                <div className="col-md-9 pl-2 col-9">
+                                  <h5>
+                                    Download on the <span>App Store</span>
+                                  </h5>
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        </div>
+                        <div className="col-md-6 col-6 pl-2">
+                          <div className="footbtn mobilesec-btn">
+                            <Link to="/">
+                              <div className="row align-items-center">
+                                <div className="col-md-3 pr-0 col-3">
+                                  <img
+                                    src="images/mobile-playstore.svg"
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="col-md-9 pl-2 col-9">
+                                  <h5>
+                                    Download on the <span>Play Store</span>
+                                  </h5>
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="text-right">
+                        <img
+                          src="images/mobile-net.png"
+                          alt=""
+                          className="down-cirle-botom"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-md-5 offset-md-1 mobile-rightbg">
+                    <img src="images/mobile-right.png" alt="" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="row justify-content-center mt-1 mt-sm-4">
+                <div className="col-md-10">
+                  <img
+                    src="images/mobilesec-bottomimg.png"
+                    className="mb-3 mb-sm-0"
+                    alt=""
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

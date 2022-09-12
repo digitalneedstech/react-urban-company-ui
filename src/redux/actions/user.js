@@ -1,10 +1,12 @@
 import Cookies from "universal-cookie";
+import { fetchData } from "../helpers";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import store from "..";
 
 export const fetchUserInfo = (user) => async (dispatch) => {
   try {
+    //let response = await fetchData(`/users/${user?.uid}`, "GET");
     const q = query(collection(db, "users"), where("uid", "==", user?.uid));
     const doc = await getDocs(q);
     const data = doc.docs[0].data();
@@ -45,7 +47,6 @@ export const profileDataUpdate = (data) => {
 };
 
 export const addNewMember = (data) => {
-  debugger;
   store.dispatch({
     type: "ADD_NEW_MEMBER",
     payload: data,
