@@ -39,6 +39,10 @@ import AddTeamMemberform2 from "../views/service-provider/company/addTeamMemberf
 import AddTeamMemberform3 from "../views/service-provider/company/addTeamMemberform3";
 import AddTeamMemberform4 from "../views/service-provider/company/addTeamMemberform4";
 
+import AddNewService from "../views/service-provider/addNewService";
+import ListedDetails from "../views/service-provider/listedDetails";
+import ListedServices from "../views/service-provider/listedServices";
+
 import BrowseCheckout from "../views/checkout/browseCheckout";
 import BrowseCheckoutconfirmed from "../views/checkout/browseCheckoutconfirmed";
 import ServiceDetails from "../views/guest/servicesDetails";
@@ -154,6 +158,15 @@ function RoutesComp() {
           path="/add-team-member-4"
           exact
           element={<AddTeamMemberform4 />}
+        />
+
+        {/* Service Providers common Routes */}
+        <Route path="/add-new-service" exact element={<AddNewService />} />
+        <Route path="/listed-services" exact element={<ListedServices />} />
+        <Route
+          path="/listed-service-details"
+          exact
+          element={<ListedDetails />}
         />
 
         {/* Checkout Routes */}

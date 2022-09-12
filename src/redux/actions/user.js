@@ -1,23 +1,25 @@
 import Cookies from "universal-cookie";
 import { fetchData } from "../helpers";
+import { logout } from "../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import store from "..";
 
 export const fetchUserInfo = (user) => async (dispatch) => {
   try {
-    //let response = await fetchData(`/users/${user?.uid}`, "GET");
-    const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-    const doc = await getDocs(q);
-    const data = doc.docs[0].data();
+    let response = await fetchData(`/users/${user?.uid}`, "GET");
+    // const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+    // const doc = await getDocs(q);
+    const data = response?.metadata;
     const cookies = new Cookies(window.document.cookie);
-
-    cookies.set("userData", data);
-    dispatch({
-      type: "LOGIN_SUCCESS",
-      payload: data,
-    });
-    return true;
+    if (data) {
+      cookies.set("userData", data);
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: data,
+      });
+      return true;
+    }
   } catch (err) {
     dispatch({
       type: "LOGIN_FAILED",
@@ -51,4 +53,15 @@ export const addNewMember = (data) => {
     type: "ADD_NEW_MEMBER",
     payload: data,
   });
+};
+
+export const onLogout = () => {
+  debugger;
+  let cookies = new Cookies(window.document.cookie);
+  logout();
+  cookies.remove("userData");
+  return {
+    type: "LOGOUT_SUCCESS",
+    payload: {},
+  };
 };

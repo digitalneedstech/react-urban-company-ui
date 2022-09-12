@@ -54,7 +54,7 @@ function Selectorhire() {
                             id="client1"
                             onChange={updateSelectedVal}
                           />
-                          <label for="client1"></label>
+                          <label htmlFor="client1"></label>
                         </div>
                       </div>
                     </div>
@@ -85,7 +85,7 @@ function Selectorhire() {
                             id="client2"
                             onChange={updateSelectedVal}
                           />
-                          <label for="client2"></label>
+                          <label htmlFor="client2"></label>
                         </div>
                       </div>
                     </div>
@@ -106,11 +106,11 @@ function Selectorhire() {
                 <div className="col-md-12">
                   {selectorType == 0 ? (
                     <Link to="/dashboard" className="btn btn-login">
-                      HIRE
+                      CONTINUE TO HIRE
                     </Link>
                   ) : (
                     <Link to="/client-browse" className="btn btn-login">
-                      BROWSE
+                      CONTINUE TO BROWSE
                     </Link>
                   )}
                 </div>

@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import _ from "lodash";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import UploadImageInput from "./uploadImageInput";
 import { userDataUpdate } from "../redux/actions/user";
 import { fetchData } from "../redux/helpers";
 
 export default function UploadProfileImage(props) {
   const user = useSelector((state) => state.user);
-  const { userData } = user.user;
   const { afterImageUpload } = props;
-  const location = useLocation();
-  const { pathname } = location;
-  const isCompanyPath = pathname.indexOf("company") !== -1;
+  const { userData } = user.user;
+  const isCompanyPath = userData.type == "company";
 
   const [image, setImage] = useState("");
   const [deleteImg, setDeleteImg] = useState(false);

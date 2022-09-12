@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Accordion, Card, Button } from "react-bootstrap";
 
-function Addnew() {
+function AddNewService() {
   return (
     <>
       <header>
@@ -417,4 +417,4 @@ function Addnew() {
   );
 }
 
-export default Addnew;
+export default AddNewService;

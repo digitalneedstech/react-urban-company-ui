@@ -1,16 +1,14 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
-import { logout } from "../firebase";
+import { onLogout } from "../redux/actions/user";
 
 export default function LoggedInHeader(props) {
   const { showRegisterButton, showNav } = props;
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
-  const location = useLocation();
-  let { pathname } = location;
-  let isClientPath = pathname.indexOf("client") !== -1;
+  let isClientPath = userData.type == "client";
 
   return (
     <header>
@@ -22,7 +20,7 @@ export default function LoggedInHeader(props) {
                 <img src="images/Logo.svg" alt="" />
               </Link>
             </div>
-            <div className="col-md-9 col-7">
+            <div className="col-md-6 col-7">
               <ul className="tophead-right">
                 <li className="client-loginHead d-none d-sm-block">
                   <a href="#">
@@ -46,13 +44,19 @@ export default function LoggedInHeader(props) {
                 <li className="user-picHead">
                   <a href="#">
                     <span>
-                      <img src="images/pro-userpic.jpg" alt="" />
+                      <img
+                        srcSet={
+                          (`${userData.profileImageUrl}`,
+                          "images/pro-userpic.jpg")
+                        }
+                        alt=""
+                      />
                     </span>
-                    <p>Hi, Vinod !</p>
+                    <p>Hi, {userData.name} !</p>
                   </a>
                 </li>
                 <li>
-                  <a onClick={logout}>
+                  <a onClick={onLogout}>
                     <img src="images/bell.png" alt="" />
                   </a>
                 </li>

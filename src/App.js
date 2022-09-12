@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!userData.user.isLoggedIn && !_.isEmpty(user)) {
+    if (_.isEmpty(userData.user.userData) && !_.isEmpty(user)) {
       dispatch(fetchUserInfo(user));
     }
   }, [user, loading]);
