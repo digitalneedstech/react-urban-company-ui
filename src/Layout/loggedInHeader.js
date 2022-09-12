@@ -13,120 +13,54 @@ export default function LoggedInHeader(props) {
   let isClientPath = pathname.indexOf("client") !== -1;
 
   return (
-    <>
-      <header>
-        <div className="container">
-          <div className="tophead border-bottom">
-            <div className="row align-items-center">
-              <div className="col-md-6 col-5 moblogo">
-                <Link to="/">
-                  <img src="images/Logo.svg" alt="" />
-                </Link>
-                {showRegisterButton && (
-                  <>
+    <header>
+      <div className="container">
+        <div className="tophead border-bottom">
+          <div className="row align-items-center">
+            <div className="col-md-3 col-5 moblogo">
+              <Link to="/">
+                <img src="images/Logo.svg" alt="" />
+              </Link>
+            </div>
+            <div className="col-md-9 col-7">
+              <ul className="tophead-right">
+                <li className="client-loginHead d-none d-sm-block">
+                  <a href="#">
                     {isClientPath ? (
-                      <button
-                        type="button"
-                        className="btn btn-login ml-4 d-none d-sm-inline-block"
-                      >
-                        REGISTER AS A SERVICE PROVIDER
-                      </button>
+                      <img
+                        src="images/pro-headimg.png"
+                        className="pro-headimg"
+                        alt=""
+                      />
                     ) : (
-                      <button
-                        type="button"
-                        className="btn btn-login ml-4 d-none d-sm-inline-block"
-                      >
-                        WANT TO HIRE SOMEONE?
-                      </button>
+                      <img
+                        src="images/service-prohead-img.png"
+                        className="pro-headimg"
+                        alt=""
+                      />
                     )}
-                  </>
-                )}
-              </div>
-              <div className="col-md-6 col-7">
-                <ul className="tophead-right">
-                  <li className="client-loginHead d-none d-sm-block">
-                    <a href="#">
-                      {isClientPath ? (
-                        <img
-                          src="images/pro-headimg.png"
-                          className="pro-headimg"
-                          alt=""
-                        />
-                      ) : (
-                        <img
-                          src="images/service-prohead-img.png"
-                          className="pro-headimg"
-                          alt=""
-                        />
-                      )}
-                      You are logged in as a{" "}
-                      <span>
-                        {isClientPath ? "CLIENT" : "SERVICE PROVIDER"}
-                      </span>
-                    </a>
-                  </li>
-                  <li className="user-picHead">
-                    <a href="#">
-                      <span>
-                        <img src="images/pro-userpic.jpg" alt="" />
-                      </span>
-                      <p>Hi, Vinod !</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={logout}>
-                      <img src="images/bell.png" alt="" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
+                    You are logged in as a{" "}
+                    <span>{isClientPath ? "CLIENT" : "SERVICE PROVIDER"}</span>
+                  </a>
+                </li>
+                <li className="user-picHead">
+                  <a href="#">
+                    <span>
+                      <img src="images/pro-userpic.jpg" alt="" />
+                    </span>
+                    <p>Hi, Vinod !</p>
+                  </a>
+                </li>
+                <li>
+                  <a onClick={logout}>
+                    <img src="images/bell.png" alt="" />
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-      </header>
-      {showNav && (
-        <Navbar expand="lg" className="listed-bar">
-          <div className="container">
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
-                <Nav.Link href="#" className="active">
-                  <img src="images/blue-status.svg" alt="" />
-                  BROWSE
-                </Nav.Link>
-                <Nav.Link href="#">
-                  <img src="images/note.svg" alt="" />
-                  PROJECTS
-                </Nav.Link>
-                <Nav.Link href="#">
-                  <img src="images/gray-cal.svg" alt="" />
-                  BOOKINGS
-                </Nav.Link>
-                <Nav.Link href="#">
-                  <img src="images/dollar.svg" alt="" />
-                  EARNINGS
-                </Nav.Link>
-                <Nav.Link href="#">
-                  <img src="images/mgs.svg" alt="" />
-                  SUPPORT
-                </Nav.Link>
-                <Nav.Link href="#">
-                  <img src="images/setting.svg" alt="" />
-                  ACCOUNT
-                </Nav.Link>
-                <Nav.Link href="#">
-                  <img src="images/archive.svg" alt="" />
-                  SAVED
-                </Nav.Link>
-                <Nav.Link href="#">
-                  <img src="images/trend.svg" alt="" />
-                  REPORTS
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </div>
-        </Navbar>
-      )}
-    </>
+      </div>
+    </header>
   );
 }
