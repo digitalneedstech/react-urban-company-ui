@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import { onLogout } from "../redux/actions/user";
 
@@ -8,6 +8,9 @@ export default function LoggedInHeader(props) {
   const { showRegisterButton, showNav } = props;
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
+  const location = useLocation();
+  let { pathname } = location;
+
   let isClientPath = userData.type == "client";
 
   return (
@@ -25,14 +28,14 @@ export default function LoggedInHeader(props) {
                     {isClientPath ? (
                       <button
                         type="button"
-                        class="btn btn-login ml-4 d-none d-sm-inline-block"
+                        className="btn btn-login ml-4 d-none d-sm-inline-block"
                       >
                         REGISTER AS A SERVICE PROVIDER
                       </button>
                     ) : (
                       <button
                         type="button"
-                        class="btn btn-login ml-4 d-none d-sm-inline-block"
+                        className="btn btn-login ml-4 d-none d-sm-inline-block"
                       >
                         WANT TO HIRE SOMEONE?
                       </button>
@@ -89,12 +92,12 @@ export default function LoggedInHeader(props) {
         </div>
       </header>
       {showNav && (
-        <Navbar expand="lg" class="listed-bar">
-          <div class="container">
+        <Navbar expand="lg" className="listed-bar">
+          <div className="container">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link href="#" className="active">
+                <Nav.Link href="#">
                   <img src="images/blue-status.svg" alt="" />
                   BROWSE
                 </Nav.Link>
@@ -102,10 +105,22 @@ export default function LoggedInHeader(props) {
                   <img src="images/note.svg" alt="" />
                   PROJECTS
                 </Nav.Link>
-                <Nav.Link href="#">
-                  <img src="images/gray-cal.svg" alt="" />
-                  BOOKINGS
-                </Nav.Link>
+                {isClientPath ? (
+                  <Nav.Link href="#">
+                    <img src="images/gray-cal.svg" alt="" />
+                    BOOKINGS
+                  </Nav.Link>
+                ) : (
+                  <Nav.Link
+                    href="/services-dashboard"
+                    className={
+                      pathname == "/services-dashboard" ? "active" : ""
+                    }
+                  >
+                    <img src="images/gray-cal.svg" alt="" />
+                    SERVICES
+                  </Nav.Link>
+                )}
                 <Nav.Link href="#">
                   <img src="images/dollar.svg" alt="" />
                   EARNINGS

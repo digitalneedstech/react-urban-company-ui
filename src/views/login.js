@@ -37,7 +37,7 @@ function Login() {
       if (userData?.type == "client") {
         navigate("/client-selector-hire-browse");
       } else {
-        navigate("/listed-services");
+        navigate("/services-dashboard");
       }
     }
   }, [user, loading]);
