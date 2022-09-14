@@ -5,7 +5,7 @@ import { Modal, Button } from "react-bootstrap";
 import MultiRangeSlider from "multi-range-slider-react";
 
 function ServicesListFilters(props) {
-  const { showNav } = props;
+  const { showNav, count } = props;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -95,7 +95,7 @@ function ServicesListFilters(props) {
               <div className="col-md-7 col-12">
                 <div className="client-profilehead">
                   <h1>
-                    found <span> 132 results</span> in drainage
+                    found <span> {count} results</span> in drainage
                   </h1>
                   <h2>plumber in “Seattle, Washington”</h2>
                 </div>

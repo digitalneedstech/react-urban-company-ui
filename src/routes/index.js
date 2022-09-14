@@ -22,7 +22,6 @@ import ClientUploadProfileImage from "../views/client/uploadProfileImg";
 import ClientSelectorHireOrBrowse from "../views/client/selector-hire-browse";
 import ClientBrowse from "../views/client/browse";
 import ClientBrowseDetails from "../views/client/browseDetails";
-import ClientBrowseDetailsservices from "../views/client/browseDetailsServices";
 
 import IndividualUploadProfileImage from "../views/service-provider/individual/uploadProfileImg";
 import IndividualKYC from "../views/service-provider/individual/kyc";
@@ -82,16 +81,13 @@ function RoutesComp() {
           element={<ClientSelectorHireOrBrowse />}
         />
         <Route path="/client-browse" exact element={<ClientBrowse />} />
-        <Route
-          path="/client-browse-details"
-          exact
-          element={<ClientBrowseDetails />}
-        />
-        <Route
-          path="/client-browse-details-services"
-          exact
-          element={<ClientBrowseDetailsservices />}
-        />
+        <Route exact path="/client-browse-details" element={<AuthRoute />}>
+          <Route
+            path="/client-browse-details"
+            exact
+            element={<ClientBrowseDetails />}
+          />
+        </Route>
 
         {/* Service Provider Individuals Routes */}
         <Route exact path="/individual-upload-image" element={<AuthRoute />}>

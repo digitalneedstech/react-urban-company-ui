@@ -49,9 +49,6 @@ function AddNewService(props) {
     setProperties(data);
   };
 
-  console.log(inputFields);
-  console.log(properties);
-
   const onImageUpload = (url) => {
     setImage(url);
     handlePropertyChange({ target: { name: "images", value: url } });

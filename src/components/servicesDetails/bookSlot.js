@@ -1,30 +1,44 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 
-function BookSlot() {
+function BookSlot(props) {
+  const { service } = props;
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    //setShow(true)
+  };
   return (
     <>
       <div className="position-stikyfixedbox">
         <div className="fixed-costbox">
           <div className="row align-items-end">
             <div className="col-md-5 col-6">
-              <h2>FIXED COST</h2>
-              <h1>$750.00</h1>
+              <h2 className="text-uppercase">{service.type} COST</h2>
+              <h1>${service.charge}</h1>
               <p>Listed on</p>
               <h6>12th Jun 2022</h6>
             </div>
             <div className="col-md-7 col-6 text-right">
-              <button
+              {/* <button
                 type="button"
                 className="btn btn-login"
                 onClick={handleShow}
               >
                 BOOK A SLOT
-              </button>
+              </button> */}
+              <Link
+                to="/browse-checkout"
+                state={{ service, userData }}
+                className="btn btn-login"
+              >
+                BOOK A SLOT
+              </Link>
             </div>
           </div>
 
@@ -43,7 +57,7 @@ function BookSlot() {
               <h4>Visiting charges</h4>
             </div>
             <div className="col-md-7 text-right col-7">
-              <h4>$20</h4>
+              <h4>${service.visitingCharges}</h4>
             </div>
           </div>
           <div className="row mt-3">
@@ -52,7 +66,7 @@ function BookSlot() {
               <h5>24hrs. after booking the slot</h5>
             </div>
             <div className="col-md-6 text-right col-4">
-              <h4>$40</h4>
+              <h4>${service.cancellationCharges}</h4>
             </div>
           </div>
           <div className="row mt-3">

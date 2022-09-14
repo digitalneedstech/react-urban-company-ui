@@ -1,8 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import _ from "lodash";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../Layout/loggedInHeader";
+import { fetchData } from "../../redux/helpers";
 
 function Clientbrowsecheckout() {
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
+  const bookASlot = async () => {
+    let data = {
+      metadata: {
+        name: state?.userData.name,
+        email: state?.userData.email,
+        location1: "Test location",
+        location2: "test location 2",
+        toBeSaved: true,
+      },
+      properties: {
+        serviceId: state?.service.id,
+        serviceProviderId: state?.service.ownerId,
+        time: "20:55",
+        date: "16/10/2022",
+        timeZone: "IST",
+      },
+    };
+    let response = await fetchData(
+      `/clients/${state.userData.id}/bookings`,
+      "POST",
+      data
+    );
+    console.log(response);
+    if (!_.isEmpty(response)) {
+      navigate("/browse-checkout-confirmed");
+    }
+  };
+
   return (
     <>
       <Header showRegisterButton={true} />
@@ -194,7 +227,11 @@ function Clientbrowsecheckout() {
 
               <div className="row mt-2 mb-4">
                 <div className="col-md-12">
-                  <button type="button" className="btn btn-login ">
+                  <button
+                    onClick={bookASlot}
+                    type="button"
+                    className="btn btn-login "
+                  >
                     PAY & PROCEED TO BOOK A SLOT
                   </button>
                 </div>

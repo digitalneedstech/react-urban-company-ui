@@ -56,7 +56,6 @@ export const addNewMember = (data) => {
 };
 
 export const onLogout = () => {
-  debugger;
   let cookies = new Cookies(window.document.cookie);
   logout();
   cookies.remove("userData");

@@ -33,14 +33,14 @@ function Login() {
       // maybe trigger a loading screen
       return;
     }
-    if (user) {
+    if (user && userData) {
       if (userData?.type == "client") {
         navigate("/client-selector-hire-browse");
       } else {
         navigate("/services-dashboard");
       }
     }
-  }, [user, loading]);
+  }, [user, loading, userData]);
 
   return (
     <>

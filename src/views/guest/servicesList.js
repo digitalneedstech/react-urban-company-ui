@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../Layout/header";
 import Footer from "../../Layout/footer";
 import ServicesList from "../../components/servicesList";
@@ -6,11 +6,12 @@ import Testimonials from "../../components/testimonials";
 import ServicesListFilters from "../../components/servicesListFilters";
 
 function ServiceList() {
+  const [count, setCount] = useState(0);
   return (
     <>
       <Header />
-      <ServicesListFilters />
-      <ServicesList />
+      <ServicesListFilters count={count} />
+      <ServicesList setCount={setCount} />
       <section className="position-relative py-4 py-sm-5">
         <div className="container">
           <div className="row">

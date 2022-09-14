@@ -70,9 +70,10 @@ export default function LoggedInHeader(props) {
                     <a href="#">
                       <span>
                         <img
-                          srcSet={
-                            (`${userData.profileImageUrl}`,
-                            "images/pro-userpic.jpg")
+                          src={
+                            userData.profileImageUrl
+                              ? userData.profileImageUrl
+                              : "images/pro-userpic.jpg"
                           }
                           alt=""
                         />
