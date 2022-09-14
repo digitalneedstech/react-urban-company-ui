@@ -35,21 +35,21 @@ export default function ListedServices() {
             <div className="col-md-5 col-8 pl-0">
               <div className="service-item">
                 <p>
-                  #{service.metadata.id}{" "}
+                  #{service.id}{" "}
                   <span className="servie-itemnmb">12th Jun 2022</span>
                   <span
                     className={`service-itemdraft  ${
-                      service.metadata.type == "Hourly"
+                      service.type == "Hourly"
                         ? "service-itemhourly"
-                        : service.metadata.type == "Fixed"
+                        : service.type == "Fixed"
                         ? "serviceitemyfixed"
                         : ""
                     }`}
                   >
-                    {service.metadata.type}
+                    {service.type}
                   </span>
                 </p>
-                <h6>{service.metadata.headline}</h6>
+                <h6>{service.headline}</h6>
               </div>
             </div>
             <div className="col-md-6">
@@ -60,7 +60,7 @@ export default function ListedServices() {
                       <label className="switch">
                         <input
                           type="checkbox"
-                          checked={!!service.metadata.isPublished}
+                          checked={!!service.isPublished}
                           onChange={() => {}}
                         />
                         <div className="slider round">
@@ -72,7 +72,7 @@ export default function ListedServices() {
                   </div>
                   <div className="col-md-1 text-center text-sm-right pr-3 pr-sm-0 pl-0  col-4  order-1 order-sm-2">
                     <h4>Cost</h4>
-                    <h5>{service.metadata.charge}</h5>
+                    <h5>{service.charge}</h5>
                   </div>
                   <div className="col-md-2 text-center text-sm-right pr-3 pr-sm-0   col-4 order-2 order-sm-3">
                     <h4>Earned</h4>
@@ -83,11 +83,11 @@ export default function ListedServices() {
                     <h5>10</h5>
                   </div>
                   <div className="col-md-4 text-right col-6 order-5 order-sm-5 mt-3 mt-sm-0">
-                    {!!service.metadata.isPublished ? (
+                    {!!service.isPublished ? (
                       <Link
                         to={"/listed-service-details"}
                         state={{
-                          id: service.metadata.id,
+                          id: service.id,
                           type: "Listed Services",
                         }}
                         className="btn btn-login new-loginbtn text-uppercase"

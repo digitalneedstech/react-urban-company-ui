@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import Header from "../../Layout/loggedInHeader";
 import UploadImageInput from "../../components/uploadImageInput";
 import { fetchData } from "../../redux/helpers";
 import { Accordion, Card, Button } from "react-bootstrap";
 
-function AddNewService() {
+function AddNewService(props) {
+  const { state } = useLocation();
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const [inputFields, setInputFields] = useState({});
@@ -15,6 +16,26 @@ function AddNewService() {
   const [deleteImg, setDeleteImg] = useState(false);
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
+
+  useEffect(() => {
+    if (state?.service) {
+      setInputFields({
+        headline: state?.service.headline,
+        description: state?.service.description,
+        type: state?.service.type,
+        charge: state?.service.charge,
+        visitingCharges: state?.service.visitingCharges,
+        cancellationCharges: state?.service.cancellationCharges,
+      });
+      setProperties({
+        inclusions: state?.service.inclusions,
+        exclusions: state?.service.exclusions,
+        images: state?.service.images,
+        categories: state?.service.categories,
+      });
+      setImage(state?.service.images);
+    }
+  }, [state]);
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;
@@ -24,7 +45,7 @@ function AddNewService() {
 
   const handlePropertyChange = (event) => {
     let { name, value } = event.target;
-    let data = { ...properties, [name]: value.split(",") };
+    let data = { ...properties, [name]: value };
     setProperties(data);
   };
 
@@ -33,29 +54,31 @@ function AddNewService() {
 
   const onImageUpload = (url) => {
     setImage(url);
+    handlePropertyChange({ target: { name: "images", value: url } });
   };
 
   const onPublishService = async () => {
-    let tempArr = _.flatten(
-      _.map(properties, (value, key) => {
-        return _.map(value, (v, i) => {
-          return { key: "", type: key, value: v };
-        });
-      })
-    );
+    // let tempArr = _.flatten(
+    //   _.map(properties, (value, key) => {
+    //     return _.map(value, (v, i) => {
+    //       return { key: "", type: key, value: v };
+    //     });
+    //   })
+    // );
+
+    let url = `/serviceProviders/${userData.id}/services`;
+
+    if (state?.service) {
+    }
 
     let data = {
       metadata: {
         ...inputFields,
       },
-      properties: [...tempArr, { key: "", type: "image", value: image }],
+      properties: { ...properties },
     };
 
-    let response = await fetchData(
-      `/serviceProviders/${userData.id}/services`,
-      "POST",
-      data
-    );
+    let response = await fetchData(url, "POST", data);
 
     if (!_.isEmpty(response)) {
       navigate("/services-dashboard");
@@ -102,6 +125,7 @@ function AddNewService() {
                   onChange={handleInputChange}
                   className="form-control login-input profile-inpt"
                   placeholder="Drainage pipe blockage removal"
+                  value={inputFields?.headline}
                 />
               </div>
 
@@ -115,6 +139,7 @@ function AddNewService() {
                   className="form-control  login-input profile-inpt"
                   placeholder="You may have experience in fixing a lot of things at home but plumbing isn’t everyone’s cup of tea. Plumbing issues such as clogged drains, leaky faucets, Plumbing issues need to be addressed immediately in order to prevent them from exacerbating or causing further damages. Minor plumbing problems are quite common in every household. Book our plumbing services for all kinds of general plumbing services such as loose and leaky faucets, dripping tap, clogged shower head, cistern repair, toilet flush not working, clogged drain and sink or any other plumbing work."
                   rows="8"
+                  value={inputFields?.description}
                 ></textarea>
               </div>
 
@@ -155,10 +180,11 @@ function AddNewService() {
                 />
                 <input
                   type="text"
-                  name="category"
+                  name="categories"
                   onChange={handlePropertyChange}
                   className="form-control login-input"
                   placeholder="Search category"
+                  value={properties?.categories}
                 />
               </div>
 
@@ -194,6 +220,7 @@ function AddNewService() {
                   onChange={handlePropertyChange}
                   className="form-control login-input"
                   placeholder="Add inclusions"
+                  value={properties?.inclusions}
                 />
               </div>
 
@@ -225,10 +252,11 @@ function AddNewService() {
                 />
                 <input
                   type="text"
-                  name="nonInclusions"
+                  name="exclusions"
                   onChange={handlePropertyChange}
                   className="form-control login-input"
                   placeholder="Add non inclusions"
+                  value={properties?.exclusions}
                 />
               </div>
 
@@ -261,6 +289,7 @@ function AddNewService() {
                   value="Hourly"
                   onChange={handleInputChange}
                   id="client1"
+                  checked={inputFields?.type == "Hourly"}
                 />
                 <label htmlFor="client1" className="radio-label">
                   Hourly rate
@@ -273,6 +302,7 @@ function AddNewService() {
                   value="Fixed"
                   onChange={handleInputChange}
                   id="client2"
+                  checked={inputFields?.type == "Fixed"}
                 />
                 <label htmlFor="client2" className="radio-label">
                   Fixed cost
@@ -288,6 +318,7 @@ function AddNewService() {
                       onChange={handleInputChange}
                       className="form-control login-input profile-inpt"
                       placeholder="$20.00"
+                      value={inputFields?.charge}
                     />
                   </div>
                 </div>
@@ -299,6 +330,7 @@ function AddNewService() {
                       onChange={handleInputChange}
                       className="form-control login-input profile-inpt"
                       placeholder="Visiting charges ($)"
+                      value={inputFields?.visitingCharges}
                     />
                   </div>
                 </div>
@@ -311,6 +343,7 @@ function AddNewService() {
                       onChange={handleInputChange}
                       className="form-control login-input profile-inpt"
                       placeholder="Cancellation charges ($)"
+                      value={inputFields?.cancellationCharges}
                     />
                   </div>
                 </div>

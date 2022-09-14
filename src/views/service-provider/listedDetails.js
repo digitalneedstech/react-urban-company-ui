@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import _ from "lodash";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Accordion, Card, Button } from "react-bootstrap";
 import Header from "../../Layout/loggedInHeader";
@@ -42,6 +42,7 @@ var slidersecondsetting = {
 
 function ListedDetails() {
   const { state } = useLocation();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
   const [nav1, setNav1] = useState();
@@ -51,12 +52,12 @@ function ListedDetails() {
   useEffect(() => {
     (async () => {
       let response = await fetchData(
-        `/serviceProviders/${userData.id}/services/{state.id}`,
+        `/serviceProviders/${userData.id}/services/${state.id}`,
         "GET"
       );
       console.log(response);
       if (!_.isEmpty(response)) {
-        setService(response.services);
+        setService(response.service);
       }
     })();
   }, []);
@@ -71,9 +72,7 @@ function ListedDetails() {
             <div className="col-md-10 mt-2">
               <div className="service-head">
                 <h1>
-                  <span>
-                    full bathroom hardware installation for corporate office
-                  </span>
+                  <span>{service.headline}</span>
                 </h1>
                 <h2>
                   <span>
@@ -89,7 +88,11 @@ function ListedDetails() {
               </div>
             </div>
             <div className="col-md-2 text-right d-none d-sm-block ">
-              <button type="button" className="btn btn-light details-btn mt-5">
+              <button
+                onClick={() => navigate(-1)}
+                type="button"
+                className="btn btn-light details-btn mt-5"
+              >
                 BACK TO LIST
               </button>
             </div>
@@ -105,7 +108,11 @@ function ListedDetails() {
             <div className="col-md-1 col-6 d-none d-sm-block">
               <div className="toogleSwitch">
                 <label className="switch">
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    checked={!!service.isPublished}
+                    onChange={() => {}}
+                  />
                   <div className="slider round slider2">
                     <span className="swactive">ACTIVE</span>
                     <span className="swinactive">INACTIVE</span>
@@ -114,9 +121,13 @@ function ListedDetails() {
               </div>
             </div>
             <div className="col-md-2 text-right col-6">
-              <button type="button" className="btn btn-warning exlpore-btn">
+              <Link
+                to="/add-new-service"
+                state={{ service }}
+                className="btn btn-warning exlpore-btn"
+              >
                 EDIT THIS SERVICE
-              </button>
+              </Link>
             </div>
           </div>
           <div className="border-bottom mt-3"></div>
@@ -133,52 +144,7 @@ function ListedDetails() {
                     <div>
                       <div className="fixed-costproductimg">
                         <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg">
-                        <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg">
-                        <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg">
-                        <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg">
-                        <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg">
-                        <img
-                          src="images/details.jpg"
+                          src={service.images}
                           className="img-fluid"
                           alt=""
                         />
@@ -196,52 +162,7 @@ function ListedDetails() {
                     <div>
                       <div className="fixed-costproductimg fixed-costproductimg2">
                         <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg fixed-costproductimg2">
-                        <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg fixed-costproductimg2">
-                        <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg fixed-costproductimg2">
-                        <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg fixed-costproductimg2">
-                        <img
-                          src="images/details.jpg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="fixed-costproductimg fixed-costproductimg2">
-                        <img
-                          src="images/details.jpg"
+                          src={service.images}
                           className="img-fluid"
                           alt=""
                         />
@@ -255,23 +176,7 @@ function ListedDetails() {
                 <div className="col-md-12">
                   <div className="service-detailscont">
                     <h4>Service details</h4>
-                    <p>
-                      You may have experience in fixing a lot of things at home
-                      but plumbing isn’t everyone’s cup of tea. Plumbing issues
-                      such as clogged drains, leaky faucets, broken or damaged
-                      pipelines etc. can be a homeowner’s nightmare. Plumbing
-                      issues need to be addressed immediately in order to
-                      prevent them from exacerbating or causing further damages.
-                      Minor plumbing problems are quite common in every
-                      household. Book our plumbing services for all kinds of
-                      general plumbing services such as loose and leaky faucets,
-                      dripping tap, clogged shower head, cistern repair, toilet
-                      flush not working, clogged drain and sink or any other
-                      plumbing work. We have a huge network of plumbing
-                      contractors in
-                      <strong> Seattle, Washington</strong> to help you with all
-                      kinds of emergency plumbing services.
-                    </p>
+                    <p>{service.description}</p>
                     <a href="#">
                       read more{" "}
                       <img src="images/arrow-deatil.svg" height="20px" alt="" />
@@ -285,130 +190,53 @@ function ListedDetails() {
                           <h1>Included in this service</h1>
                         </div>
                         <div className="col-md-6 pl-4 pl-sm-5 col-6">
-                          <h1>Included in this service</h1>
+                          <h1>Not Included in this service</h1>
                         </div>
                       </div>
                     </div>
-                    <div className="row mt-1 mt-sm-2">
+                    <div className="row mt-1 mt-sm-2 pb-3">
                       <div className="col-md-6 col-6">
-                        <div className="row align-items-center">
-                          <div className="col-md-3  pl-4 pl-sm-5">
-                            <img
-                              src="images/box-check.svg"
-                              className=""
-                              alt=""
-                            />
-                          </div>
-                          <div className="col-md-9  pl-4 pl-sm-0">
-                            <p>Drainage cleaning related activities</p>
-                          </div>
-                        </div>
+                        {service.inclusions &&
+                          _.map(
+                            service.inclusions.split(","),
+                            (inclusion, key) => (
+                              <div
+                                className="row my-1 my-sm-2 align-items-center"
+                                key={key}
+                              >
+                                <div className="col-md-3  pl-4 pl-sm-5">
+                                  <img
+                                    src="images/box-check.svg"
+                                    className=""
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="col-md-9  pl-4 pl-sm-0">
+                                  <p>{inclusion}</p>
+                                </div>
+                              </div>
+                            )
+                          )}
                       </div>
                       <div className="col-md-6 col-6">
-                        <div className="row">
-                          <div className="col-md-3 pl-4 pl-sm-5">
-                            <img src="images/box-cross.svg" alt="" />
-                          </div>
-                          <div className="col-md-9 pl-4 pl-sm-0">
-                            <p>Additional installations</p>
-                          </div>
-                        </div>
+                        {service.exclusions &&
+                          _.map(
+                            service.exclusions.split(","),
+                            (exclusion, key) => (
+                              <div
+                                className="row my-1 my-sm-2 align-items-center"
+                                key={key}
+                              >
+                                <div className="col-md-3 pl-4 pl-sm-5">
+                                  <img src="images/box-cross.svg" alt="" />
+                                </div>
+                                <div className="col-md-9 pl-4 pl-sm-0">
+                                  <p>{exclusion}</p>
+                                </div>
+                              </div>
+                            )
+                          )}
                       </div>
-                    </div>
-                    <div className="row mt-1 mt-sm-2">
-                      <div className="col-md-6 col-6">
-                        <div className="row align-items-center">
-                          <div className="col-md-3 pl-4 pl-sm-5">
-                            <img
-                              src="images/box-check.svg"
-                              className=""
-                              alt=""
-                            />
-                          </div>
-                          <div className="col-md-9 pl-4 pl-sm-0">
-                            <p>Grouting repair work</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6 col-6">
-                        <div className="row">
-                          <div className="col-md-3 pl-4 pl-sm-5">
-                            <img src="images/box-cross.svg" alt="" />
-                          </div>
-                          <div className="col-md-9 pl-4 pl-sm-0">
-                            <p>Equipments upon inspection</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row mt-1 mt-sm-2">
-                      <div className="col-md-6 col-6">
-                        <div className="row align-items-center">
-                          <div className="col-md-3 pl-4 pl-sm-5">
-                            <img
-                              src="images/box-check.svg"
-                              className=""
-                              alt=""
-                            />
-                          </div>
-                          <div className="col-md-9 pl-4 pl-sm-0">
-                            <p>Light cement work</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6 col-6">
-                        <div className="row">
-                          <div className="col-md-3 pl-4 pl-sm-5">
-                            <img src="images/box-cross.svg" alt="" />
-                          </div>
-                          <div className="col-md-9 pl-4 pl-sm-0">
-                            <p>Materials upon inspection</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row mt-1 mt-sm-2">
-                      <div className="col-md-6 col-6">
-                        <div className="row align-items-center">
-                          <div className="col-md-3 pl-4 pl-sm-5">
-                            <img
-                              src="images/box-check.svg"
-                              className=""
-                              alt=""
-                            />
-                          </div>
-                          <div className="col-md-9 pl-4 pl-sm-0">
-                            <p>Plumbing related consultation</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6 col-6">
-                        <div className="row">
-                          <div className="col-md-3 pl-4 pl-sm-5">
-                            <img src="images/box-cross.svg" alt="" />
-                          </div>
-                          <div className="col-md-9 pl-4 pl-sm-0">
-                            <p>Other than plumbing service</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row mt-1 mt-sm-2 pb-3 pb-sn-4">
-                      <div className="col-md-6 col-6">
-                        <div className="row align-items-center">
-                          <div className="col-md-3 pl-4 pl-sm-5">
-                            <img
-                              src="images/box-check.svg"
-                              className=""
-                              alt=""
-                            />
-                          </div>
-                          <div className="col-md-9 pl-4 pl-sm-0">
-                            <p>4 week post service guarantee</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6"></div>
                     </div>
                   </div>
 
@@ -869,9 +697,9 @@ function ListedDetails() {
             </div>
             <div className="col-md-4 mb-3">
               <div className="position-stikyfixedbox">
-                <div className="fixed-costbox">
-                  <h2>FIXED COST</h2>
-                  <h1>$750.00</h1>
+                <div className="fixed-costbox text-uppercase">
+                  <h2>{service.type} COST</h2>
+                  <h1>${service.charge}</h1>
                   <p>Listed on</p>
                   <h6>12th Jun 2022</h6>
                   <h3>
@@ -890,7 +718,7 @@ function ListedDetails() {
                       <h4>Visiting charges</h4>
                     </div>
                     <div className="col-md-7 text-right col-7">
-                      <h4>$20</h4>
+                      <h4>${service.visitingCharges}</h4>
                     </div>
                   </div>
                   <div className="row mt-3">
@@ -899,7 +727,7 @@ function ListedDetails() {
                       <h5>24hrs. after booking the slot</h5>
                     </div>
                     <div className="col-md-6 text-right col-4">
-                      <h4>$40</h4>
+                      <h4>${service.cancellationCharges}</h4>
                     </div>
                   </div>
                   <div className="row mt-3">
