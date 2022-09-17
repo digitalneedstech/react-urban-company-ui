@@ -40,6 +40,9 @@ export default function AsyncSelectInput(props) {
           return value.split(",").indexOf(optId.toString()) != -1;
         })
       );
+    } else {
+      setInput("");
+      setDefaultValue([]);
     }
   }, [value, options]);
 
