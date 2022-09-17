@@ -22,7 +22,7 @@ function IndividualProfilebuilder4() {
 
   const onFinishProfile = async () => {
     let response = await fetchData(
-      `/serviceProvider/individualProfile/${userData.id}/profile`,
+      `/serviceProviders/individualProfile/${userData.id}/profile`,
       "POST",
       profileData
     );

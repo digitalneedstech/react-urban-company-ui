@@ -28,7 +28,7 @@ function ServiceproviderTeamMemberform4() {
   const onFinishProfile = async () => {
     addNewMember(profileData);
     let response = await fetchData(
-      `/serviceProvider/companyProfile/${userData.id}/memberProfiles`,
+      `/serviceProviders/companyProfile/${userData.id}/memberProfiles`,
       "POST",
       { members }
     );

@@ -70,7 +70,7 @@ function KYC() {
     };
 
     let response = await fetchData(
-      `/serviceProvider/account/${userData.id}`,
+      `/serviceProviders/account/${userData.id}`,
       "POST",
       data
     );
