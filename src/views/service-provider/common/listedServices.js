@@ -15,7 +15,7 @@ export default function ListedServices() {
         `/serviceProviders/${userData.id}/services`,
         "GET"
       );
-      console.log(response);
+
       if (!_.isEmpty(response)) {
         setServices(response.services);
       }
@@ -29,7 +29,10 @@ export default function ListedServices() {
           <div className="row  align-items-center">
             <div className="col-md-1 col-4">
               <div className="service-itemImg">
-                <img src="images/listed-img.jpg" alt="" />
+                <img
+                  src={service.images ? service.images : "images/no-image.png"}
+                  alt=""
+                />
               </div>
             </div>
             <div className="col-md-5 col-8 pl-0">

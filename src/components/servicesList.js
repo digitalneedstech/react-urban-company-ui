@@ -33,7 +33,7 @@ function ServicesList(props) {
                           src={
                             service.images
                               ? service.images
-                              : "images/company-img.png"
+                              : "images/no-image.png"
                           }
                           alt=""
                         />
@@ -84,7 +84,7 @@ function ServicesList(props) {
                     <div className="col-md-3">
                       <div className="found-right">
                         <h5>FIXED COST</h5>
-                        <h3>$750.00</h3>
+                        <h3>${service.charge}</h3>
                         <p className="mb-0 pt-2">Listed on</p>
                         <p className="date">12th Jun 2022</p>
                         <Link

@@ -1,7 +1,10 @@
 import React from "react";
+import _ from "lodash";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { useSelector } from "react-redux";
 import Header from "../Layout/header";
+import LoggedInHeader from "../Layout/loggedInHeader";
 import Footer from "../Layout/footer";
 import Testimonials from "../components/testimonials";
 
@@ -27,9 +30,11 @@ var servicesettings = {
 };
 
 function Home() {
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
   return (
     <>
-      <Header />
+      {_.isEmpty(userData) ? <Header /> : <LoggedInHeader />}
       <section className="hero-section py-4 py-sm-5 mt-5">
         <div className="container">
           <div className="row text-center">
@@ -60,7 +65,14 @@ function Home() {
                     />
                   </div>
                   <div className="col-md-5 text-right col-4 pr-2 pr-sm-4">
-                    <Link to="/services-list" className="btn btn-login mr-2">
+                    <Link
+                      to={
+                        _.isEmpty(userData)
+                          ? "/services-list"
+                          : "/client-browse"
+                      }
+                      className="btn btn-login mr-2"
+                    >
                       SEARCH
                     </Link>
                   </div>

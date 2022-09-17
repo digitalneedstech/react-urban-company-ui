@@ -6,6 +6,7 @@ import Header from "../../Layout/loggedInHeader";
 import UploadImageInput from "../../components/uploadImageInput";
 import { fetchData } from "../../redux/helpers";
 import { Accordion, Card, Button } from "react-bootstrap";
+import AsyncSelectInput from "../../components/asyncSelectInput";
 
 function AddNewService(props) {
   const { state } = useLocation();
@@ -174,13 +175,13 @@ function AddNewService(props) {
                   src="images/probuilder-search.svg"
                   className="login-smsimg"
                   alt=""
+                  style={{ zIndex: 1 }}
                 />
-                <input
-                  type="text"
+                <AsyncSelectInput
+                  placeholder="Search category"
+                  url="/metadata/categories"
                   name="categories"
                   onChange={handlePropertyChange}
-                  className="form-control login-input"
-                  placeholder="Search category"
                   value={properties?.categories}
                 />
               </div>

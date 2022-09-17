@@ -196,7 +196,11 @@ function ServicesDetails() {
                     <div>
                       <div className="fixed-costproductimg">
                         <img
-                          src={service.images}
+                          src={
+                            service.images
+                              ? service.images
+                              : "images/no-image.png"
+                          }
                           className="img-fluid"
                           alt=""
                         />
@@ -214,7 +218,11 @@ function ServicesDetails() {
                     <div>
                       <div className="fixed-costproductimg fixed-costproductimg2">
                         <img
-                          src={service.images}
+                          src={
+                            service.images
+                              ? service.images
+                              : "images/no-image.png"
+                          }
                           className="img-fluid"
                           alt=""
                         />
