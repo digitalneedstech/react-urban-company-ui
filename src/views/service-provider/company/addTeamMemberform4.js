@@ -33,7 +33,7 @@ function ServiceproviderTeamMemberform4() {
       { members }
     );
     if (!_.isEmpty(response)) {
-      navigate("/dashboard");
+      navigate("/services-dashboard");
     }
   };
 

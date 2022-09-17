@@ -27,7 +27,7 @@ function IndividualProfilebuilder4() {
       profileData
     );
     if (!_.isEmpty(response)) {
-      navigate("/dashboard");
+      navigate("/services-dashboard");
     }
   };
 
