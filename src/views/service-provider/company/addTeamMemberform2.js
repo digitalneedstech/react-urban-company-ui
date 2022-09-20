@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
 import { profileDataUpdate } from "../../../redux/actions/user";
+import AsyncSelectInput from "../../../components/asyncSelectInput";
 
 function ServiceproviderTeamMemberform2() {
   const user = useSelector((state) => state.user);
@@ -12,12 +13,12 @@ function ServiceproviderTeamMemberform2() {
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;
-    let data = { ...inputFields, [name]: value.split(",") };
+    let data = { ...inputFields, [name]: value };
     setInputFields(data);
+    profileDataUpdate({ ...data });
   };
 
   const onNext = () => {
-    profileDataUpdate({ ...inputFields });
     navigate("/add-team-member-3");
   };
 
@@ -82,14 +83,14 @@ function ServiceproviderTeamMemberform2() {
                               src="images/probuilder-search.svg"
                               className="login-smsimg"
                               alt=""
+                              style={{ zIndex: 1 }}
                             />
-                            <input
-                              type="text"
+                            <AsyncSelectInput
+                              placeholder="Search category"
+                              url="/metadata/categories"
                               name="categories"
                               onChange={handleInputChange}
-                              className="form-control login-input"
-                              placeholder="Search category"
-                              defaultValue={profileData?.categories}
+                              value={profileData?.categories}
                             />
                           </div>
                           <div className="border-bottom mt-4"></div>
@@ -102,14 +103,14 @@ function ServiceproviderTeamMemberform2() {
                               src="images/probuilder-search.svg"
                               className="login-smsimg"
                               alt=""
+                              style={{ zIndex: 1 }}
                             />
-                            <input
-                              type="text"
+                            <AsyncSelectInput
+                              placeholder="Search skills"
+                              url="/metadata/skills"
                               name="skills"
                               onChange={handleInputChange}
-                              className="form-control login-input"
-                              placeholder="Search skills"
-                              defaultValue={profileData?.skills}
+                              value={profileData?.skills}
                             />
                           </div>
                           <h5 className="selected-probuilder">Selected</h5>

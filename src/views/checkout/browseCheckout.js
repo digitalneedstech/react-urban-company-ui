@@ -1,32 +1,34 @@
 import React from "react";
 import _ from "lodash";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Header from "../../Layout/loggedInHeader";
 import { fetchData } from "../../redux/helpers";
 
 function Clientbrowsecheckout() {
-  const { state } = useLocation();
+  const { booking } = useSelector((state) => state.booking);
+  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const bookASlot = async () => {
     let data = {
       metadata: {
-        name: state?.userData.name,
-        email: state?.userData.email,
-        location1: "Test location",
-        location2: "test location 2",
+        name: booking.name,
+        email: booking.email,
+        location1: booking.location3,
+        location2: `${booking.location2} ${booking.location1}`,
         toBeSaved: true,
       },
       properties: {
-        serviceId: state?.service.id,
-        serviceProviderId: state?.service.ownerId,
-        time: "20:55",
-        date: "16/10/2022",
+        serviceId: booking.serviceId,
+        serviceProviderId: booking.serviceProviderId,
+        time: booking.time,
+        date: booking.date,
         timeZone: "IST",
       },
     };
     let response = await fetchData(
-      `/clients/${state.userData.id}/bookings`,
+      `/clients/${user.userData.id}/bookings`,
       "POST",
       data
     );
@@ -64,7 +66,7 @@ function Clientbrowsecheckout() {
 
               <div className="row">
                 <div className="col-md-5">
-                  <label for="#" className="profile-label mt-3 mt-sm-4">
+                  <label htmlFor="#" className="profile-label mt-3 mt-sm-4">
                     Payment type
                   </label>
                   <div className="row">
@@ -76,7 +78,7 @@ function Clientbrowsecheckout() {
                           value=""
                           id="Check"
                         />
-                        <label className="checkFrom-label" for="Check">
+                        <label className="checkFrom-label" htmlFor="Check">
                           Credit/debit card
                         </label>
                       </div>
@@ -89,7 +91,7 @@ function Clientbrowsecheckout() {
                           value=""
                           id="Check1"
                         />
-                        <label className=" checkFrom-label" for="Check1">
+                        <label className=" checkFrom-label" htmlFor="Check1">
                           Digital wallet (Paypal, stripe etc.)
                         </label>
                       </div>
@@ -102,7 +104,7 @@ function Clientbrowsecheckout() {
                           value=""
                           id="Check3"
                         />
-                        <label className="checkFrom-label" for="Check3">
+                        <label className="checkFrom-label" htmlFor="Check3">
                           Pay after service
                         </label>
                       </div>
@@ -166,7 +168,7 @@ function Clientbrowsecheckout() {
                 </div>
                 <div className="col-md-1"></div>
                 <div className="col-md-5">
-                  <label for="#" className="profile-label mt-2 mt-sm-4">
+                  <label htmlFor="#" className="profile-label mt-2 mt-sm-4">
                     Billing information
                   </label>
 

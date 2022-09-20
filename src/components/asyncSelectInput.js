@@ -27,7 +27,7 @@ const colourStyles = {
 };
 
 export default function AsyncSelectInput(props) {
-  const { placeholder, url, name, onChange, value } = props;
+  const { placeholder, url, name, onChange, value, isMulti = true } = props;
   const [options, setOptions] = useState([]);
   const [inputValue, setInput] = useState("");
   const [defaultValue, setDefaultValue] = useState([]);
@@ -77,7 +77,9 @@ export default function AsyncSelectInput(props) {
   };
 
   const onChangeSelectedOption = (e) => {
-    const selectedOption = _.map(e, (opt, index) => opt.value);
+    let temp = e;
+    if (!isMulti) temp = [e];
+    const selectedOption = _.map(temp, (opt, index) => opt.value);
     onChange({ target: { name: name, value: selectedOption.join() } });
   };
 
@@ -86,7 +88,7 @@ export default function AsyncSelectInput(props) {
       value={defaultValue}
       placeholder={placeholder}
       styles={colourStyles}
-      isMulti
+      isMulti={isMulti}
       cacheOptions
       loadOptions={loadOptions}
       defaultOptions

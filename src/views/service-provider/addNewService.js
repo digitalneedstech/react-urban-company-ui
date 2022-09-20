@@ -183,6 +183,7 @@ function AddNewService(props) {
                   name="categories"
                   onChange={handlePropertyChange}
                   value={properties?.categories}
+                  isMulti={false}
                 />
               </div>
 

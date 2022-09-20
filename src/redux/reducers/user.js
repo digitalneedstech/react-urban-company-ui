@@ -61,7 +61,6 @@ export default function user(state = initialState, action = {}) {
         },
       };
     case "ADD_NEW_MEMBER":
-      debugger;
       return {
         ...state,
         profileData: {},

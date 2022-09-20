@@ -1,18 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
+import { addNewBooking } from "../../redux/actions/booking";
 
 function BookSlot(props) {
+  const navigate = useNavigate();
   const { service } = props;
-  const user = useSelector((state) => state.user);
-  const { userData } = user.user;
+  const { booking } = useSelector((state) => state.booking);
+  const [inputFields, setInputFields] = useState({});
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    //setShow(true)
+    setShow(true);
   };
+
+  const handleInputChange = (event) => {
+    let { name, value } = event.target;
+    let data = { ...inputFields, [name]: value };
+    setInputFields(data);
+    addNewBooking({ ...data });
+  };
+
+  const onNext = () => {
+    addNewBooking({
+      serviceId: service.id,
+      serviceProviderId: service.ownerId,
+    });
+    navigate("/calender");
+  };
+
   return (
     <>
       <div className="position-stikyfixedbox">
@@ -25,20 +43,20 @@ function BookSlot(props) {
               <h6>12th Jun 2022</h6>
             </div>
             <div className="col-md-7 col-6 text-right">
-              {/* <button
+              <button
                 type="button"
                 className="btn btn-login"
                 onClick={handleShow}
               >
                 BOOK A SLOT
-              </button> */}
-              <Link
+              </button>
+              {/* <Link
                 to="/browse-checkout"
                 state={{ service, userData }}
                 className="btn btn-login"
               >
                 BOOK A SLOT
-              </Link>
+              </Link> */}
             </div>
           </div>
 
@@ -123,7 +141,10 @@ function BookSlot(props) {
             <div className="col-md-6">
               <div className="form-group">
                 <input
-                  type="email"
+                  type="text"
+                  name="name"
+                  onChange={handleInputChange}
+                  defaultValue={booking?.name}
                   className="form-control login-input profile-inpt"
                   placeholder="Full name"
                 />
@@ -133,6 +154,9 @@ function BookSlot(props) {
               <div className="form-group">
                 <input
                   type="email"
+                  name="email"
+                  onChange={handleInputChange}
+                  defaultValue={booking?.email}
                   className="form-control login-input profile-inpt"
                   placeholder="Email address"
                 />
@@ -142,7 +166,10 @@ function BookSlot(props) {
             <div className="col-md-12">
               <div className="form-group">
                 <input
-                  type="email"
+                  type="text"
+                  name="location1"
+                  onChange={handleInputChange}
+                  defaultValue={booking?.location1}
                   className="form-control login-input profile-inpt"
                   placeholder="Society / Apartment"
                 />
@@ -152,7 +179,10 @@ function BookSlot(props) {
             <div className="col-md-6">
               <div className="form-group">
                 <input
-                  type="email"
+                  type="text"
+                  name="location2"
+                  onChange={handleInputChange}
+                  defaultValue={booking?.location2}
                   className="form-control login-input profile-inpt"
                   placeholder="Block / Flat / Bldg"
                 />
@@ -161,7 +191,10 @@ function BookSlot(props) {
             <div className="col-md-6">
               <div className="form-group">
                 <input
-                  type="email"
+                  type="text"
+                  name="location3"
+                  onChange={handleInputChange}
+                  defaultValue={booking?.location3}
                   className="form-control login-input profile-inpt"
                   placeholder="House / Flat no / Floor"
                 />
@@ -180,7 +213,7 @@ function BookSlot(props) {
           >
             BACK
           </button>
-          <button type="button" className="btn btn-login">
+          <button onClick={onNext} type="button" className="btn btn-login">
             SELECT DATE & TIME
           </button>
           {/* <Button variant="secondary" onClick={handleClose}>Close</Button> */}

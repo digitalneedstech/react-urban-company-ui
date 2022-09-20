@@ -1,15 +1,11 @@
 import Cookies from "universal-cookie";
 import { fetchData } from "../helpers";
 import { logout } from "../../firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
-import { db } from "../../firebase";
 import store from "..";
 
 export const fetchUserInfo = (user) => async (dispatch) => {
   try {
     let response = await fetchData(`/users/${user?.uid}`, "GET");
-    // const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-    // const doc = await getDocs(q);
     const data = response?.metadata;
     const cookies = new Cookies(window.document.cookie);
     if (data) {
@@ -59,6 +55,7 @@ export const onLogout = () => {
   let cookies = new Cookies(window.document.cookie);
   logout();
   cookies.remove("userData");
+  window.location.reload();
   return {
     type: "LOGOUT_SUCCESS",
     payload: {},

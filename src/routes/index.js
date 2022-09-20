@@ -45,6 +45,7 @@ import ServicesDashboard from "../views/service-provider/servicesDashboard";
 import BrowseCheckout from "../views/checkout/browseCheckout";
 import BrowseCheckoutconfirmed from "../views/checkout/browseCheckoutconfirmed";
 import ServiceDetails from "../views/guest/servicesDetails";
+import FullCalender from "../components/fullCalender";
 
 const AuthRoute = ({ component: Component, ...rest }) => {
   const [user, loading, error] = useAuthState(auth);
@@ -76,10 +77,16 @@ function RoutesComp() {
           />
         </Route>
         <Route
-          path="/client-selector-hire-browse"
           exact
-          element={<ClientSelectorHireOrBrowse />}
-        />
+          path="/client-selector-hire-browse"
+          element={<AuthRoute />}
+        >
+          <Route
+            path="/client-selector-hire-browse"
+            exact
+            element={<ClientSelectorHireOrBrowse />}
+          />
+        </Route>
         <Route path="/client-browse" exact element={<ClientBrowse />} />
         <Route exact path="/client-browse-details" element={<AuthRoute />}>
           <Route
@@ -87,6 +94,9 @@ function RoutesComp() {
             exact
             element={<ClientBrowseDetails />}
           />
+        </Route>
+        <Route exact path="/calender" element={<AuthRoute />}>
+          <Route path="/calender" exact element={<FullCalender />} />
         </Route>
 
         {/* Service Provider Individuals Routes */}
