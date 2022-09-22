@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import { fetchData } from "../../../redux/helpers";
 
 export default function ActiveInactive(props) {
   let { service } = props;
-  const [published, setPublished] = useState(!!service.isPublished);
+  const [published, setPublished] = useState(false);
+
+  useEffect(() => {
+    setPublished(!!+service.isPublished);
+  }, [service]);
 
   const onChange = async () => {
     let url = `/services/${service.id}`;

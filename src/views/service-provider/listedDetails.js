@@ -58,7 +58,7 @@ function ListedDetails() {
         `/serviceProviders/${userData.id}/services/${state.id}`,
         "GET"
       );
-
+      console.log(response);
       if (!_.isEmpty(response)) {
         setService(response.service);
       }
