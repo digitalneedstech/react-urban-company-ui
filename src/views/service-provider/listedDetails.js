@@ -7,6 +7,9 @@ import Header from "../../Layout/loggedInHeader";
 import { fetchData } from "../../redux/helpers";
 
 import Slider from "react-slick";
+import ActiveInactive from "./common/activeInactive";
+
+var moment = require("moment");
 
 var sliderfirstsetting = {
   dots: false,
@@ -55,7 +58,7 @@ function ListedDetails() {
         `/serviceProviders/${userData.id}/services/${state.id}`,
         "GET"
       );
-      console.log(response);
+
       if (!_.isEmpty(response)) {
         setService(response.service);
       }
@@ -106,19 +109,7 @@ function ListedDetails() {
               </div>
             </div>
             <div className="col-md-1 col-6 d-none d-sm-block">
-              <div className="toogleSwitch">
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    checked={!!service.isPublished}
-                    onChange={() => {}}
-                  />
-                  <div className="slider round slider2">
-                    <span className="swactive">ACTIVE</span>
-                    <span className="swinactive">INACTIVE</span>
-                  </div>
-                </label>
-              </div>
+              <ActiveInactive service={service} />
             </div>
             <div className="col-md-2 text-right col-6">
               <Link
@@ -701,9 +692,14 @@ function ListedDetails() {
                   <h2>{service.type} COST</h2>
                   <h1>${service.charge}</h1>
                   <p>Listed on</p>
-                  <h6>12th Jun 2022</h6>
+                  <h6>
+                    {moment(
+                      service.create_date ? service.create_date : new Date()
+                    ).format("Do MMM YYYY")}
+                  </h6>
                   <h3>
-                    Min. charges to book this service <span>$20.00</span>
+                    Min. charges to book this service{" "}
+                    <span>${service.visitingCharges}</span>
                   </h3>
                   <div className="row mt-3 mt-sm-4">
                     <div className="col-md-4 col-3">

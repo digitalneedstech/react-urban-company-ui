@@ -9,7 +9,7 @@ import {
 } from "firebase/storage";
 
 export default function UploadImageInput(props) {
-  const { onImageUpload, deleteImg, setDeleteImg } = props;
+  const { onImageUpload, deleteImg, setDeleteImg, isDoc } = props;
 
   const [fileName, setFileName] = useState("");
   const [percent, setPercent] = useState(0);
@@ -20,11 +20,19 @@ export default function UploadImageInput(props) {
     if (!tempFile) {
       setError("Please upload an image first!");
     } else {
-      var pattern = /image-*/;
+      if (isDoc) {
+        var ext = tempFile.name.split(".").pop().toLowerCase();
+        if (["doc", "pdf", "docx"].indexOf(ext) == -1) {
+          setError("Invalid format, Only PDF, Doc and DOCX are allowed");
+          return;
+        }
+      } else {
+        let pattern = /image-*/;
 
-      if (!tempFile.type.match(pattern)) {
-        setError("Invalid format");
-        return;
+        if (!tempFile.type.match(pattern)) {
+          setError("Invalid format");
+          return;
+        }
       }
       setFileName(tempFile.name);
       handleUpload(tempFile);

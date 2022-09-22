@@ -55,28 +55,25 @@ function AddNewService(props) {
     handlePropertyChange({ target: { name: "images", value: url } });
   };
 
-  const onPublishService = async () => {
-    // let tempArr = _.flatten(
-    //   _.map(properties, (value, key) => {
-    //     return _.map(value, (v, i) => {
-    //       return { key: "", type: key, value: v };
-    //     });
-    //   })
-    // );
-
+  const onPublishORDraftService = async (status = "PUBLISHED") => {
     let url = `/serviceProviders/${userData.id}/services`;
+    let method = "POST";
 
     if (state?.service) {
+      method = "PUT";
+      url = `/services/${state?.service.id}`;
     }
 
     let data = {
       metadata: {
         ...inputFields,
+        state: status,
+        owner_type: userData.type,
       },
       properties: { ...properties },
     };
 
-    let response = await fetchData(url, "POST", data);
+    let response = await fetchData(url, method, data);
 
     if (!_.isEmpty(response)) {
       navigate("/services-dashboard");
@@ -100,7 +97,7 @@ function AddNewService(props) {
               <button
                 type="button"
                 className="btn btn-login"
-                onClick={onPublishService}
+                onClick={onPublishORDraftService}
               >
                 PUBLISH YOUR SERVICE
               </button>
@@ -456,9 +453,18 @@ function AddNewService(props) {
                   <button
                     type="button"
                     className="btn btn-login mr-3"
-                    onClick={onPublishService}
+                    onClick={onPublishORDraftService}
                   >
                     PUBLISH YOUR SERVICE
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary post-btn mr-3"
+                    onClick={() => {
+                      onPublishORDraftService("DRAFT");
+                    }}
+                  >
+                    DRAFT SERVICE
                   </button>
                   <Link
                     to="/services-dashboard"

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
-
+import { Modal } from "react-bootstrap";
 import MultiRangeSlider from "multi-range-slider-react";
+import AsyncSelectInput from "./asyncSelectInput";
 
 function ServicesListFilters(props) {
-  const { showNav, count } = props;
+  const { showNav, count, searchKeyword, setSearchKeyword } = props;
+  const [search, setSearch] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -30,15 +30,25 @@ function ServicesListFilters(props) {
                       src="images/search.svg"
                       className="search-icon"
                       alt=""
+                      style={{ zIndex: 1 }}
                     />
-                    <input
-                      type="email"
-                      className="form-control search-inpt"
-                      placeholder="Drainage in Plumber"
+                    <AsyncSelectInput
+                      placeholder="Search for services..."
+                      url="/metadata/keywords"
+                      name="indexSearch"
+                      onChange={(e) => setSearch(e.target.value)}
+                      value={search}
+                      isMulti={false}
                     />
                   </div>
                   <div className="col-md-5 text-right col-4 pr-2 pr-sm-4">
-                    <button type="button" className="btn btn-login mr-2">
+                    <button
+                      onClick={() => {
+                        setSearchKeyword(search);
+                      }}
+                      type="button"
+                      className="btn btn-login mr-2"
+                    >
                       SEARCH
                     </button>
                   </div>
@@ -95,9 +105,10 @@ function ServicesListFilters(props) {
               <div className="col-md-7 col-12">
                 <div className="client-profilehead">
                   <h1>
-                    found <span> {count} results</span> in drainage
+                    found <span> {count} results</span> in{" "}
+                    {searchKeyword ? searchKeyword : "Services"}
                   </h1>
-                  <h2>plumber in “Seattle, Washington”</h2>
+                  <h2>in “Seattle, Washington”</h2>
                 </div>
               </div>
 

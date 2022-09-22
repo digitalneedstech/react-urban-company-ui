@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../../Layout/header";
 import Footer from "../../Layout/footer";
 import ServicesList from "../../components/servicesList";
@@ -6,12 +7,19 @@ import Testimonials from "../../components/testimonials";
 import ServicesListFilters from "../../components/servicesListFilters";
 
 function ServiceList() {
+  const { state } = useLocation();
   const [count, setCount] = useState(0);
+  const [searchKeyword, setSearchKeyword] = useState(state.search);
+
   return (
     <>
       <Header />
-      <ServicesListFilters count={count} />
-      <ServicesList setCount={setCount} />
+      <ServicesListFilters
+        count={count}
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
+      <ServicesList setCount={setCount} search={searchKeyword} />
       <section className="position-relative py-4 py-sm-5">
         <div className="container">
           <div className="row">

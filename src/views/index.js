@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
@@ -7,6 +7,7 @@ import Header from "../Layout/header";
 import LoggedInHeader from "../Layout/loggedInHeader";
 import Footer from "../Layout/footer";
 import Testimonials from "../components/testimonials";
+import AsyncSelectInput from "../components/asyncSelectInput";
 
 var servicesettings = {
   dots: true,
@@ -30,8 +31,10 @@ var servicesettings = {
 };
 
 function Home() {
+  const [search, setSearch] = useState("");
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
+
   return (
     <>
       {_.isEmpty(userData) ? <Header /> : <LoggedInHeader />}
@@ -52,25 +55,30 @@ function Home() {
             <div className="col-md-6">
               <div className="top-banner-searchbar position-relative">
                 <div className="row align-items-center">
-                  <div className="col-md-7 col-8 pr-0 pr-sm-3">
+                  <div className="col-md-8 col-8 pr-0 pr-sm-3">
                     <img
                       src="images/search.svg"
                       className="search-icon"
                       alt=""
+                      style={{ zIndex: 1 }}
                     />
-                    <input
-                      type="email"
-                      className="form-control search-inpt"
-                      placeholder="Search for service providers here…"
+                    <AsyncSelectInput
+                      placeholder="Search for service providers here..."
+                      url="/metadata/keywords"
+                      name="indexSearch"
+                      onChange={(e) => setSearch(e.target.value)}
+                      value={search}
+                      isMulti={false}
                     />
                   </div>
-                  <div className="col-md-5 text-right col-4 pr-2 pr-sm-4">
+                  <div className="col-md-4 text-right col-4 pr-2 pr-sm-4">
                     <Link
                       to={
                         _.isEmpty(userData)
                           ? "/services-list"
                           : "/client-browse"
                       }
+                      state={{ search: search }}
                       className="btn btn-login mr-2"
                     >
                       SEARCH

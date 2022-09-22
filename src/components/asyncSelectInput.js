@@ -26,6 +26,26 @@ const colourStyles = {
   //   },
 };
 
+const colourStylesForIndexPage = {
+  control: (styles) => ({
+    display: "block",
+    width: "100%",
+    height: "calc(1.5em + 0.75rem + 2px)",
+    padding: "0.375rem 0.75rem",
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: 1.5,
+    color: "#495057",
+    backgroundColor: "#fff",
+    backgroundClip: "padding-box",
+    border: "none",
+    borderRadius: "0.25rem",
+    transition: "border-color .15s ease-in-out,box-shadow .15s ease-in-out",
+    paddingLeft: "35px",
+  }),
+  indicatorsContainer: (styles) => ({ display: "none" }),
+};
+
 export default function AsyncSelectInput(props) {
   const { placeholder, url, name, onChange, value, isMulti = true } = props;
   const [options, setOptions] = useState([]);
@@ -87,7 +107,7 @@ export default function AsyncSelectInput(props) {
     <AsyncSelect
       value={defaultValue}
       placeholder={placeholder}
-      styles={colourStyles}
+      styles={name == "indexSearch" ? colourStylesForIndexPage : colourStyles}
       isMulti={isMulti}
       cacheOptions
       loadOptions={loadOptions}

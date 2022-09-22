@@ -107,9 +107,9 @@ function RoutesComp() {
             element={<IndividualUploadProfileImage />}
           />
         </Route>
-        <Route exact path="/individual-kyc" element={<AuthRoute />}>
-          <Route path="/individual-kyc" exact element={<IndividualKYC />} />
-        </Route>
+        {/* <Route exact path="/individual-kyc" element={<AuthRoute />}> */}
+        <Route path="/individual-kyc" exact element={<IndividualKYC />} />
+        {/* </Route> */}
         <Route
           path="/individual-onsiteoroffsite"
           exact

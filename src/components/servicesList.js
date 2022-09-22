@@ -4,19 +4,24 @@ import { Link } from "react-router-dom";
 import { fetchData } from "../redux/helpers";
 
 function ServicesList(props) {
-  const { showNav, setCount } = props;
+  const { showNav, setCount, search } = props;
   const [services, setServices] = useState([]);
 
   useEffect(() => {
     (async () => {
-      let response = await fetchData("/services", "GET");
+      let url = "/services";
+      if (!_.isEmpty(search)) {
+        url = `/services?keyword=${search}`;
+      }
+      let response = await fetchData(url, "GET");
+
       console.log(response);
       if (!_.isEmpty(response)) {
         setServices(response.services);
         setCount(response.services.length);
       }
     })();
-  }, []);
+  }, [search]);
 
   return (
     <>

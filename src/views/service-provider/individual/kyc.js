@@ -8,7 +8,7 @@ import Footer from "../../../Layout/footer";
 import UploadImageInput from "../../../components/uploadImageInput";
 import { fetchData } from "../../../redux/helpers";
 
-const UploadDocument = ({ handleInputChange, name }) => {
+const UploadDocument = ({ handleInputChange, name, isDoc }) => {
   const [image, setImage] = useState("");
   const [deleteImg, setDeleteImg] = useState(false);
 
@@ -23,6 +23,7 @@ const UploadDocument = ({ handleInputChange, name }) => {
         onImageUpload={onImageUpload}
         deleteImg={deleteImg}
         setDeleteImg={setDeleteImg}
+        isDoc={isDoc}
       />
       {image && (
         <div className="profile-content">
@@ -186,6 +187,7 @@ function KYC() {
                     <UploadDocument
                       handleInputChange={handleInputChange}
                       name="documents"
+                      isDoc={true}
                     />
                   </Accordion.Body>
                 </Accordion.Item>
@@ -205,6 +207,7 @@ function KYC() {
                     <UploadDocument
                       handleInputChange={handleInputChange}
                       name="qualifications"
+                      isDoc={true}
                     />
                   </Accordion.Body>
                 </Accordion.Item>
@@ -224,6 +227,7 @@ function KYC() {
                     <UploadDocument
                       handleInputChange={handleInputChange}
                       name="certifications"
+                      isDoc={true}
                     />
                   </Accordion.Body>
                 </Accordion.Item>
@@ -243,6 +247,7 @@ function KYC() {
                     <UploadDocument
                       handleInputChange={handleInputChange}
                       name="bank_details"
+                      isDoc={true}
                     />
                   </Accordion.Body>
                 </Accordion.Item>

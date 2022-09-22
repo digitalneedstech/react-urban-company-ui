@@ -3,6 +3,9 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { fetchData } from "../../../redux/helpers";
+import ActiveInactive from "./activeInactive";
+
+var moment = require("moment");
 
 export default function ListedServices() {
   const user = useSelector((state) => state.user);
@@ -15,7 +18,7 @@ export default function ListedServices() {
         `/serviceProviders/${userData.id}/services`,
         "GET"
       );
-
+      console.log(response);
       if (!_.isEmpty(response)) {
         setServices(response.services);
       }
@@ -39,39 +42,35 @@ export default function ListedServices() {
               <div className="service-item">
                 <p>
                   #{service.id}{" "}
-                  <span className="servie-itemnmb">12th Jun 2022</span>
+                  <span className="servie-itemnmb">
+                    {moment(
+                      service.create_date ? service.create_date : new Date()
+                    ).format("Do MMM YYYY")}
+                  </span>
                   <span
-                    className={`service-itemdraft  ${
-                      service.type == "Hourly"
+                    className={`service-itemdraft ${
+                      service.state != "DRAFT" && service.type == "Hourly"
                         ? "service-itemhourly"
-                        : service.type == "Fixed"
+                        : service.state != "DRAFT" && service.type == "Fixed"
                         ? "serviceitemyfixed"
                         : ""
                     }`}
                   >
-                    {service.type}
+                    {service.state == "DRAFT" ? service.state : service.type}
                   </span>
                 </p>
                 <h6>{service.headline}</h6>
               </div>
             </div>
             <div className="col-md-6">
-              <div className="service-publicSec">
+              <div
+                className={`service-publicSec ${
+                  service.type == "Hourly" ? "service-publicpink" : ""
+                }`}
+              >
                 <div className="row">
                   <div className="col-md-3 col-6 order-4 order-sm-1 mt-3 mt-sm-0">
-                    <div className="toogleSwitch">
-                      <label className="switch">
-                        <input
-                          type="checkbox"
-                          checked={!!service.isPublished}
-                          onChange={() => {}}
-                        />
-                        <div className="slider round">
-                          <span className="swactive">ACTIVE</span>
-                          <span className="swinactive">INACTIVE</span>
-                        </div>
-                      </label>
-                    </div>
+                    <ActiveInactive service={service} />
                   </div>
                   <div className="col-md-1 text-center text-sm-right pr-3 pr-sm-0 pl-0  col-4  order-1 order-sm-2">
                     <h4>Cost</h4>
@@ -86,7 +85,7 @@ export default function ListedServices() {
                     <h5>10</h5>
                   </div>
                   <div className="col-md-4 text-right col-6 order-5 order-sm-5 mt-3 mt-sm-0">
-                    {!!service.isPublished ? (
+                    {service.state != "DRAFT" ? (
                       <Link
                         to={"/listed-service-details"}
                         state={{
@@ -98,9 +97,13 @@ export default function ListedServices() {
                         View Details
                       </Link>
                     ) : (
-                      <button className="uploadBtn text-uppercase">
+                      <Link
+                        to="/add-new-service"
+                        state={{ service }}
+                        className="uploadBtn text-uppercase"
+                      >
                         PUBLISH
-                      </button>
+                      </Link>
                     )}
                   </div>
                 </div>
