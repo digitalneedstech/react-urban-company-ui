@@ -97,7 +97,9 @@ function AddNewService(props) {
               <button
                 type="button"
                 className="btn btn-login"
-                onClick={onPublishORDraftService}
+                onClick={() => {
+                  onPublishORDraftService("PUBLISHED");
+                }}
               >
                 PUBLISH YOUR SERVICE
               </button>
@@ -453,7 +455,9 @@ function AddNewService(props) {
                   <button
                     type="button"
                     className="btn btn-login mr-3"
-                    onClick={onPublishORDraftService}
+                    onClick={() => {
+                      onPublishORDraftService("PUBLISHED");
+                    }}
                   >
                     PUBLISH YOUR SERVICE
                   </button>
