@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { addNewBooking } from "../../redux/actions/booking";
 
+var moment = require("moment");
+
 function BookSlot(props) {
   const navigate = useNavigate();
   const { service } = props;
@@ -40,7 +42,11 @@ function BookSlot(props) {
               <h2 className="text-uppercase">{service.type} COST</h2>
               <h1>${service.charge}</h1>
               <p>Listed on</p>
-              <h6>12th Jun 2022</h6>
+              <h6>
+                {moment(
+                  service.create_date ? service.create_date : new Date()
+                ).format("Do MMM YYYY")}
+              </h6>
             </div>
             <div className="col-md-7 col-6 text-right">
               <button

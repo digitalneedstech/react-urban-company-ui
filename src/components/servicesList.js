@@ -3,6 +3,8 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 import { fetchData } from "../redux/helpers";
 
+var moment = require("moment");
+
 function ServicesList(props) {
   const { showNav, setCount, search } = props;
   const [services, setServices] = useState([]);
@@ -15,7 +17,6 @@ function ServicesList(props) {
       }
       let response = await fetchData(url, "GET");
 
-      console.log(response);
       if (!_.isEmpty(response)) {
         setServices(response.services);
         setCount(response.services.length);
@@ -91,7 +92,13 @@ function ServicesList(props) {
                         <h5>FIXED COST</h5>
                         <h3>${service.charge}</h3>
                         <p className="mb-0 pt-2">Listed on</p>
-                        <p className="date">12th Jun 2022</p>
+                        <p className="date">
+                          {moment(
+                            service.create_date
+                              ? service.create_date
+                              : new Date()
+                          ).format("Do MMM YYYY")}
+                        </p>
                         <Link
                           to="/client-browse-details"
                           state={{ id: service.id, ownerId: service.ownerId }}

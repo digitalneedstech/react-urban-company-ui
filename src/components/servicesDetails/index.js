@@ -52,7 +52,7 @@ function ServicesDetails() {
         `/serviceProviders/${state.ownerId}/services/${state.id}`,
         "GET"
       );
-      console.log(response);
+
       if (!_.isEmpty(response)) {
         setService(response.service);
       }

@@ -191,6 +191,7 @@ function KYC() {
                   onChange={handleInputChange}
                   className="form-control login-input profile-inpt"
                   placeholder="vinod@mocklabs.com"
+                  value={userData.email}
                 />
               </div>
               <div className="form-group">
@@ -200,6 +201,7 @@ function KYC() {
                   onChange={handleInputChange}
                   className="form-control login-input profile-inpt"
                   placeholder="+00 9876543210"
+                  value={userData.mobileNumber}
                 />
               </div>
 

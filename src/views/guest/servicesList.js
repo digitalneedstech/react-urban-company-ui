@@ -9,7 +9,7 @@ import ServicesListFilters from "../../components/servicesListFilters";
 function ServiceList() {
   const { state } = useLocation();
   const [count, setCount] = useState(0);
-  const [searchKeyword, setSearchKeyword] = useState(state.search);
+  const [searchKeyword, setSearchKeyword] = useState(state?.search);
 
   return (
     <>

@@ -8,7 +8,7 @@ import ServicesListFilters from "../../components/servicesListFilters";
 function Clientbrowsse() {
   const { state } = useLocation();
   const [count, setCount] = useState(0);
-  const [searchKeyword, setSearchKeyword] = useState(state.search);
+  const [searchKeyword, setSearchKeyword] = useState(state?.search);
 
   return (
     <>
