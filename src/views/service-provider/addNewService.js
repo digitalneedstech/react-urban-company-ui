@@ -7,6 +7,7 @@ import UploadImageInput from "../../components/uploadImageInput";
 import { fetchData } from "../../redux/helpers";
 import { Accordion, Card, Button } from "react-bootstrap";
 import AsyncSelectInput from "../../components/asyncSelectInput";
+import CustomTagInput from "../../components/customTagsInput";
 
 function AddNewService(props) {
   const { state } = useLocation();
@@ -49,7 +50,7 @@ function AddNewService(props) {
     let data = { ...properties, [name]: value };
     setProperties(data);
   };
-
+  console.log(properties);
   const onImageUpload = (url) => {
     setImage(url);
     handlePropertyChange({ target: { name: "images", value: url } });
@@ -211,14 +212,13 @@ function AddNewService(props) {
                   src="images/probuilder-search.svg"
                   className="login-smsimg"
                   alt=""
+                  style={{ zIndex: 1 }}
                 />
-                <input
-                  type="text"
+                <CustomTagInput
+                  placeholder="Add inclusions"
                   name="inclusions"
                   onChange={handlePropertyChange}
-                  className="form-control login-input"
-                  placeholder="Add inclusions"
-                  value={properties?.inclusions}
+                  defaultValue={properties?.inclusions}
                 />
               </div>
 
@@ -247,14 +247,13 @@ function AddNewService(props) {
                   src="images/probuilder-search.svg"
                   className="login-smsimg"
                   alt=""
+                  style={{ zIndex: 1 }}
                 />
-                <input
-                  type="text"
+                <CustomTagInput
+                  placeholder="Add non inclusions"
                   name="exclusions"
                   onChange={handlePropertyChange}
-                  className="form-control login-input"
-                  placeholder="Add non inclusions"
-                  value={properties?.exclusions}
+                  defaultValue={properties?.exclusions}
                 />
               </div>
 
