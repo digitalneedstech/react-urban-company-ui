@@ -107,7 +107,7 @@ export default function LoggedInHeader(props) {
                   PROJECTS
                 </Nav.Link>
                 {isClientPath ? (
-                  <Nav.Link href="#">
+                  <Nav.Link href="/bookings-dashboard">
                     <img src="images/gray-cal.svg" alt="" />
                     BOOKINGS
                   </Nav.Link>

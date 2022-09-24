@@ -1,10 +1,12 @@
 import React from "react";
 import Header from "../../Layout/loggedInHeader";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Selectorhire() {
   const [selectorType, setSelectorType] = React.useState("0"); // 0 means - Hire
-
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
   function updateSelectedVal(event) {
     setSelectorType(event.target.value);
     console.log(event.target.value);
@@ -32,7 +34,7 @@ function Selectorhire() {
         <div className="container min-heighvh position-relative">
           <div className="row pt-4">
             <div className="col-md-12 mt-2 pt-5 mt-sm-5 position-inherit">
-              <h1>howdy, Vinod !</h1>
+              <h1>howdy, {userData.name} !</h1>
               <h2>
                 welcome to <span>protocall</span>
               </h2>

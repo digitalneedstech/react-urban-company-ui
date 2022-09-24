@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useSelector} from "react";
 import { Link } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
-
 function OnsiteOffsite() {
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
   return (
     <>
       <Header />
@@ -25,7 +26,7 @@ function OnsiteOffsite() {
         <div className="container min-heighvh position-relative">
           <div className="row pt-4">
             <div className="col-md-12 mt-2 pt-5 mt-sm-5 position-inherit">
-              <h1>howdy, Vinod !</h1>
+              <h1>howdy, {userData.name} !</h1>
               <h2>
                 welcome to <span>protocall</span>
               </h2>

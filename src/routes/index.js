@@ -46,6 +46,7 @@ import BrowseCheckout from "../views/checkout/browseCheckout";
 import BrowseCheckoutconfirmed from "../views/checkout/browseCheckoutconfirmed";
 import ServiceDetails from "../views/guest/servicesDetails";
 import FullCalender from "../components/fullCalender";
+import BookingDashboard from "../views/client/booking/bookingDashboard";
 
 const AuthRoute = ({ component: Component, ...rest }) => {
   const [user, loading, error] = useAuthState(auth);
@@ -180,6 +181,20 @@ function RoutesComp() {
         <Route exact path="/listed-service-details" element={<AuthRoute />}>
           <Route
             path="/listed-service-details"
+            exact
+            element={<ListedDetails />}
+          />
+        </Route>
+
+         {/* Clients common Routes */}
+         <Route
+            path="/bookings-dashboard"
+            exact
+            element={<BookingDashboard />}
+          />
+        <Route exact path="/listed-booking-details" element={<AuthRoute />}>
+          <Route
+            path="/listed-booking-details"
             exact
             element={<ListedDetails />}
           />
