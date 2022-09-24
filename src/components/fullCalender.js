@@ -1,17 +1,23 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import _ from "lodash";
 import { useSelector } from "react-redux";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import Header from "../Layout/loggedInHeader";
 import { addNewBooking } from "../redux/actions/booking";
+import { fetchData } from "../redux/helpers";
 import Footer from "../Layout/footer";
 
 function FullCalender() {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { bookingData } = state;
   const { booking } = useSelector((state) => state.booking);
-  console.log(booking);
+  const user = useSelector((state) => state.user);
+  const { userData } = user.user;
+  console.log(bookingData);
 
   const handleDateClick = (arg) => {
     addNewBooking({ date: arg.dateStr });
@@ -19,6 +25,32 @@ function FullCalender() {
 
   const handleTimeClick = (e) => {
     addNewBooking({ time: e.target.value });
+  };
+
+  const updateService = async () => {
+    debugger;
+    let data = {
+      properties: {
+        serviceId: bookingData.serviceId,
+        serviceProviderId: bookingData.serviceProviderId,
+        time: booking.time,
+        date: booking.date,
+        timeZone: "IST",
+      },
+      updateProperties: {
+        type: "Re-Scheduled",
+        actorSentBy: "Client",
+      },
+    };
+    let response = await fetchData(
+      `/${userData.id}/bookings/${bookingData.id}`,
+      "PUT",
+      data
+    );
+    console.log(response);
+    if (!_.isEmpty(response)) {
+      navigate("/browse-checkout-confirmed");
+    }
   };
 
   return (
@@ -73,12 +105,19 @@ function FullCalender() {
             <div className="col-md-5 mt-2 pt-1 pt-sm-5 mt-sm-5 pl-3 pl-sm-0">
               <div className="row text-sm-right text-left">
                 <div className="col-md-12 mt-2">
-                  {/* <button type="button" className="btn btn-login mr-3">
-                    UPDATE SERVICE SLOTS
-                  </button> */}
-                  <Link to="/browse-checkout" className="btn btn-login mr-3">
-                    BOOK SLOT
-                  </Link>
+                  {bookingData ? (
+                    <button
+                      type="button"
+                      className="btn btn-login mr-3"
+                      onClick={updateService}
+                    >
+                      UPDATE SERVICE SLOTS
+                    </button>
+                  ) : (
+                    <Link to="/browse-checkout" className="btn btn-login mr-3">
+                      BOOK SLOT
+                    </Link>
+                  )}
                   <button
                     onClick={() => {
                       navigate(-1);

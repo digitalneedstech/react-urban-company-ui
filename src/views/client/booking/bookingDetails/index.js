@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Accordion, Card, Button } from "react-bootstrap";
-import Header from "../../Layout/loggedInHeader";
-import { fetchData } from "../../redux/helpers";
 
 import Slider from "react-slick";
-import ActiveInactive from "./common/activeInactive";
-import Footer from "../../Layout/footer";
-
-var moment = require("moment");
+import Footer from "../../../../Layout/footer";
+import Header from "../../../../Layout/loggedInHeader";
+import { fetchData } from "../../../../redux/helpers";
+import Scheduled from "./scheduledBox";
+import Pending from "./pendingBox";
+import Past from "./pastBox";
 
 var sliderfirstsetting = {
   dots: false,
@@ -44,8 +44,9 @@ var slidersecondsetting = {
   ],
 };
 
-function ListedDetails() {
+function BookingscheduledDetails() {
   const { state } = useLocation();
+  const { booking } = state;
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
@@ -56,7 +57,7 @@ function ListedDetails() {
   useEffect(() => {
     (async () => {
       let response = await fetchData(
-        `/serviceProviders/${userData.id}/services/${state.id}`,
+        `/serviceProviders/${booking.serviceProviderId}/services/${booking.serviceId}`,
         "GET"
       );
       console.log(response);
@@ -72,60 +73,113 @@ function ListedDetails() {
 
       <section className="pt-5 pt-sm-5">
         <div className="container">
-          <div className="row mt-4 mt-sm-4">
-            <div className="col-md-10 mt-2">
+          <div className="row mt-4 mt-sm-4 ">
+            <div className="col-md-8 mt-2">
               <div className="service-head">
                 <h1>
                   <span>{service.headline}</span>
                 </h1>
                 <h2>
                   <span>
-                    <a href="#">Services</a>
+                    <Link to="/bookings-dashboard">Bookings</Link>
                   </span>{" "}
                   <img
                     src="images/service-arrowright.svg"
                     className="mr-2"
                     alt=""
-                  />{" "}
-                  {state.type}
+                  />
+                  {booking.status}
                 </h2>
               </div>
             </div>
-            <div className="col-md-2 text-right d-none d-sm-block ">
+
+            <div className="col-md-4 text-sm-right">
               <button
-                onClick={() => navigate(-1)}
                 type="button"
-                className="btn btn-light details-btn mt-5"
+                className="btn btn-light details-btn mt-sm-5"
+                onClick={() => navigate(-1)}
               >
                 BACK TO LIST
               </button>
             </div>
           </div>
+
           <div className="border-bottom mt-2"></div>
-          <div className="row mt-3">
-            <div className="col-md-9 col-6 ">
-              <div className="serviceListeddetails-head">
-                <p>Earned (till now)</p>
-                <h6>$1,200.00</h6>
+          <div className="row mt-3 align-items-center">
+            <div className="col-md-10 col-12 mb-2 mb-sm-0">
+              <div className="row">
+                <div className="col-md-3 pr-0">
+                  <div className="serviceListeddetails-head">
+                    <img
+                      src="images/playbuzz-img.png"
+                      className="play-img"
+                      alt=""
+                    />
+                    <p>Gordan Entreprise Inc.</p>
+                    <h6 className="d-flex align-items-center">
+                      <img
+                        src="images/Iconly-Bold-Star.svg"
+                        className="mr-1"
+                        alt=""
+                        height="15px"
+                      />{" "}
+                      <span className="gorden-ratetext  mr-1"> 4.7 </span> (147
+                      reviews)
+                    </h6>
+                  </div>
+                </div>
+                <div className="col-md-3 col-6 my-2 my-sm-0">
+                  <div className="serviceListeddetails-head">
+                    <p>Service booked (till now)</p>
+                    <h6>15</h6>
+                  </div>
+                </div>
+                <div className="col-md-2 col-6 pl-sm-0 pl-3 my-2 my-sm-0">
+                  <div className="serviceListeddetails-head">
+                    <p>Member since</p>
+                    <h6>4 years 3 months</h6>
+                  </div>
+                </div>
+                <div className="col-md-4  my-2 my-sm-0">
+                  <button type="button" className="btn btn-login">
+                    CHAT WITH THE SERVICE PROVIDER
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="col-md-1 col-6 d-none d-sm-block">
-              <ActiveInactive service={service} />
-            </div>
-            <div className="col-md-2 text-right col-6">
-              <Link
-                to="/add-new-service"
-                state={{ service }}
-                className="btn btn-warning exlpore-btn"
-              >
-                EDIT THIS SERVICE
-              </Link>
+            <div className="col-md-2">
+              <div className="d-flex justify-content-between">
+                <div className="serviceListeddetails-head">
+                  <p className="d-flex align-items-center justify-content-end">
+                    <img
+                      src="images/share.png"
+                      height="25px"
+                      className="mr-2"
+                      alt=""
+                    />{" "}
+                    Share
+                  </p>
+                </div>
+
+                <div className="serviceListeddetails-head">
+                  <p className="d-flex align-items-center justify-content-end">
+                    <img
+                      src="images/save.png"
+                      height="25px"
+                      className="mr-2"
+                      alt=""
+                    />{" "}
+                    Save
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
+
           <div className="border-bottom mt-3"></div>
 
           <div className="row mt-3">
-            <div className="col-md-8 mb-3">
+            <div className="col-md-8 mb-3 mb-sm-0">
               <div className="row">
                 <div className="col-md-12">
                   <Slider
@@ -183,7 +237,7 @@ function ListedDetails() {
                     </a>
                   </div>
 
-                  <div className="included-service mt-3">
+                  <div className="included-service mt-4 mb-2">
                     <div className="included-servicehead">
                       <div className="row">
                         <div className="col-md-6 pl-4 pl-sm-5 col-6">
@@ -269,6 +323,7 @@ function ListedDetails() {
                       </div>
                     </div>
                   </div>
+
                   <div className="border-bottom mt-3 mb-3"></div>
 
                   <div className="row pt-2">
@@ -695,57 +750,13 @@ function ListedDetails() {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 mb-3">
-              <div className="position-stikyfixedbox">
-                <div className="fixed-costbox text-uppercase">
-                  <h2>{service.type} COST</h2>
-                  <h1>${service.charge}</h1>
-                  <p>Listed on</p>
-                  <h6>
-                    {moment(
-                      service.create_date ? service.create_date : new Date()
-                    ).format("Do MMM YYYY")}
-                  </h6>
-                  <h3>
-                    Min. charges to book this service{" "}
-                    <span>${service.visitingCharges}</span>
-                  </h3>
-                  <div className="row mt-3 mt-sm-4">
-                    <div className="col-md-4 col-3">
-                      <h4>Duration</h4>
-                    </div>
-                    <div className="col-md-8 text-right col-9">
-                      <h4>Depends on the scope of work</h4>
-                    </div>
-                  </div>
-                  <div className="row mt-3">
-                    <div className="col-md-5 col-5">
-                      <h4>Visiting charges</h4>
-                    </div>
-                    <div className="col-md-7 text-right col-7">
-                      <h4>${service.visitingCharges}</h4>
-                    </div>
-                  </div>
-                  <div className="row mt-3">
-                    <div className="col-md-6 col-8">
-                      <h4>Cancellation charges</h4>
-                      <h5>24hrs. after booking the slot</h5>
-                    </div>
-                    <div className="col-md-6 text-right col-4">
-                      <h4>${service.cancellationCharges}</h4>
-                    </div>
-                  </div>
-                  <div className="row mt-3">
-                    <div className="col-md-8 col-8">
-                      <h4>Applicable taxes (@10%)</h4>
-                    </div>
-                    <div className="col-md-4 text-right col-4">
-                      <h4>$75</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {booking.status == "Scheduled" ? (
+              <Scheduled booking={booking} service={service} />
+            ) : booking.status == "Pending" ? (
+              <Pending booking={booking} service={service} />
+            ) : booking.status == "Past" ? (
+              <Past booking={booking} service={service} />
+            ) : null}
           </div>
         </div>
       </section>
@@ -754,4 +765,4 @@ function ListedDetails() {
   );
 }
 
-export default ListedDetails;
+export default BookingscheduledDetails;
