@@ -22,6 +22,8 @@ import ClientUploadProfileImage from "../views/client/uploadProfileImg";
 import ClientSelectorHireOrBrowse from "../views/client/selector-hire-browse";
 import ClientBrowse from "../views/client/browse";
 import ClientBrowseDetails from "../views/client/browseDetails";
+import BookingDashboard from "../views/client/booking";
+import BookingDetails from "../views/client/booking/bookingDetails";
 
 import IndividualUploadProfileImage from "../views/service-provider/individual/uploadProfileImg";
 import IndividualKYC from "../views/service-provider/individual/kyc";
@@ -46,7 +48,6 @@ import BrowseCheckout from "../views/checkout/browseCheckout";
 import BrowseCheckoutconfirmed from "../views/checkout/browseCheckoutconfirmed";
 import ServiceDetails from "../views/guest/servicesDetails";
 import FullCalender from "../components/fullCalender";
-import BookingDashboard from "../views/client/booking/bookingDashboard";
 
 const AuthRoute = ({ component: Component, ...rest }) => {
   const [user, loading, error] = useAuthState(auth);
@@ -186,12 +187,13 @@ function RoutesComp() {
           />
         </Route>
 
-         {/* Clients common Routes */}
-         <Route
-            path="/bookings-dashboard"
-            exact
-            element={<BookingDashboard />}
-          />
+        {/* Clients common Routes */}
+        <Route
+          path="/bookings-dashboard"
+          exact
+          element={<BookingDashboard />}
+        />
+        <Route path="/bookings-details" exact element={<BookingDetails />} />
         <Route exact path="/listed-booking-details" element={<AuthRoute />}>
           <Route
             path="/listed-booking-details"

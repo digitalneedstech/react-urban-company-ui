@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import Footer from "../../../Layout/footer";
 import Header from "../../../Layout/loggedInHeader";
 import { profileDataUpdate } from "../../../redux/actions/user";
 
@@ -136,6 +137,7 @@ function IndividualProfilebuilder1() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

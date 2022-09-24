@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
 import UploadProfileImage from "../../../components/uploadProfileImage";
+import Footer from "../../../Layout/footer";
 
 function UploadIndividualProfileImage() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function UploadIndividualProfileImage() {
     <>
       <Header />
       <UploadProfileImage afterImageUpload={afterImageUpload} />
+      <Footer />
     </>
   );
 }

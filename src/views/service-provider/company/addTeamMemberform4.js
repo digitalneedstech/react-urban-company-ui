@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
 import { profileDataUpdate, addNewMember } from "../../../redux/actions/user";
 import { fetchData } from "../../../redux/helpers";
+import Footer from "../../../Layout/footer";
 
 function ServiceproviderTeamMemberform4() {
   const user = useSelector((state) => state.user);
@@ -178,6 +179,7 @@ function ServiceproviderTeamMemberform4() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

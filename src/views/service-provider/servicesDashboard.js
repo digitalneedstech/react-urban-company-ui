@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../Layout/footer";
 import Header from "../../Layout/loggedInHeader";
 import ListedServices from "./common/listedServices";
 
@@ -45,6 +46,7 @@ function ServicesDashboard() {
           <ListedServices />
         </div>
       </section>
+      <Footer />
     </>
   );
 }

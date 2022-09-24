@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Header from "../../Layout/loggedInHeader";
 import { fetchData } from "../../redux/helpers";
+import Footer from "../../Layout/footer";
 
 function Clientbrowsecheckout() {
   const { booking } = useSelector((state) => state.booking);
@@ -242,6 +243,7 @@ function Clientbrowsecheckout() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

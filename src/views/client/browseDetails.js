@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ServicesDetails from "../../components/servicesDetails";
+import Footer from "../../Layout/footer";
 import Header from "../../Layout/loggedInHeader";
 
 function ClientbrowseDetails() {
@@ -7,6 +8,7 @@ function ClientbrowseDetails() {
     <>
       <Header showRegisterButton={true} />
       <ServicesDetails />
+      <Footer />
     </>
   );
 }

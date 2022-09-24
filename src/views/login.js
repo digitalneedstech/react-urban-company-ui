@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
 import Header from "../Layout/loginHeader";
 import { validateemail } from "../utils/validation";
+import Footer from "../Layout/footer";
 
 function Login() {
   const userState = useSelector((state) => state.user);
@@ -187,6 +188,7 @@ function Login() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

@@ -110,6 +110,7 @@ function KYC() {
                   onChange={handleInputChange}
                   className="form-control login-input profile-inpt"
                   placeholder="Vinod Sharma"
+                  value={userData.name}
                 />
               </div>
 

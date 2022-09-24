@@ -1,5 +1,6 @@
-import React,{useSelector} from "react";
+import React, { useSelector } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../../Layout/footer";
 import Header from "../../../Layout/loggedInHeader";
 function OnsiteOffsite() {
   const user = useSelector((state) => state.user);
@@ -108,6 +109,7 @@ function OnsiteOffsite() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

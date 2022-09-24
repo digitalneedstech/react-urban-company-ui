@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../Layout/loggedInHeader";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Footer from "../../Layout/footer";
 
 function Selectorhire() {
   const [selectorType, setSelectorType] = React.useState("0"); // 0 means - Hire
@@ -121,6 +122,7 @@ function Selectorhire() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

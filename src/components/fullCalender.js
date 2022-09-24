@@ -6,6 +6,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import Header from "../Layout/loggedInHeader";
 import { addNewBooking } from "../redux/actions/booking";
+import Footer from "../Layout/footer";
 
 function FullCalender() {
   const navigate = useNavigate();
@@ -346,6 +347,7 @@ function FullCalender() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

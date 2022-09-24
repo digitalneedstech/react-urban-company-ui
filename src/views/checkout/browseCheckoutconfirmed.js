@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../Layout/footer";
 import Header from "../../Layout/loggedInHeader";
 
 function ClientbrowsecheckoutConfirmed() {
@@ -90,6 +91,7 @@ function ClientbrowsecheckoutConfirmed() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

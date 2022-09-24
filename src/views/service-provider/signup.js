@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import Header from "../../Layout/loginHeader";
 import Signupform from "../../components/signupForm";
+import Footer from "../../Layout/footer";
 
 function ServiceproviderSignupform() {
   const [user, loading, error] = useAuthState(auth);
@@ -90,6 +91,7 @@ function ServiceproviderSignupform() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

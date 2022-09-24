@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../Layout/loggedInHeader";
 import { profileDataUpdate } from "../../../redux/actions/user";
 import AsyncSelectInput from "../../../components/asyncSelectInput";
+import Footer from "../../../Layout/footer";
 
 function ServiceproviderTeamMemberform2() {
   const user = useSelector((state) => state.user);
@@ -119,7 +120,7 @@ function ServiceproviderTeamMemberform2() {
                           </h4>
                           <div className="border-bottom mt-4 mb-3"></div>
 
-                          <span className="related-skills">Related skills</span>
+                          {/* <span className="related-skills">Related skills</span>
                           <div className="row mt-2">
                             <div className="col-md-12">
                               <button
@@ -165,7 +166,7 @@ function ServiceproviderTeamMemberform2() {
                                 <img src="images/add-square.svg" alt="" />
                               </button>
                             </div>
-                          </div>
+                          </div> */}
 
                           <div className="row mt-4 mb-4">
                             <div className="col-md-12">
@@ -193,6 +194,7 @@ function ServiceproviderTeamMemberform2() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

@@ -8,6 +8,7 @@ import { fetchData } from "../../redux/helpers";
 
 import Slider from "react-slick";
 import ActiveInactive from "./common/activeInactive";
+import Footer from "../../Layout/footer";
 
 var moment = require("moment");
 
@@ -740,6 +741,7 @@ function ListedDetails() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

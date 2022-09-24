@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../../Layout/loggedInHeader";
 import ServicesList from "../../components/servicesList";
 import ServicesListFilters from "../../components/servicesListFilters";
+import Footer from "../../Layout/footer";
 
 function Clientbrowsse() {
   const { state } = useLocation();
@@ -20,6 +21,7 @@ function Clientbrowsse() {
         setSearchKeyword={setSearchKeyword}
       />
       <ServicesList showNav={true} setCount={setCount} search={searchKeyword} />
+      <Footer />
     </>
   );
 }

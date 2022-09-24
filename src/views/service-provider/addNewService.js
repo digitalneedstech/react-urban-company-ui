@@ -8,6 +8,7 @@ import { fetchData } from "../../redux/helpers";
 import { Accordion, Card, Button } from "react-bootstrap";
 import AsyncSelectInput from "../../components/asyncSelectInput";
 import CustomTagInput from "../../components/customTagsInput";
+import Footer from "../../Layout/footer";
 
 function AddNewService(props) {
   const { state } = useLocation();
@@ -187,13 +188,13 @@ function AddNewService(props) {
                 />
               </div>
 
-              <h5 className="selected-probuilder selected-far">Selected</h5>
+              {/* <h5 className="selected-probuilder selected-far">Selected</h5>
               <button
                 type="button"
                 className="btn btn-info skill-btn far-btn mr-2"
               >
                 Skill lorem <img src="images/add-square.svg" alt="" />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -222,7 +223,7 @@ function AddNewService(props) {
                 />
               </div>
 
-              <h5 className="selected-probuilder">Selected</h5>
+              {/* <h5 className="selected-probuilder">Selected</h5>
               <button
                 type="button"
                 className="btn btn-info skill-btn far-btn mr-2"
@@ -237,7 +238,7 @@ function AddNewService(props) {
               </button>
               <button type="button" className="btn btn-info skill-btn far-btn">
                 Skill lorem <img src="images/add-square.svg" alt="" />
-              </button>
+              </button> */}
 
               <label htmlFor="#" className="profile-label mt-3">
                 Not included in this service
@@ -257,7 +258,7 @@ function AddNewService(props) {
                 />
               </div>
 
-              <h5 className="selected-probuilder">Selected</h5>
+              {/* <h5 className="selected-probuilder">Selected</h5>
               <button
                 type="button"
                 className="btn btn-info skill-btn far-btn mr-2"
@@ -272,7 +273,7 @@ function AddNewService(props) {
               </button>
               <button type="button" className="btn btn-info skill-btn far-btn">
                 Skill lorem <img src="images/add-square.svg" alt="" />
-              </button>
+              </button> */}
               <br />
 
               <label htmlFor="#" className="profile-label mt-3">
@@ -481,6 +482,7 @@ function AddNewService(props) {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

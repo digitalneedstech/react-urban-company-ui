@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../Layout/loginHeader";
 import { Link } from "react-router-dom";
+import Footer from "../Layout/footer";
 
 function Signup() {
   const [registrationType, setRegistrationType] = React.useState("0"); // 0 means - Company
@@ -120,6 +121,7 @@ function Signup() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }
