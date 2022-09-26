@@ -471,6 +471,9 @@ font-size: 14px; font-weight: 500;}
     white-space: nowrap;}
 .servie-itemnmb{color: #1B9BDE; font-size: 14px; margin-left: 10px;}
 .service-itemdraft{color: #DD3636; font-size: 14px; margin-left: 10px; text-transform: uppercase;}
+.service-itemImg-date{ border-radius:10px;background-color:  darkblue;display: flex;flex-direction: column;padding: 10px;}
+.service-itemImg-date span{color: white}
+.service-itemImg-date > :first-child{color: white;font-size: 26px;}
 .service-itemImg{width: 100%; height: 72px;}
 .service-itemImg img{width: 100%; height: 100%; object-fit: cover; border-radius: 10px;}
 .service-publicSec{background: #51459E1A; border-radius: 10px; padding: 19px 15px 19px 10px;}

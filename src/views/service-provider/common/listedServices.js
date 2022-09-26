@@ -31,22 +31,23 @@ export default function ListedServices() {
         <div className="service-list mt-3" key={index}>
           <div className="row  align-items-center">
             <div className="col-md-1 col-4">
-              <div className="service-itemImg">
-                <img
-                  src={service.images ? service.images : "images/no-image.png"}
-                  alt=""
-                />
+              <div className="service-itemImg-date"  >
+              <span className="servie-itemnmb">
+                    {moment(
+                      service.create_date ? service.create_date : new Date()
+                    ).format("Do MMM YYYY").split(" ")[0].substring(0,2)}
+                  </span>
+                  <span className="servie-itemnmb">
+                    {moment(
+                      service.create_date ? service.create_date : new Date()
+                    ).format("Do MMM YYYY").split(" ")[1]}
+                  </span>
               </div>
             </div>
             <div className="col-md-5 col-8 pl-0">
               <div className="service-item">
                 <p>
                   #{service.id}{" "}
-                  <span className="servie-itemnmb">
-                    {moment(
-                      service.create_date ? service.create_date : new Date()
-                    ).format("Do MMM YYYY")}
-                  </span>
                   <span
                     className={`service-itemdraft ${
                       service.state != "DRAFT" && service.type == "Hourly"
