@@ -18,7 +18,9 @@ function ServicesDashboard() {
             <div className="col-md-12">
               <button
                 type="button"
-                className="btn btn-outline-dark mayment-btn mr-3 mb-2"
+                className={`btn btn-outline-dark mayment-btn mr-3 mb-2 ${
+                  tab == "scheduled" ? "active" : ""
+                }`}
                 onClick={() => {
                   setTab("scheduled");
                 }}
@@ -28,7 +30,9 @@ function ServicesDashboard() {
               </button>
               <button
                 type="button"
-                className="btn btn-outline-dark mayment-btn mr-3 mb-2"
+                className={`btn btn-outline-dark mayment-btn mr-3 mb-2 ${
+                  tab == "pending" ? "active" : ""
+                }`}
                 onClick={() => {
                   setTab("pending");
                 }}
@@ -38,14 +42,18 @@ function ServicesDashboard() {
               </button>
               <button
                 type="button"
-                className="btn btn-outline-dark mayment-btn mr-3 mb-2"
+                className={`btn btn-outline-dark mayment-btn mr-3 mb-2 ${
+                  tab == "serviceHistory" ? "active" : ""
+                }`}
                 onClick={() => {
                   setTab("serviceHistory");
                 }}
               >
                 SERVICE HISTORY
               </button>
-              <button className="uploadBtn mr-3 mb-2" 
+              <button className={`btn btn-outline-dark mayment-btn mr-3 mb-2 ${
+                  tab == "listed" ? "active" : ""
+                }`} 
               onClick={() => {
                 setTab("listed");
               }}>
