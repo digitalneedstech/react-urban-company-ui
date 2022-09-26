@@ -3,8 +3,9 @@ import { apiBase } from "../../config";
 
 export const fetchData = async (url, method, data) => {
   try {
+    var finalUrl=apiBase+url;
     const response = await axios({
-      url: apiBase + url,
+      url: finalUrl,
       method: method,
       headers: {
         "Content-Type": "application/json",

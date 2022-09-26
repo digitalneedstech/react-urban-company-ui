@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { fetchData } from "../../../redux/helpers";
-import ActiveInactive from "./activeInactive";
+import { fetchData } from "../../../../redux/helpers";
+import ActiveInactive from "../activeInactive";
 
 var moment = require("moment");
 
-export default function ListedServices() {
+export default function ServicesHistory() {
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
   const [services, setServices] = useState([]);
@@ -15,7 +15,7 @@ export default function ListedServices() {
   useEffect(() => {
     (async () => {
       let response = await fetchData(
-        `/serviceProviders/${userData.id}/services`,
+        `/serviceProviders/${userData.id}/services?type=Past`,
         "GET"
       );
       console.log(response);
@@ -85,8 +85,7 @@ export default function ListedServices() {
                     <h5>10</h5>
                   </div>
                   <div className="col-md-4 text-right col-6 order-5 order-sm-5 mt-3 mt-sm-0">
-                    {service.state != "DRAFT" ? (
-                      <Link
+                  <Link
                         to={"/listed-service-details"}
                         state={{
                           id: service.id,
@@ -96,15 +95,6 @@ export default function ListedServices() {
                       >
                         View Details
                       </Link>
-                    ) : (
-                      <Link
-                        to="/add-new-service"
-                        state={{ service }}
-                        className="uploadBtn text-uppercase"
-                      >
-                        PUBLISH
-                      </Link>
-                    )}
                   </div>
                 </div>
               </div>
