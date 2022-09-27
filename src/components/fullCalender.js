@@ -13,11 +13,10 @@ import Footer from "../Layout/footer";
 function FullCalender() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { bookingData } = state;
+  const bookingData = state?.bookingData;
   const { booking } = useSelector((state) => state.booking);
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
-  console.log(bookingData);
 
   const handleDateClick = (arg) => {
     addNewBooking({ date: arg.dateStr });
@@ -28,7 +27,6 @@ function FullCalender() {
   };
 
   const updateService = async () => {
-    debugger;
     let data = {
       properties: {
         serviceId: bookingData.serviceId,
@@ -105,7 +103,7 @@ function FullCalender() {
             <div className="col-md-5 mt-2 pt-1 pt-sm-5 mt-sm-5 pl-3 pl-sm-0">
               <div className="row text-sm-right text-left">
                 <div className="col-md-12 mt-2">
-                  {bookingData ? (
+                  {!_.isEmpty(bookingData) ? (
                     <button
                       type="button"
                       className="btn btn-login mr-3"
