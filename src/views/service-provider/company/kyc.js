@@ -8,7 +8,7 @@ import Footer from "../../../Layout/footer";
 import UploadImageInput from "../../../components/uploadImageInput";
 import { fetchData } from "../../../redux/helpers";
 
-const UploadDocument = ({ handleInputChange, name }) => {
+const UploadDocument = ({ handleInputChange, name}) => {
   const [image, setImage] = useState("");
   const [deleteImg, setDeleteImg] = useState(false);
 
@@ -51,11 +51,35 @@ function KYC() {
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
   const [inputFields, setInputFields] = useState({});
-
+  const [companyRegistrationStatus,setCompanyRegistrationStatus]=useState("");
+  const [companyBankDetailStatus,setCompanyBankDetailStatus]=useState("Not Added");
+  const [otherDocumentStatus,setOtherDocumentStatus]=useState("Not Added");
   const handleInputChange = (event) => {
     let { name, value } = event.target;
     let data = { ...inputFields, [name]: value };
     setInputFields(data);
+    if(name=="company_registration_certificate"){
+      if(value==""){
+        setCompanyRegistrationStatus("Not Added");
+      }else{
+        setCompanyRegistrationStatus("Added")
+      }
+      
+    }
+    else if(name=="company_bank_details"){
+      if(value==""){
+        setCompanyBankDetailStatus("Not Added");
+      }else{
+        setCompanyBankDetailStatus("Added")
+      }
+    }
+    else{
+      if(value==""){
+        setOtherDocumentStatus("Not Added");
+      }else{
+        setOtherDocumentStatus("Added")
+      }
+    }
   };
 
   const onFinishKYC = async () => {
@@ -214,8 +238,8 @@ function KYC() {
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>
                     Company registration certificate{" "}
-                    <span className="added-accordtext">
-                      Added
+                    <span className={companyRegistrationStatus=="Added" ?"added-accordtext":"added-blackText"}>
+                      {companyRegistrationStatus}
                       <img
                         src="images/arrow-down.svg"
                         className="ml-2"
@@ -233,8 +257,8 @@ function KYC() {
                 <Accordion.Item eventKey="1">
                   <Accordion.Header>
                     Company bank details{" "}
-                    <span className="added-blackText">
-                      -Not added
+                    <span className={companyBankDetailStatus=="Added" ?"added-accordtext":"added-blackText"}>
+                      {companyBankDetailStatus}
                       <img
                         src="images/arrow-down.svg"
                         className="ml-2"
@@ -252,8 +276,8 @@ function KYC() {
                 <Accordion.Item eventKey="2">
                   <Accordion.Header>
                     Other documents{" "}
-                    <span className="added-blackText">
-                      -Not added
+                    <span className={otherDocumentStatus=="Added" ?"added-accordtext":"added-blackText"}>
+                      {otherDocumentStatus}
                       <img
                         src="images/arrow-down.svg"
                         className="ml-2"

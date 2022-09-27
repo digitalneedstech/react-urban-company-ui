@@ -52,11 +52,43 @@ function KYC() {
   const user = useSelector((state) => state.user);
   const { userData } = user.user;
   const [inputFields, setInputFields] = useState({});
-
+ 
+  const [documentsStatus,setDocumentsStatus]=useState("Not Added");
+  const [qualificationStatus,setQualificationStatus]=useState("Not Added");
+  const [certificationsStatus,setCertificationsStatus]=useState("Not Added");
+  const [bankDetailsStatus,setBankDetailsStatus]=useState("Not Added");
   const handleInputChange = (event) => {
     let { name, value } = event.target;
     let data = { ...inputFields, [name]: value };
     setInputFields(data);
+    if(name=="documents"){
+      if(value==""){
+        setDocumentsStatus("Not Added")
+      }else{
+      setDocumentsStatus("Added")
+      }
+    }
+    else if(name=="certifications"){
+      if(value==""){
+        setCertificationsStatus("Not Added")
+      }else{
+      setCertificationsStatus("Added")
+      }
+    }
+    else if(name=="qualifications"){
+      if(value==""){
+        setQualificationStatus("Not Added")
+      }else{
+      setQualificationStatus("Added")
+      }
+    }
+    else{
+      if(value==""){
+        setBankDetailsStatus("Not Added")  
+      }else{
+      setBankDetailsStatus("Added")
+      }
+    }
   };
 
   const onFinishKYC = async () => {
@@ -178,7 +210,7 @@ function KYC() {
                   <Accordion.Header>
                     ID proof documents{" "}
                     <span className="added-accordtext">
-                      Added
+                      {documentsStatus}
                       <img
                         src="images/arrow-down.svg"
                         className="ml-2"
@@ -198,7 +230,7 @@ function KYC() {
                   <Accordion.Header>
                     Qualifications{" "}
                     <span className="added-blackText">
-                      -Not added
+                      {qualificationStatus}
                       <img
                         src="images/arrow-down.svg"
                         className="ml-2"
@@ -218,7 +250,7 @@ function KYC() {
                   <Accordion.Header>
                     Certifications{" "}
                     <span className="added-blackText">
-                      -Not added
+                      {certificationsStatus}
                       <img
                         src="images/arrow-down.svg"
                         className="ml-2"
@@ -238,7 +270,7 @@ function KYC() {
                   <Accordion.Header>
                     Bank details{" "}
                     <span className="added-blackText">
-                      -Not added
+                      {bankDetailsStatus}
                       <img
                         src="images/arrow-down.svg"
                         className="ml-2"
