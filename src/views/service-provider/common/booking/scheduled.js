@@ -32,8 +32,8 @@ export default function ScheduledServices() {
           <div className="row  align-items-center">
             <div className="col-md-1 col-4">
                 <div className="service-itemschedul-text">
-                    <h6>{moment(service.create_date).format("DD")}</h6>
-                    <p>{moment(service.create_date).format("MMM")}</p>
+                    <h6>{moment(service.creationDate).format("DD")}</h6>
+                    <p>{moment(service.creationDate).format("MMM")}</p>
                 </div>
             </div>
             <div className="col-md-5 col-8 pl-0">
@@ -42,23 +42,23 @@ export default function ScheduledServices() {
                   #{service.id}{" "}
                   <span
                     className={`service-itemdraft ${
-                      service.state != "DRAFT" && service.type == "Hourly"
+                      service.serviceState != "DRAFT" && service.serviceType == "Hourly"
                         ? "service-itemhourly"
-                        : service.state != "DRAFT" && service.type == "Fixed"
+                        : service.serviceState != "DRAFT" && service.serviceType == "Fixed"
                         ? "serviceitemyfixed"
                         : ""
                     }`}
                   >
-                    {service.state == "DRAFT" ? service.state : service.type}
+                    {service. serviceState == "DRAFT" ? service.serviceState : service.serviceType}
                   </span>
                 </p>
-                <h6>{service.headline}</h6>
+                <h6>{service.serviceHeadline}</h6>
               </div>
             </div>
             <div className="col-md-6">
               <div
                 className={`service-publicSec ${
-                  service.type == "Hourly" ? "service-publicpink" : ""
+                  service.serviceType == "Hourly" ? "service-publicpink" : ""
                 }`}
               >
                 <div className="row">
@@ -67,7 +67,7 @@ export default function ScheduledServices() {
                   </div>
                   <div className="col-md-1 text-center text-sm-right pr-3 pr-sm-0 pl-0  col-4  order-1 order-sm-2">
                     <h4>Total Cost</h4>
-                    <h5>{service.charge}</h5>
+                    <h5>{service.serviceCharge}</h5>
                   </div>
                   <div className="col-md-2 text-center text-sm-right pr-3 pr-sm-0   col-4 order-2 order-sm-3">
                     <h4>Earned</h4>
@@ -81,7 +81,7 @@ export default function ScheduledServices() {
                   <Link
                         to={"/listed-service-details"}
                         state={{
-                          id: service.id,
+                          id: service.serviceId,
                           type: "Listed Services",
                         }}
                         className="btn btn-login new-loginbtn text-uppercase"
