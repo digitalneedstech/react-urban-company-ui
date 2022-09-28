@@ -82,7 +82,7 @@ export default function ScheduledServices() {
                     <h4>Pending</h4>
                     <h5>10</h5>
                   </div>
-                  <div className="col-md-2 text-right col-6 order-5 order-sm-5 mt-3 mt-sm-0">
+                  <div className="col-md-3 text-right col-6 order-5 order-sm-5 mt-3 mt-sm-0">
                   <Link
                         to={"/listed-service-details"}
                         state={{
