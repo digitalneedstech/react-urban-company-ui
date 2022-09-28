@@ -62,9 +62,14 @@ export default function ScheduledServices() {
                 }`}
               >
                 <div className="row">
-                  <div className="col-md-3 col-6 order-4 order-sm-1 mt-3 mt-sm-0">
-                    <ActiveInactive service={service} />
-                  </div>
+                <div class="col-md-4 col-12  mb-2 mb-sm-0 pr-0">
+                                            <div class="serviceListeddetails-head booking-confrd ">
+                                                <img src={service.serviceProviderImage} class="play-img" alt="" />
+                                                <p>{service.serviceProviderName}</p>
+                                                <h6 class="d-flex align-items-center"><img src="images/Iconly-Bold-Star.svg" class="mr-1" alt="" height="15px" /> <span class="gorden-ratetext  mr-1"> 4.7 </span> (147 reviews)</h6>
+                                            </div>
+                                        </div>
+                  
                   <div className="col-md-1 text-center text-sm-right pr-3 pr-sm-0 pl-0  col-4  order-1 order-sm-2">
                     <h4>Total Cost</h4>
                     <h5>{service.serviceCharge}</h5>
