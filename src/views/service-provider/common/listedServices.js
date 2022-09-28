@@ -36,7 +36,7 @@ export default function ListedServices() {
                     <p>{moment(service.create_date).format("MMM")}</p>
                 </div>
             </div>
-            <div className="col-md-5 col-8 pl-0">
+            <div className="col-md-4 col-8 pl-0">
               <div className="service-item">
                 <p>
                   #{service.id}{" "}
@@ -55,7 +55,7 @@ export default function ListedServices() {
                 <h6>{service.headline}</h6>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-7">
               <div
                 className={`service-publicSec ${
                   service.type == "Hourly" ? "service-publicpink" : ""
