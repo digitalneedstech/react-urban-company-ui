@@ -17,10 +17,10 @@ export default function PastBookings() {
       if (!_.isEmpty(response)) {
         let filteredBookings = _.filter(
           response.bookings,
-          (o) => o.status == "Past"
+          (o) => o.status == "Past" && o.date!=null
         );
         let groupedByMonth = _.groupBy(filteredBookings, function (item) {
-          return moment(item.date.substring(0, 7)).format("MMM YYYY");
+          return moment(item.creationDate.substring(0, 7)).format("MMM YYYY");
         });
         setBookings(groupedByMonth);
       }

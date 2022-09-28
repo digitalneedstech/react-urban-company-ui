@@ -17,7 +17,7 @@ export default function PendingBookings() {
       if (!_.isEmpty(response)) {
         let filteredBookings = _.filter(
           response.bookings,
-          (o) => o.status == "Scheduled"
+          (o) => o.status == "Scheduled" && o.date!=null
         );
         let groupedByMonth = _.groupBy(filteredBookings, function (item) {
           return moment(item.date.substring(0, 7)).format("MMM YYYY");
@@ -110,16 +110,16 @@ export default function PendingBookings() {
                       <div className="col-md-5 mb-2 mb-sm-0 d-flex justify-content-between">
                         <div className="text-sm-right text-center">
                           <h4>Total cost</h4>
-                          <h5>${booking.serviceCharge}</h5>
+                          <h5>${"$"+booking.totalCost}</h5>
                         </div>
                         <div className="text-sm-right text-center">
                           <h4>Paid</h4>
-                          <h5>$20.00</h5>
+                          <h5>${"$"+booking.paidCost}</h5>
                         </div>
                         <div className="text-sm-right text-center">
                           <h4>Pending</h4>
                           <h5>
-                            <span className="padding-redtext">$730.00</span>
+                            <span className="padding-redtext">${"$"+booking.pendingCost}</span>
                           </h5>
                         </div>
                       </div>
