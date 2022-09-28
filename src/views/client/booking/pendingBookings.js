@@ -86,22 +86,22 @@ export default function PendingBookings() {
                     }`}
                   >
                     <div className="row">
-                      <div className="col-md-4 col-12  mb-2 mb-sm-0 pr-0">
-                        <div className="serviceListeddetails-head booking-confrd ">
+                    <div class="col-md-4 col-12  mb-2 mb-sm-0 pr-0">
+                        <div class="serviceListeddetails-head booking-confrd ">
                           <img
-                            src="images/playbuzz-img.png"
-                            className="play-img"
+                            src={service.serviceProviderImage}
+                            class="play-img"
                             alt=""
                           />
-                          <p>Gordan Entreprise Inc.</p>
-                          <h6 className="d-flex align-items-center">
+                          <p>{service.serviceProviderName}</p>
+                          <h6 class="d-flex align-items-center">
                             <img
                               src="images/Iconly-Bold-Star.svg"
-                              className="mr-1"
+                              class="mr-1"
                               alt=""
                               height="15px"
                             />{" "}
-                            <span className="gorden-ratetext  mr-1"> 4.7 </span>{" "}
+                            <span class="gorden-ratetext  mr-1"> 4.7 </span>{" "}
                             (147 reviews)
                           </h6>
                         </div>
