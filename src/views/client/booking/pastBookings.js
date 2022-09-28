@@ -89,11 +89,11 @@ export default function PastBookings() {
                       <div class="col-md-4 col-12  mb-2 mb-sm-0 pr-0">
                         <div class="serviceListeddetails-head booking-confrd ">
                           <img
-                            src={service.serviceProviderImage}
+                            src={booking.serviceProviderImage}
                             class="play-img"
                             alt=""
                           />
-                          <p>{service.serviceProviderName}</p>
+                          <p>{booking.serviceProviderName}</p>
                           <h6 class="d-flex align-items-center">
                             <img
                               src="images/Iconly-Bold-Star.svg"
