@@ -77,7 +77,7 @@ export default function ListedServices() {
                     <h4>Pending</h4>
                     <h5>10</h5>
                   </div>
-                  <div className="col-md-4 text-right col-6 order-5 order-sm-5 mt-3 mt-sm-0">
+                  <div className="col-md-2 text-right col-6 order-5 order-sm-5 mt-3 mt-sm-0">
                     {service.state != "DRAFT" ? (
                       <Link
                         to={"/listed-service-details"}
