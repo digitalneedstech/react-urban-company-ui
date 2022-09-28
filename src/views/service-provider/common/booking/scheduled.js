@@ -31,18 +31,10 @@ export default function ScheduledServices() {
         <div className="service-list mt-3" key={index}>
           <div className="row  align-items-center">
             <div className="col-md-1 col-4">
-            <div className="service-itemImg-date"  >
-              <span className="servie-itemnmb">
-                    {moment(
-                      service.create_date ? service.create_date : new Date()
-                    ).format("Do MMM YYYY").split(" ")[0].substring(0,2)}
-                  </span>
-                  <span className="servie-itemnmb">
-                    {moment(
-                      service.create_date ? service.create_date : new Date()
-                    ).format("Do MMM YYYY").split(" ")[1]}
-                  </span>
-              </div>
+                <div className="service-itemschedul-text">
+                    <h6>{moment(service.create_date).format("DD")}</h6>
+                    <p>{moment(service.create_date).format("MMM")}</p>
+                </div>
             </div>
             <div className="col-md-5 col-8 pl-0">
               <div className="service-item">
