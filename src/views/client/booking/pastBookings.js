@@ -109,16 +109,16 @@ export default function PastBookings() {
                       <div className="col-md-5 mb-2 mb-sm-0 d-flex justify-content-between">
                         <div className="text-sm-right text-center">
                           <h4>Total cost</h4>
-                          <h5>${"$"+booking.totalCost}</h5>
+                          <h5>${booking.totalCost}</h5>
                         </div>
                         <div className="text-sm-right text-center">
                           <h4>Paid</h4>
-                          <h5>${"$"+booking.paidCost}</h5>
+                          <h5>${booking.paidCost}</h5>
                         </div>
                         <div className="text-sm-right text-center">
                           <h4>Pending</h4>
                           <h5>
-                            <span className="padding-redtext">${"$"+booking.pendingCost}</span>
+                            <span className="padding-redtext">${booking.pendingCost}</span>
                           </h5>
                         </div>
                       </div>

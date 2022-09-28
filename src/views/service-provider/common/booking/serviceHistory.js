@@ -69,17 +69,17 @@ export default function ServicesHistory() {
                                                 <h6 class="d-flex align-items-center"><img src="images/Iconly-Bold-Star.svg" class="mr-1" alt="" height="15px" /> <span class="gorden-ratetext  mr-1"> 4.7 </span> (147 reviews)</h6>
                                             </div>
                                         </div>
-                  <div className="col-md-1 text-center text-sm-right pr-3 pr-sm-0 pl-0  col-4  order-1 order-sm-2">
+                                        <div className="col-md-1 text-center text-sm-right pr-3 pr-sm-0 pl-0  col-4  order-1 order-sm-2">
                     <h4>Total Cost</h4>
-                    <h5>{service.serviceCharge}</h5>
+                    <h5>${service.totalCost}</h5>
                   </div>
                   <div className="col-md-2 text-center text-sm-right pr-3 pr-sm-0   col-4 order-2 order-sm-3">
                     <h4>Earned</h4>
-                    <h5>$1,200.00</h5>
+                    <h5>${service.paidCost}</h5>
                   </div>
                   <div className="col-md-2 text-center text-sm-right pr-3 pr-sm-0 col-4  pl-sm-3 order-3 order-sm-4">
                     <h4>Pending</h4>
-                    <h5>10</h5>
+                    <h5>${service.pendingCost}</h5>
                   </div>
                   <div className="col-md-3 text-right col-6 order-5 order-sm-5 mt-3 mt-sm-0">
                   <Link
