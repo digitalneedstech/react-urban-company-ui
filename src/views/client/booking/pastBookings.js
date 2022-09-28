@@ -106,23 +106,23 @@ export default function PastBookings() {
                           </h6>
                         </div>
                       </div>
-                      <div class="col-md-2 text-center text-sm-right  pr-3 pr-sm-0 pl-3 pl-sm-0  col-3 mb-2 mb-sm-0">
-                        <h4>Paid</h4>
-                        <h5>$750.00</h5>
+                      <div className="col-md-5 mb-2 mb-sm-0 d-flex justify-content-between">
+                        <div className="text-sm-right text-center">
+                          <h4>Total cost</h4>
+                          <h5>${"$"+booking.totalCost}</h5>
+                        </div>
+                        <div className="text-sm-right text-center">
+                          <h4>Paid</h4>
+                          <h5>${"$"+booking.paidCost}</h5>
+                        </div>
+                        <div className="text-sm-right text-center">
+                          <h4>Pending</h4>
+                          <h5>
+                            <span className="padding-redtext">${"$"+booking.pendingCost}</span>
+                          </h5>
+                        </div>
                       </div>
-                      <div class="col-md-3 text-center text-sm-right pr-0 pl-sm-3   col-4 mb-2 mb-sm-0 ">
-                        <h4>Earned</h4>
-                        <h5>12th Jun 2022</h5>
-                      </div>
-                      <div class="col-md-3 text-right col-5 mb-2 mb-sm-0 ">
-                        <Link
-                          to="/bookings-details"
-                          state={{ booking }}
-                          className="btn btn-login new-loginbtn text-uppercase"
-                        >
-                          View Details
-                        </Link>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>

@@ -29,6 +29,9 @@ function BookSlot(props) {
     addNewBooking({
       serviceId: service.id,
       serviceProviderId: service.ownerId,
+      total_cost: service.charge+service.visitingCharges,
+      paid:service.charge+service.visitingCharges,
+      pending_cost:0
     });
     navigate("/calender");
   };

@@ -27,6 +27,11 @@ function Clientbrowsecheckout() {
         date: booking.date,
         timeZone: "IST",
       },
+      payment:{
+        total_cost:booking.total_cost,
+        paid:booking.paid,
+        pending_cost:booking.pending_cost
+      }
     };
     let response = await fetchData(
       `/clients/${user.userData.id}/bookings`,
