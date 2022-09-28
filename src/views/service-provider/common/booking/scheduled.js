@@ -20,7 +20,7 @@ export default function ScheduledServices() {
       );
       console.log(response);
       if (!_.isEmpty(response)) {
-        setServices(response.services);
+        setServices(response.bookings);
       }
     })();
   }, []);
