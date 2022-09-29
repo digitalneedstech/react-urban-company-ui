@@ -7,6 +7,14 @@ import Footer from "../../../Layout/footer";
 
 function BookingDashboard() {
   const [tab, setTab] = useState("scheduled");
+  useEffect(()=>{
+    if(localStorage.getItem("bookings_tab")!=undefined || localStorage.getItem("bookings_tab")!=null
+    || localStorage.getItem("bookings_tab")!=""){
+      setTab(localStorage.getItem("bookings_tab"));
+    }else{
+      setTab("listed");
+    }
+  },[]);
   return (
     <>
       <Header showRegisterButton={true} showNav={true} />
@@ -21,6 +29,7 @@ function BookingDashboard() {
                   tab == "scheduled" ? "active" : ""
                 }`}
                 onClick={() => {
+                  localStorage.setItem("bookings_tab","scheduled");
                   setTab("scheduled");
                 }}
               >
@@ -33,6 +42,7 @@ function BookingDashboard() {
                   tab == "pending" ? "active" : ""
                 }`}
                 onClick={() => {
+                  localStorage.setItem("bookings_tab","pending");
                   setTab("pending");
                 }}
               >
@@ -45,6 +55,7 @@ function BookingDashboard() {
                   tab == "past" ? "active" : ""
                 }`}
                 onClick={() => {
+                  localStorage.setItem("bookings_tab","past");
                   setTab("past");
                 }}
               >

@@ -12,6 +12,8 @@ function ServicesDashboard() {
     if(localStorage.getItem("services_tab")!=undefined || localStorage.getItem("services_tab")!=null
     || localStorage.getItem("services_tab")!=""){
       setTab(localStorage.getItem("services_tab"));
+    }else{
+      setTab("listed");
     }
   },[]);
   return (
