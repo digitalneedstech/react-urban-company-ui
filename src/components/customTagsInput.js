@@ -3,7 +3,7 @@ import CreatableSelect from "react-select/creatable";
 
 const createOption = (label) => ({
   label,
-  value: label.toLowerCase().replace(/\W/g, ""),
+  value: label
 });
 
 const colourStyles = {

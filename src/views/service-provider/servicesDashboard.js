@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../Layout/footer";
 import Header from "../../Layout/loggedInHeader";
@@ -8,6 +8,12 @@ import ListedServices from "./common/listedServices";
 
 function ServicesDashboard() {
   const [tab, setTab] = useState("scheduled");
+  useEffect(()=>{
+    if(localStorage.getItem("services_tab")!=undefined || localStorage.getItem("services_tab")!=null
+    || localStorage.getItem("services_tab")!=""){
+      setTab(localStorage.getItem("services_tab"));
+    }
+  },[]);
   return (
     <>
       <Header showRegisterButton={true} showNav={true} />
@@ -22,6 +28,7 @@ function ServicesDashboard() {
                   tab == "scheduled" ? "active" : ""
                 }`}
                 onClick={() => {
+                  localStorage.setItem("services_tab","scheduled");
                   setTab("scheduled");
                 }}
               >
@@ -34,6 +41,7 @@ function ServicesDashboard() {
                   tab == "pending" ? "active" : ""
                 }`}
                 onClick={() => {
+                  localStorage.setItem("services_tab","pending");
                   setTab("pending");
                 }}
               >
@@ -46,6 +54,7 @@ function ServicesDashboard() {
                   tab == "serviceHistory" ? "active" : ""
                 }`}
                 onClick={() => {
+                  localStorage.setItem("services_tab","serviceHistory");
                   setTab("serviceHistory");
                 }}
               >
@@ -55,6 +64,7 @@ function ServicesDashboard() {
                   tab == "listed" ? "active" : ""
                 }`} 
               onClick={() => {
+                localStorage.setItem("services_tab","listed");
                 setTab("listed");
               }}>
                 LISTED SERVICES</button>

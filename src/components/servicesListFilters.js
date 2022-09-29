@@ -4,7 +4,7 @@ import MultiRangeSlider from "multi-range-slider-react";
 import AsyncSelectInput from "./asyncSelectInput";
 
 function ServicesListFilters(props) {
-  const { showNav, count, searchKeyword, setSearchKeyword } = props;
+  const { showNav, count, searchKeyword, setSearchKeyword,setSortValue } = props;
   const [search, setSearch] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -17,6 +17,9 @@ function ServicesListFilters(props) {
     set_maxValue(e.maxValue);
   };
 
+  const onSortChange=(event)=>{
+    setSortValue(event.target.value);
+  }
   return (
     <>
       <section className={`browse-section ${showNav ? "" : "pt-4 pt-sm-5"}`}>
@@ -124,15 +127,15 @@ function ServicesListFilters(props) {
                     <div className="filter-box">
                       <div className=" d-flex align-items-center">
                         <img src="images/arrow.svg" alt="" height="22px" />
-                        <select
+                        <select onChange={onSortChange}
                           className="form-control form-select"
                           aria-label=".form-select-lg example"
                         >
-                          <option value="3">Sort listing</option>
-                          <option>Newest listing first</option>
-                          <option>Lowest budget</option>
-                          <option>Highest budget</option>
-                          <option>Oldest listing first</option>
+                          <option value="0">Sort listing</option>
+                          <option value="1">Newest listing first</option>
+                          <option value="2">Lowest budget</option>
+                          <option value="3">Highest budget</option>
+                          <option value="4">Oldest listing first</option>
                         </select>
                       </div>
                     </div>

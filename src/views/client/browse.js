@@ -10,17 +10,18 @@ function Clientbrowsse() {
   const { state } = useLocation();
   const [count, setCount] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState(state?.search);
-
+  const [sortValue,setSortValue]=useState("-1");
   return (
     <>
       <Header showRegisterButton={true} showNav={true} />
       <ServicesListFilters
         showNav={true}
         count={count}
+        setSortValue={setSortValue}
         searchKeyword={searchKeyword}
         setSearchKeyword={setSearchKeyword}
       />
-      <ServicesList showNav={true} setCount={setCount} search={searchKeyword} />
+      <ServicesList showNav={true} sortValue={sortValue} setCount={setCount} search={searchKeyword} />
       <Footer />
     </>
   );

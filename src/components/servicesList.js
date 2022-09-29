@@ -6,7 +6,7 @@ import { fetchData } from "../redux/helpers";
 var moment = require("moment");
 
 function ServicesList(props) {
-  const { showNav, setCount, search } = props;
+  const { showNav, setCount, search,sortValue } = props;
   const [services, setServices] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,31 @@ function ServicesList(props) {
       if (!_.isEmpty(search)) {
         url = `/services?keyword=${search}`;
       }
+      if(sortValue!="-1" || sortValue!="0"){
+        var sortParameter="";
+        var sortBy="";
+        if(sortValue=="2"){
+          sortParameter="charge";
+          sortBy="asc";
+        }else if(sortValue=="3"){
+          sortParameter="charge";
+          sortBy="desc";
+        }else if(sortValue=="1"){
+          sortParameter="create_date";
+          sortBy="asc";
+        }else{
+          sortParameter="create_date";
+          sortBy="desc";
+        }
+        if(sortBy!="" && sortParameter!=""){
+          if(search==""){
+            url=url+'?sortParameter='+sortParameter+"&sortBy="+sortBy  
+          }else{
+            url=url+'&sortParameter='+sortParameter+"&sortBy="+sortBy
+          }
+        }
+          
+      }
       let response = await fetchData(url, "GET");
 
       if (!_.isEmpty(response)) {
@@ -22,7 +47,7 @@ function ServicesList(props) {
         setCount(response.services.length);
       }
     })();
-  }, [search]);
+  }, [search,sortValue]);
 
   return (
     <>
